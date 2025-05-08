@@ -43,14 +43,12 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             $lists = FavoriteList::factory(rand(1, 3))->create(['user_id' => $user->id]);
 
-            foreach ($lists as $list)
-            {
+            foreach ($lists as $list) {
                 $randomContents = $allContents->random(rand(3, 6));
                 $list->contents()->attach($randomContents->pluck('id'));
             }
 
-            foreach ($allContents as $content)
-            {
+            foreach ($allContents as $content) {
                 $randomPlatforms = $platforms->random(rand(2, 5));
                 $content->platforms()->syncWithoutDetaching($randomPlatforms->pluck('id'));
             }
