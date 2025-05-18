@@ -74,4 +74,28 @@ class Content extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * Get all movies.
+     */
+    public function movies($query)
+    {
+        return $query->where('type', 'movie');
+    }
+
+    /**
+     * Get all series.
+     */
+    public function series($query)
+    {
+        return $query->where('type', 'series');
+    }
+
+    /**
+     * Get all animes.
+     */
+    public function animes($query)
+    {
+        return $query->where('type', 'anime');
+    }
 }
