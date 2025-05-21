@@ -21,6 +21,8 @@ class WelcomeController extends Controller
             return $category;
         });
 
-        return Inertia::render('Welcome');
+        return Inertia::render('Welcome', [
+            'categories'=> $categories
+        ]);
     }
 }
