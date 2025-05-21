@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import WelcomeHeader from '@/components/WelcomeHeader.vue';
 import { Head } from '@inertiajs/vue3';
+import { Card, CardContent } from '@/components/ui/card'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import type { Category } from '@/types/models'
 
@@ -42,25 +43,22 @@ defineProps<{
             <CarouselContent class="-ml-2">
                 <CarouselItem v-for="category in categories" :key="category.id"
                     class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2">
-                    <Card>
-                        <CardContent
-                            class="flex flex-col relative bg-black rounded-lg border border-neutral-800 aspect-[5/8] overflow-hidden items-center justify-center p-6">
+                    <Card class="relative rounded-lg overflow-hidden aspect-[5/8]">
+                        <CardContent>
                             <!-- Imagen de fondo -->
                             <img src="/images/welcome/hero-background.webp"
                                 :alt="`${category.content.title} cover image`"
                                 class="absolute inset-0 size-full object-cover z-0 mask-b-from-70% mask-b-to-95%" />
 
                             <!-- Contenido -->
-                            <div class="absolute z-10 text-center flex flex-col bottom-0">
+                            <div class="absolute z-10 mb-4 bottom-0 left-0 w-full text-center">
                                 <p class="capitalize text-lg font-bold">{{ category.name }}</p>
-                                <p class="text-[10px] font-medium mb-4">{{ category.content.title }}</p>
+                                <p class="text-[10px] font-medium">{{ category.content.title }}</p>
                             </div>
                         </CardContent>
                     </Card>
                 </CarouselItem>
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
         </Carousel>
     </section>
 
