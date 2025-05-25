@@ -62,8 +62,11 @@ const features = [
         <h2 class="text-2xl lg:text-3xl lg:text-center font-medium lg:font-bold mb-4">Entretenimiento incomparable</h2>
 
         <Carousel class="relative w-full" :opts="{
-            align: 'start',
-        }">
+            align: 'center',
+        }" v-slot="{ canScrollPrev, canScrollNext }">
+            <div class="absolute z-10 w-24 h-full bg-gradient-to-r from-[#101010]/100 to-[#101010]/0 opacity-0 transition-opacity duration-300" :class="{'md:opacity-100' : canScrollPrev}"></div>
+            <div class="absolute right-0 z-10 w-24 h-full bg-gradient-to-l from-[#101010]/100 to-[#101010]/0 opacity-0 transition-opacity duration-300" :class="{'md:opacity-100' : canScrollNext}"></div>
+
             <CarouselContent class="-ml-2">
                 <CarouselItem v-for="category in categories" :key="category.id"
                     class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2">
@@ -83,6 +86,8 @@ const features = [
                     </Card>
                 </CarouselItem>
             </CarouselContent>
+            <CarouselNext class="h-16 z-20" />
+            <CarouselPrevious class="h-16 z-20" />
         </Carousel>
     </section>
 
