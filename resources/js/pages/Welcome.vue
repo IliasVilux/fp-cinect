@@ -62,11 +62,12 @@ const features = [
         <h2 class="text-2xl lg:text-3xl lg:text-center font-medium lg:font-bold mb-4">Entretenimiento incomparable</h2>
 
         <Carousel class="relative w-full" :opts="{
-            align: 'center',
+            align: 'start',
         }" v-slot="{ canScrollPrev, canScrollNext }">
-            <div class="absolute z-10 w-24 h-full bg-gradient-to-r from-[#101010]/100 to-[#101010]/0 opacity-0 transition-opacity duration-300" :class="{'md:opacity-100' : canScrollPrev}"></div>
-            <div class="absolute right-0 z-10 w-24 h-full bg-gradient-to-l from-[#101010]/100 to-[#101010]/0 opacity-0 transition-opacity duration-300" :class="{'md:opacity-100' : canScrollNext}"></div>
+            <div class="hidden md:flex absolute left-0 h-full w-32 bg-gradient-to-r from-[#101010] from-10% to-neutral-900/0 z-10 opacity-0 transition-opacity duration-300" :class="{ 'opacity-100': canScrollPrev }"></div>
+            <div class="hidden md:flex absolute right-0 h-full w-32 bg-gradient-to-l from-[#101010] from-10% to-neutral-900/0 z-10 opacity-0 transition-opacity duration-300" :class="{ 'opacity-100': canScrollNext }"></div>
 
+            <!-- Contenido -->
             <CarouselContent class="-ml-2">
                 <CarouselItem v-for="category in categories" :key="category.id"
                     class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2">
@@ -86,15 +87,15 @@ const features = [
                     </Card>
                 </CarouselItem>
             </CarouselContent>
-            <CarouselNext class="h-16 z-20" />
             <CarouselPrevious class="h-16 z-20" />
+            <CarouselNext class="h-16 z-20" />
         </Carousel>
     </section>
 
-    <section
-        class="w-full min-h-[400px] lg:min-h-[600px] relative lg:flex items-end overflow-hidden mb-16">
+    <section class="w-full min-h-[400px] lg:min-h-[600px] relative lg:flex items-end overflow-hidden mb-16">
         <!-- Imagen de fondo -->
-        <img v-if="trendingContents.length && trendingContents[0].cover_image" src="/images/welcome/hero-background.webp" :alt="trendingContents[0].title"
+        <img v-if="trendingContents.length && trendingContents[0].cover_image"
+            src="/images/welcome/hero-background.webp" :alt="trendingContents[0].title"
             class="lg:absolute inset-0 w-full h-full object-cover z-0 mask-b-from-20% lg:mask-b-from-70% lg:mask-b-to-95% lg:mask-x-from-65%" />
 
         <!-- Contenido -->
@@ -102,7 +103,8 @@ const features = [
             <!-- Textos -->
             <div class="relative mb-4">
                 <h1 class="text-2xl font-black uppercase space text-center md:text-start">Tendencias</h1>
-                <p class="max-w-2xl text-4xl md:text-6xl lg:text-7xl font-extralight">Lo que todos están viendo ahora mismo</p>
+                <p class="max-w-2xl text-4xl md:text-6xl lg:text-7xl font-extralight">Lo que todos están viendo ahora
+                    mismo</p>
             </div>
 
             <!-- Grid -->
