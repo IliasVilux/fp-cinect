@@ -40,9 +40,7 @@ const clearHoveredItem = () => {
 </script>
 
 <template>
-
     <Head title="Dashboard" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
             <div class="relative mb-7 grid auto-rows-min grid-cols-3 gap-2 lg:gap-4 p-4 lg:mb-10">
@@ -64,27 +62,27 @@ const clearHoveredItem = () => {
             </div>
 
             <section class="z-10">
-                <div class="mb-2 flex items-baseline justify-between px-4">
+                <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
                     <h2 class="z-10 text-xl font-semibold tracking-tight">Series</h2>
-                    <TextLink :href="route('dashboard')">Ver más</TextLink>
+                    <TextLink :href="route('dashboard.category', 'movie')">Ver más</TextLink>
                 </div>
                 <ContentCarousel :contents="series" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem" />
             </section>
 
             <section class="z-10">
-                <div class="mb-2 flex items-baseline justify-between px-4">
+                <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
                     <h2 class="z-10 text-xl font-semibold tracking-tight">Movies</h2>
-                    <TextLink :href="route('dashboard')">Ver más</TextLink>
+                    <TextLink :href="route('dashboard.category', 'series')">Ver más</TextLink>
                 </div>
                 <ContentCarousel :contents="movies" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem" />
             </section>
 
             <section class="z-10">
-                <div class="mb-2 flex items-baseline justify-between px-4">
+                <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
                     <h2 class="z-10 text-xl font-semibold tracking-tight">Animes</h2>
-                    <TextLink :href="route('dashboard')">Ver más</TextLink>
+                    <TextLink :href="route('dashboard.category', 'anime')">Ver más</TextLink>
                 </div>
                 <ContentCarousel :contents="animes" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem" />
