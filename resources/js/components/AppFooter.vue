@@ -12,6 +12,21 @@ const navItems: NavItem[] = [
         title: 'Dashboard',
         href: 'dashboard',
     },
+    {
+        title: 'Series',
+        href: 'dashboard.category',
+        category: 'series',
+    },
+    {
+        title: 'Movies',
+        href: 'dashboard.category',
+        category: 'movies',
+    },
+    {
+        title: 'Animes',
+        href: 'dashboard.category',
+        category: 'animes',
+    },
 ];
 </script>
 
@@ -20,7 +35,7 @@ const navItems: NavItem[] = [
         <Separator />
         <div class="p-10">
             <div class="flex flex-col lg:flex-row items-start lg:items-center lg:justify-center gap-2 lg:gap-x-4">
-                <Link v-for="item in navItems" :key="item.title" :href="route(item.href)" class="uppercase text-sm font-semibold hover:text-neutral-200 transition-colors duration-100">
+                <Link v-for="item in navItems" :key="item.title" :href="item.category ? route(item.href, { category: item.category }) : route(item.href)" class="uppercase text-sm font-semibold hover:text-neutral-200 transition-colors duration-100">
                 {{ item.title }}
                 </Link>
             </div>
