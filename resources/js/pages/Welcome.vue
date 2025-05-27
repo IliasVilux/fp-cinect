@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/vue3';
 import { Card, CardContent } from '@/components/ui/card'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import type { Category, Content } from '@/types/models'
+import AppFooter from '@/components/AppFooter.vue';
 
 defineProps<{
     categories: Category[]
@@ -129,4 +130,5 @@ const features = [
             </div>
         </div>
     </section>
+    <AppFooter />
 </template>
