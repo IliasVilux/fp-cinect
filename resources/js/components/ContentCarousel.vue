@@ -6,7 +6,10 @@ import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 defineProps<{
-    contents: Content[]
+    contents: Content[],
+    hoveredItemId: string | null,
+    setHoveredItem: (id: string) => void,
+    clearHoveredItem: () => void,
 }>()
 const isHovering = ref(false)
 </script>
@@ -25,7 +28,10 @@ const isHovering = ref(false)
 
         <CarouselContent class="-ml-2 px-2">
             <CarouselItem v-for="content in contents" :key="content.id"
-                class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2 group">
+                class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2 group transition duration-300" @mouseenter="setHoveredItem(String(content.id))"
+                @mouseleave="clearHoveredItem" :class="{
+                    'brightness-75': hoveredItemId && hoveredItemId !== String(content.id)
+                }">
                 <Link :href="route('dashboard', content.id)">
                 <Card
                     class="relative rounded-lg overflow-hidden aspect-[5/8] group-hover:border-indigo-600 group-hover:bg-[#120e28] group-hover:-translate-y-1 transition duration-200">

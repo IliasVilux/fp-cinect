@@ -28,6 +28,14 @@ const setHoveredImage = (img: string) => {
 const clearHoveredImage = () => {
     hoveredImage.value = null;
 };
+
+const hoveredItemId = ref<string | null>(null);
+const setHoveredItem = (id: string) => {
+    hoveredItemId.value = id;
+};
+const clearHoveredItem = () => {
+    hoveredItemId.value = null;
+};
 </script>
 
 <template>
@@ -36,7 +44,7 @@ const clearHoveredImage = () => {
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
-            <div class="relative mb-7 grid auto-rows-min grid-cols-3 gap-4 p-4 lg:mb-10">
+            <div class="relative mb-7 grid auto-rows-min grid-cols-3 gap-2 lg:gap-4 p-4 lg:mb-10">
                 <Link v-for="content in cardsbuttonContent" :key="content.id" :href="route('home')"
                     class="border-sidebar-border/70 group relative z-10 aspect-[9/16] cursor-pointer overflow-hidden rounded-xl border transition-colors duration-300 hover:border-indigo-600 lg:aspect-video hover:shadow-2xl"
                     @mouseover="setHoveredImage(content.cover_image || '/images/welcome/hero-background.webp')"
@@ -59,7 +67,8 @@ const clearHoveredImage = () => {
                     <h2 class="z-10 text-xl font-semibold tracking-tight">Series</h2>
                     <TextLink :href="route('dashboard')">Ver más</TextLink>
                 </div>
-                <ContentCarousel :contents="series" />
+                <ContentCarousel :contents="series" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
+                    :clearHoveredItem="clearHoveredItem" />
             </section>
 
             <section class="z-10">
@@ -67,7 +76,8 @@ const clearHoveredImage = () => {
                     <h2 class="z-10 text-xl font-semibold tracking-tight">Movies</h2>
                     <TextLink :href="route('dashboard')">Ver más</TextLink>
                 </div>
-                <ContentCarousel :contents="movies" />
+                <ContentCarousel :contents="movies" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
+                    :clearHoveredItem="clearHoveredItem" />
             </section>
 
             <section class="z-10">
@@ -75,7 +85,8 @@ const clearHoveredImage = () => {
                     <h2 class="z-10 text-xl font-semibold tracking-tight">Animes</h2>
                     <TextLink :href="route('dashboard')">Ver más</TextLink>
                 </div>
-                <ContentCarousel :contents="animes" />
+                <ContentCarousel :contents="animes" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
+                    :clearHoveredItem="clearHoveredItem" />
             </section>
         </div>
     </AppLayout>
