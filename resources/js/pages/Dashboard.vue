@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppFooter from '@/components/AppFooter.vue';
 import ContentCarousel from '@/components/ContentCarousel.vue';
 import TextLink from '@/components/TextLink.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -88,6 +89,7 @@ const clearHoveredItem = () => {
                 <ContentCarousel :contents="animes" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem" />
             </section>
+            <AppFooter />
         </div>
     </AppLayout>
 </template>
