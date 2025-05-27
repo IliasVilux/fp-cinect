@@ -28,7 +28,7 @@ const isHovering = ref(false)
 
         <CarouselContent class="-ml-2 px-2">
             <CarouselItem v-for="content in contents" :key="content.id"
-                class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2 group transition duration-300" @mouseenter="setHoveredItem(String(content.id))"
+                class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2 group transition duration-1000" @mouseenter="setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem" :class="{
                     'brightness-75': hoveredItemId && hoveredItemId !== String(content.id)
                 }">
