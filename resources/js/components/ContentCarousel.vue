@@ -32,7 +32,7 @@ const isHovering = ref(false)
                 @mouseleave="clearHoveredItem" :class="{
                     'brightness-75': hoveredItemId && hoveredItemId !== String(content.id)
                 }">
-                <Link :href="route('dashboard', content.id)">
+                <Link :href="route('content.detail', content.id)">
                 <Card
                     class="relative rounded-lg overflow-hidden aspect-[5/8] group-hover:border-indigo-600 group-hover:bg-[#120e28] group-hover:-translate-y-1 transition duration-200">
                     <CardContent>

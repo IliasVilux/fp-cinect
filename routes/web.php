@@ -15,6 +15,7 @@ Route::middleware(['auth', 'verified'])
             ->name('dashboard');
         Route::get('dashboard/{category}', [DashboardController::class, 'indexCategory'])
             ->name('dashboard.category');
+        Route::get('content/{id}', [ContentController::class, 'show'])->name('content.detail');
     });
 
 require __DIR__ . '/settings.php';
