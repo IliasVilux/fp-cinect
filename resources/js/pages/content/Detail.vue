@@ -15,7 +15,7 @@ defineProps<{
 
 <template>
     <Head title="Dashboard" />
-    <AppLayout>
+    <AppLayout layout="header">
         {{ content }}
         <AppFooter />
     </AppLayout>
