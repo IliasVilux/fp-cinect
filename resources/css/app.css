@@ -7,6 +7,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/*
+  ---break---
+*/
+
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
   --font-sans:
     'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
@@ -58,6 +64,30 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --animate-accordion-down:
+    accordion-down 0.2s ease-out;
+  --animate-accordion-up:
+    accordion-up 0.2s ease-out;
+  @keyframes accordion-down {
+  from {
+    height:
+    0;
+    }
+  to {
+    height:
+    var(--reka-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+  from {
+    height:
+    var(--reka-accordion-content-height);
+    }
+  to {
+    height:
+    0;
+    }
+  }
 }
 
 /*
