@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import AppLogoIcon from '@/components/AppLogoIcon.vue';
+import { cn } from '@/lib/utils';
+import type { HTMLAttributes } from 'vue';
+
+const props = defineProps<{
+    class?: HTMLAttributes['class'];
+}>();
 </script>
 
 <template>
-    <div class="flex aspect-square size-8 items-center justify-center rounded-md text-sidebar-primary-foreground">
-        <AppLogoIcon class="h-full w-auto" />
-    </div>
-    <div class="ml-1 grid flex-1 text-left text-sm">
-        <span class="mb-0.5 truncate font-semibold leading-none">CineCT</span>
-    </div>
+    <img src="/images/logo-full.webp" alt="Cinect logo full" :class="cn('w-full', props.class)" />
 </template>

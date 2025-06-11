@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import AppLogoIcon from './AppLogoIcon.vue';
+import AppLogo from './AppLogo.vue';
 </script>
 
 <template>
@@ -7,18 +9,10 @@ import { Link } from '@inertiajs/vue3';
             <nav class="flex items-center justify-between gap-4">
                 <div>
                     <!-- Logo reducido para mobile -->
-                    <img
-                        src="/images/logo-mini.webp"
-                        alt="Cinect logo Mini"
-                        class="h-12 block lg:hidden"
-                    />
+                    <AppLogoIcon class="h-10 md:hidden" />
 
                     <!-- Logo completo para pantallas grandes -->
-                    <img
-                        src="/images/logo-full.webp"
-                        alt="Cinect logo full"
-                        class="h-12 hidden lg:block"
-                    />
+                    <AppLogo class="h-10 hidden md:flex" />
                 </div>
                 <Link
                     v-if="$page.props.auth.user"

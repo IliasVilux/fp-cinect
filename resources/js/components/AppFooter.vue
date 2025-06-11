@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import Separator from './ui/separator/Separator.vue';
+import { Separator } from '@/components/ui/separator';
 
 const navItems: NavItem[] = [
     {
