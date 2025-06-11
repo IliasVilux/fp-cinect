@@ -26,9 +26,9 @@ const isHovering = ref(false)
                 canScrollNext && !isHovering ? 'md:opacity-100' : 'opacity-0'
             ]" />
 
-        <CarouselContent class="-ml-2 px-2">
+        <CarouselContent>
             <CarouselItem v-for="content in contents" :key="content.id"
-                class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2 group transition duration-1000" @mouseenter="setHoveredItem(String(content.id))"
+                class="basis-1/2 md:basis-1/4 lg:basis-1/6 group transition duration-1000" @mouseenter="setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem" :class="{
                     'brightness-75': hoveredItemId && hoveredItemId !== String(content.id)
                 }">
