@@ -1,18 +1,22 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
-Route::get('dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('dashboard/{category}/{subcategory}', [DashboardController::class, 'indexSubcategory'])
+            ->name('dashboard.subcategory');
+        Route::get('dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
+        Route::get('dashboard/{category}', [DashboardController::class, 'indexCategory'])
+            ->name('dashboard.category');
+        Route::get('content/{id}', [ContentController::class, 'show'])->name('content.detail');
+    });
 
-Route::get('dashboard/{category}', [DashboardController::class, 'indexCategory'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard.category');
-
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

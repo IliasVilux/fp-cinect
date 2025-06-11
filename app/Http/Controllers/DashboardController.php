@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $movies = Content::where('type', 'movie')->get();
         $animes = Content::where('type', 'anime')->get();
 
-        return Inertia::render('Dashboard', [
+        return Inertia::render('dashboard/Dashboard', [
             'cardsbuttonContent' => [$serie, $movie, $anime],
             'series' => $series,
             'movies' => $movies,
@@ -64,7 +64,7 @@ class DashboardController extends Controller
             })
             ->values();
 
-        return Inertia::render('DashboardCategory', [
+        return Inertia::render('dashboard/DashboardCategory', [
             'featuredContent' => $featuredContent,
             'contentType' => $category,
             'trendingContents' => $trendingContents,
