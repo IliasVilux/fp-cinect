@@ -12,6 +12,7 @@ const props = defineProps<{
     hoveredItemId: string | null,
     setHoveredItem: (id: string) => void,
     clearHoveredItem: () => void,
+    isDetailPage?: boolean,
 
 } & WithClassAsProps>()
 const isHovering = ref(false)
@@ -29,7 +30,7 @@ const isHovering = ref(false)
                 canScrollNext && !isHovering ? 'md:opacity-100' : 'opacity-0'
             ]" />
 
-        <CarouselContent>
+        <CarouselContent :class="{'px-2 lg:px-4': !isDetailPage}">
             <CarouselItem v-for="content in contents" :key="content.id"
                 class="basis-1/2 md:basis-1/4 lg:basis-1/6 group transition duration-1000" @mouseenter="setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem" :class="{

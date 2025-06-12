@@ -30,7 +30,7 @@ const clearHoveredItem = () => {
 <template>
     <Head title="Dashboard" />
     <AppLayout layout="header">
-        <section class="mt-20 flex flex-col gap-4 px-2 md:flex-row md:gap-10 lg:px-0">
+        <section class="w-full max-w-6xl mx-auto mt-20 flex flex-col gap-4 px-2 md:flex-row md:gap-10 lg:px-0">
             <div class="w-full px-10 md:max-w-96 md:px-0">
                 <div class="aspect-[6/8] w-full">
                     <img src="/images/welcome/hero-background.webp" :alt="content.title" class="size-full rounded-lg object-cover" />
@@ -62,7 +62,7 @@ const clearHoveredItem = () => {
                     </TabsContent>
 
                     <TabsContent value="seasons">
-                        <Carousel :opts="{ align: 'center' }" v-slot="{ canScrollPrev, canScrollNext }" class="relative w-full">
+                        <Carousel :opts="{ align: 'center' }" v-slot="{ canScrollPrev, canScrollNext }" class="relative w-full mb-4">
                             <CarouselContent>
                                 <CarouselItem
                                     v-for="season in content.seasons"
@@ -108,11 +108,11 @@ const clearHoveredItem = () => {
             </div>
         </section>
 
-        <section class="mt-20 border-sidebar-border/70 relative h-56 w-full rounded-xl border px-2 lg:px-0">
+        <section class="w-full max-w-6xl mx-auto mt-20 border-sidebar-border/70 relative h-56 rounded-xl border px-2 lg:px-0">
             <PlaceholderPattern />
         </section>
 
-        <section v-if="relatedContents.length > 0" class="mt-20">
+        <section v-if="relatedContents.length > 0" class="w-full max-w-6xl mx-auto mt-20">
             <div class="mb-2 flex items-baseline justify-between px-2 lg:px-0">
                 <h2 class="z-10 text-xl font-semibold tracking-tight">More like this</h2>
             </div>
@@ -121,6 +121,8 @@ const clearHoveredItem = () => {
                 :hoveredItemId="hoveredItemId"
                 :setHoveredItem="setHoveredItem"
                 :clearHoveredItem="clearHoveredItem"
+                :isDetailPage="true"
+                class="px-2 lg:px-0"
             />
         </section>
 
