@@ -4,18 +4,21 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import type { Content } from '@/types/models'
 import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { WithClassAsProps } from './ui/carousel/interface';
+import { cn } from '@/lib/utils';
 
-defineProps<{
+const props = defineProps<{
     contents: Content[],
     hoveredItemId: string | null,
     setHoveredItem: (id: string) => void,
     clearHoveredItem: () => void,
-}>()
+
+} & WithClassAsProps>()
 const isHovering = ref(false)
 </script>
 
 <template>
-    <Carousel class="relative w-full" :opts="{ align: 'center' }" v-slot="{ canScrollPrev, canScrollNext }"
+    <Carousel :class="cn('relative w-full', props.class)" :opts="{ align: 'center' }" v-slot="{ canScrollPrev, canScrollNext }"
         @mouseenter="isHovering = true" @mouseleave="isHovering = false">
         <div class="absolute z-10 w-24 h-full bg-gradient-to-r from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 pointer-events-none hidden lg:block"
             :class="[

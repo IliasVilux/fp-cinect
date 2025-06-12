@@ -59,7 +59,7 @@ const features = [
         </div>
     </section>
 
-    <section class="w-full px-2 lg:px-4 overflow-x-hidden mb-5">
+    <section class="w-full overflow-x-hidden mb-5">
         <h2 class="text-2xl lg:text-3xl lg:text-center font-medium lg:font-bold mb-4">Entretenimiento incomparable</h2>
 
         <Carousel class="relative w-full" :opts="{
@@ -69,9 +69,9 @@ const features = [
             <div class="hidden md:flex absolute right-0 h-full w-32 bg-gradient-to-l from-[#101010] from-10% to-neutral-900/0 z-10 opacity-0 transition-opacity duration-300" :class="{ 'opacity-100': canScrollNext }"></div>
 
             <!-- Contenido -->
-            <CarouselContent class="-ml-2">
+            <CarouselContent>
                 <CarouselItem v-for="category in categories" :key="category.id"
-                    class="basis-1/2 md:basis-1/4 lg:basis-1/6 pl-2">
+                    class="basis-1/2 md:basis-1/4 lg:basis-1/6">
                     <Card class="relative rounded-lg overflow-hidden aspect-[5/8]">
                         <CardContent>
                             <!-- Imagen de fondo -->
