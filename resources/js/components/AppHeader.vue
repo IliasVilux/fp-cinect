@@ -14,7 +14,7 @@ import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { LayoutGrid, Menu, Search } from 'lucide-vue-next';
+import { Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
 import { computed } from 'vue';
 import AppLogoIcon from './AppLogoIcon.vue';
 
@@ -40,6 +40,21 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: 'Series',
+        href: '/dashboard/series',
+        icon: Tv,
+    },
+    {
+        title: 'Movies',
+        href: '/dashboard/movie',
+        icon: Film,
+    },
+    {
+        title: 'Animes',
+        href: '/dashboard/anime',
+        icon: Fan,
     },
 ];
 </script>
@@ -79,15 +94,15 @@ const mainNavItems: NavItem[] = [
                     </Sheet>
                 </div>
 
-                <Link :href="route('dashboard')" class="flex items-center gap-x-2">
+                <Link :href="route('home')" class="flex items-center gap-x-2">
                     <AppLogoIcon class="h-10 md:hidden" />
                     <AppLogo class="h-10 hidden md:flex" />
                 </Link>
 
                 <!-- Desktop Menu -->
                 <div class="hidden h-full lg:flex lg:flex-1">
-                    <NavigationMenu class="ml-10 flex h-full">
-                        <NavigationMenuList class="flex h-full space-x-4">
+                    <NavigationMenu class="ml-16 flex h-full">
+                        <NavigationMenuList class="flex h-full space-x-8">
                             <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center">
                                 <Link :href="item.href" class="hover:text-indigo-100 transition-colors duration-75">
                                     {{ item.title }}
