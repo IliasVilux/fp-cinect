@@ -30,14 +30,14 @@ const clearHoveredItem = () => {
 <template>
     <Head title="Dashboard" />
     <AppLayout layout="header">
-        <section class="w-full max-w-6xl mx-auto mt-20 flex flex-col gap-4 px-2 md:flex-row md:gap-10 lg:px-0">
-            <div class="w-full px-10 md:max-w-96 md:px-0">
+        <section class="w-full max-w-6xl flex flex-col gap-4 md:flex-row md:gap-10 mx-auto md:mt-20">
+            <div class="w-full md:max-w-96">
                 <div class="aspect-[6/8] w-full">
-                    <img src="/images/welcome/hero-background.webp" :alt="content.title" class="size-full rounded-lg object-cover" />
+                    <img src="/images/welcome/hero-background.webp" :alt="content.title" class="size-full md:rounded-lg object-cover mask-b-from-80% mask-b-to-100% md:mask-none" />
                 </div>
             </div>
 
-            <div class="w-full">
+            <div class="w-full -mt-12 md:-mt-0 px-2 lg:px-0 z-10">
                 <h2 class="mb-2 text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
                 <div class="mb-8 flex h-5 items-center space-x-2 text-sm text-neutral-400">
                     <p v-if="content.release_year">{{ content.release_year }}</p>
