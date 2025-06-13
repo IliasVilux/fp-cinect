@@ -104,7 +104,7 @@ const mainNavItems: NavItem[] = [
                     <NavigationMenu class="ml-16 flex h-full">
                         <NavigationMenuList class="flex h-full space-x-8">
                             <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center">
-                                <Link :href="item.href" class="hover:text-indigo-100 transition-colors duration-75">
+                                <Link :href="item.href" class="hover:text-indigo-500 transition-colors duration-75">
                                     {{ item.title }}
                                 </Link>
                                 <div
