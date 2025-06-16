@@ -14,7 +14,7 @@ import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
+import { Compass, Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
 import { computed } from 'vue';
 import AppLogoIcon from './AppLogoIcon.vue';
 
@@ -55,6 +55,11 @@ const mainNavItems: NavItem[] = [
         title: 'Animes',
         href: '/dashboard/anime',
         icon: Fan,
+    },
+    {
+        title: 'Explorar',
+        href: '/explore',
+        icon: Compass,
     },
 ];
 </script>

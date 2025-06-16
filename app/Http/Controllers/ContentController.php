@@ -8,7 +8,15 @@ use Inertia\Inertia;
 
 class ContentController extends Controller
 {
-    public function show(int $id)
+    public function explore()
+    {
+        $contents = Content::paginate(2);
+
+        return Inertia::render('content/Explore', [
+            'contents' => $contents,
+        ]);
+    }
+    public function detail(int $id)
     {
         $content = Content::with(['category', 'seasons.episodes'])->findOrFail($id);
         $relatedContents = Content::where('category_id', $content->category_id)
