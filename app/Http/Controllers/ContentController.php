@@ -10,7 +10,7 @@ class ContentController extends Controller
 {
     public function explore()
     {
-        $contents = Content::paginate(2);
+        $contents = Content::paginate(24);
 
         return Inertia::render('content/Explore', [
             'contents' => $contents,
