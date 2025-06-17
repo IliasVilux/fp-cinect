@@ -11,6 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $recentContents = Content::orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
         $serie = Content::where('type', 'series')->inRandomOrder()->first();
         $movie = Content::where('type', 'movie')->inRandomOrder()->first();
         $anime = Content::where('type', 'anime')->inRandomOrder()->first();
@@ -21,6 +24,7 @@ class DashboardController extends Controller
 
         return Inertia::render('dashboard/Dashboard', [
             'cardsbuttonContent' => [$serie, $movie, $anime],
+            'recentContents' => $recentContents,
             'series' => $series,
             'movies' => $movies,
             'animes' => $animes,

@@ -17,6 +17,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 defineProps<{
     cardsbuttonContent: Content[];
+    recentContents: Content[];
     series: Content[];
     movies: Content[];
     animes: Content[];
@@ -68,6 +69,18 @@ const clearHoveredItem = () => {
                     :class="{ 'opacity-50': hoveredImage }"
                 />
             </div>
+
+            <section class="z-10">
+                <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">Añadidos recientemente</h2>
+                </div>
+                <ContentCarousel
+                    :contents="recentContents"
+                    :hoveredItemId="hoveredItemId"
+                    :setHoveredItem="setHoveredItem"
+                    :clearHoveredItem="clearHoveredItem"
+                />
+            </section>
 
             <section class="z-10">
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
