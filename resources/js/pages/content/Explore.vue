@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
+import OrderBy from '@/components/OrderBy.vue';
 import { Card, CardContent } from '@/components/ui/card';
 import Pagination from '@/components/ui/pagination/Pagination.vue';
 import PaginationContent from '@/components/ui/pagination/PaginationContent.vue';
@@ -8,9 +9,9 @@ import PaginationItem from '@/components/ui/pagination/PaginationItem.vue';
 import PaginationNext from '@/components/ui/pagination/PaginationNext.vue';
 import PaginationPrevious from '@/components/ui/pagination/PaginationPrevious.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { BreadcrumbItem } from '@/types';
+import { BreadcrumbItem, OrderItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 defineProps<{
     contents: any;
@@ -22,6 +23,26 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/explore',
     },
 ];
+
+const orderItems: OrderItem[] = [
+    { label: 'Nombre (A → Z)', value: 'name_asc' },
+    { label: 'Nombre (Z → A)', value: 'name_desc' },
+    { label: 'Más recientes', value: 'recent' },
+    // { label: 'Mejor valorados', value: 'top_rated' },
+    // { label: 'Peor valorados', value: 'low_rated' },
+];
+const orderBy = ref<string | null>(null);
+watch(orderBy, (value) => {
+    router.visit(route('explore'), {
+        method: 'get',
+        data: {
+            ...(value ? { orderBy: value } : {}),
+        },
+        preserveScroll: true,
+        preserveState: true,
+    });
+});
+
 const hoveredItemId = ref<string | null>(null);
 const setHoveredItem = (id: string) => {
     hoveredItemId.value = id;
@@ -35,7 +56,13 @@ const clearHoveredItem = () => {
     <Head title="Explora" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
-            <section class="grid grid-cols-2 gap-2 lg:grid-cols-4 xl:grid-cols-6 mt-2 lg:mt-4 px-2 lg:px-4">
+            <section class="mt-2 px-2 lg:mt-4 lg:px-4">
+                <OrderBy
+                    :orderItems="orderItems"
+                    v-model="orderBy"
+                />
+            </section>
+            <section class="grid grid-cols-2 gap-2 px-2 lg:grid-cols-4 lg:px-4 xl:grid-cols-6">
                 <Link :href="route('content.detail', content.id)" v-for="content in contents.data" :key="content.id">
                     <Card
                         class="group relative aspect-[5/8] overflow-hidden rounded-lg transition duration-200 hover:-translate-y-1 hover:border-indigo-600 hover:bg-[#120e28]"

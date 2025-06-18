@@ -2,12 +2,16 @@
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 defineProps<{
     items: NavItem[];
 }>();
 
 const page = usePage<SharedData>();
+const currentPath = computed(() =>
+  new URL(page.url, window.location.origin).pathname
+);
 </script>
 
 <template>
@@ -16,7 +20,7 @@ const page = usePage<SharedData>();
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
                 <SidebarMenuButton
-                    as-child :is-active="item.href === page.url"
+                    as-child :is-active="item.href === currentPath"
                     :tooltip="item.title"
                 >
                     <Link :href="item.href">

@@ -8,9 +8,31 @@ use Inertia\Inertia;
 
 class ContentController extends Controller
 {
-    public function explore()
+    public function explore(Request $request)
     {
-        $contents = Content::paginate(24);
+        $query = Content::query();
+
+        switch ($request->input('orderBy')) {
+            case 'name_asc':
+                $query->orderBy('title', 'asc');
+                break;
+            case 'name_desc':
+                $query->orderBy('title', 'desc');
+                break;
+            case 'recent':
+                $query->orderBy('created_at', 'desc');
+                break;
+            case 'top_rated':
+                $query->orderBy('rating', 'desc'); // ! TODO: when ratings are implemented
+                break;
+            case 'low_rated':
+                $query->orderBy('rating', 'asc'); // ! TODO: when ratings are implemented
+                break;
+            default:
+                $query->latest();
+        }
+
+        $contents = $query->paginate(24);
 
         return Inertia::render('content/Explore', [
             'contents' => $contents,

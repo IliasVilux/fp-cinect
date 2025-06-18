@@ -19,6 +19,11 @@ export interface NavItem {
     category?: string;
 }
 
+export interface OrderItem {
+    label: string;
+    value: string;
+}
+
 export interface SharedData extends PageProps {
     name: string;
     quote: { message: string; author: string };
