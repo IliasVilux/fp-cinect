@@ -19,7 +19,7 @@ export interface NavItem {
     category?: string;
 }
 
-export interface OrderItem {
+export interface SelectItem {
     label: string;
     value: string;
 }

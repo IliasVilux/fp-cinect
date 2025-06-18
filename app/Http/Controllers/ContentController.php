@@ -12,6 +12,10 @@ class ContentController extends Controller
     {
         $query = Content::query();
 
+        if ($request->filled('contentType')) {
+            $query->where('type', $request->input('contentType'));
+        }
+
         switch ($request->input('orderBy')) {
             case 'name_asc':
                 $query->orderBy('title', 'asc');
@@ -36,6 +40,7 @@ class ContentController extends Controller
 
         return Inertia::render('content/Explore', [
             'contents' => $contents,
+            'filters' => $request->only(['orderBy', 'contentType']),
         ]);
     }
     public function detail(int $id)

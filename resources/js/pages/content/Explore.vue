@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
-import OrderBy from '@/components/OrderBy.vue';
+import CustomSelect from '@/components/CustomSelect.vue';
 import { Card, CardContent } from '@/components/ui/card';
 import Pagination from '@/components/ui/pagination/Pagination.vue';
 import PaginationContent from '@/components/ui/pagination/PaginationContent.vue';
@@ -9,12 +9,16 @@ import PaginationItem from '@/components/ui/pagination/PaginationItem.vue';
 import PaginationNext from '@/components/ui/pagination/PaginationNext.vue';
 import PaginationPrevious from '@/components/ui/pagination/PaginationPrevious.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { BreadcrumbItem, OrderItem } from '@/types';
+import { BreadcrumbItem, SelectItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     contents: any;
+    filters: {
+        orderBy: string | null;
+        categoryType: string | null;
+    };
 }>();
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -24,19 +28,26 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const orderItems: OrderItem[] = [
+const orderItems: SelectItem[] = [
     { label: 'Nombre (A → Z)', value: 'name_asc' },
     { label: 'Nombre (Z → A)', value: 'name_desc' },
     { label: 'Más recientes', value: 'recent' },
     // { label: 'Mejor valorados', value: 'top_rated' },
     // { label: 'Peor valorados', value: 'low_rated' },
 ];
-const orderBy = ref<string | null>(null);
-watch(orderBy, (value) => {
+const contentTypesItems: SelectItem[] = [
+    { label: 'Series', value: 'series' },
+    { label: 'Películas', value: 'movie' },
+    { label: 'Animes', value: 'anime' },
+];
+const orderBy = ref(props.filters.orderBy);
+const contentType = ref(props.filters.categoryType);
+watch([orderBy, contentType], ([order, contentType]) => {
     router.visit(route('explore'), {
         method: 'get',
         data: {
-            ...(value ? { orderBy: value } : {}),
+            ...(order ? { orderBy: order } : {}),
+            ...(contentType ? { contentType: contentType } : {}),
         },
         preserveScroll: true,
         preserveState: true,
@@ -56,11 +67,20 @@ const clearHoveredItem = () => {
     <Head title="Explora" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
-            <section class="mt-2 px-2 lg:mt-4 lg:px-4">
-                <OrderBy
-                    :orderItems="orderItems"
+            <section class="flex justify-between mt-2 px-2 lg:mt-4 lg:px-4">
+                <CustomSelect
+                    :selectItems="orderItems"
+                    placeholder="Ordenar por"
                     v-model="orderBy"
                 />
+
+                <div>
+                    <CustomSelect
+                        :selectItems="contentTypesItems"
+                        placeholder="Todas las categorías"
+                        v-model="contentType"
+                    />
+                </div>
             </section>
             <section class="grid grid-cols-2 gap-2 px-2 lg:grid-cols-4 lg:px-4 xl:grid-cols-6">
                 <Link :href="route('content.detail', content.id)" v-for="content in contents.data" :key="content.id">
