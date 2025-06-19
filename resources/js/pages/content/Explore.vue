@@ -47,7 +47,7 @@ const contentTypesItems: SelectItem[] = [
 const orderBy = ref<string | null>(props.filters.orderBy);
 const contentType = ref<string | null>(props.filters.contentType);
 const categoryId = ref<number | null>(props.filters.categoryId);
-const searchContent = ref<string>('')
+const searchContent = ref<string>('');
 watch([orderBy, contentType, categoryId, searchContent], ([order, contentType, category, search]) => {
     router.visit(route('explore'), {
         method: 'get',
@@ -75,27 +75,18 @@ const clearHoveredItem = () => {
     <Head title="Explora" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
-            <section class="flex justify-between mt-2 px-2 lg:mt-4 lg:px-4">
-                <CustomSelect
-                    :selectItems="orderItems"
-                    placeholder="Ordenar por"
-                    v-model="orderBy"
-                />
-
-                <div class="flex items-center gap-2">
-                    <SearchInput @search="(value) => searchContent = value" />
-                    <CustomSelect
-                        :selectItems="contentTypesItems"
-                        placeholder="Todos los tipos"
-                        v-model="contentType"
-                    />
-                    <CustomSelect
-                        :selectItems="categoriesItems"
-                        placeholder="Todas las categorías"
-                        v-model="categoryId"
-                    />
+            <section class="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-2 mt-2 xl:mt-4 px-2 xl:px-4">
+                <div class="flex flex-col gap-2 w-full xl:flex-row xl:items-end">
+                    <SearchInput @search="(value) => (searchContent = value)" />
+                    <div class="flex gap-2 w-full">
+                        <CustomSelect :selectItems="contentTypesItems" placeholder="Todos los tipos" v-model="contentType" />
+                        <CustomSelect :selectItems="categoriesItems" placeholder="Todas las categorías" v-model="categoryId" class="w-full lg:w-48" />
+                    </div>
                 </div>
+
+                <CustomSelect :selectItems="orderItems" placeholder="Ordenar por" v-model="orderBy" />
             </section>
+
             <section class="grid grid-cols-2 gap-2 px-2 lg:grid-cols-4 lg:px-4 xl:grid-cols-6">
                 <Link :href="route('content.detail', content.id)" v-for="content in contents.data" :key="content.id">
                     <Card
