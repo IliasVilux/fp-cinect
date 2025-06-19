@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,6 +15,10 @@ class ContentController extends Controller
 
         if ($request->filled('contentType')) {
             $query->where('type', $request->input('contentType'));
+        }
+
+        if ($request->filled('categoryId')) {
+            $query->where('category_id', $request->input('categoryId'));
         }
 
         switch ($request->input('orderBy')) {
@@ -37,10 +42,12 @@ class ContentController extends Controller
         }
 
         $contents = $query->paginate(24);
+        $categories = Category::select(['name as label', 'id as value'])->get();
 
         return Inertia::render('content/Explore', [
+            'categoriesItems' => $categories,
             'contents' => $contents,
-            'filters' => $request->only(['orderBy', 'contentType']),
+            'filters' => $request->only(['orderBy', 'contentType', 'categoryId']),
         ]);
     }
     public function detail(int $id)

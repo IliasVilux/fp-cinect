@@ -10,14 +10,17 @@ import PaginationNext from '@/components/ui/pagination/PaginationNext.vue';
 import PaginationPrevious from '@/components/ui/pagination/PaginationPrevious.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem, SelectItem } from '@/types';
+import { Category } from '@/types/models';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 
 const props = defineProps<{
+    categoriesItems: Category[];
     contents: any;
     filters: {
         orderBy: string | null;
-        categoryType: string | null;
+        contentType: string | null;
+        categoryId: number | null;
     };
 }>();
 
@@ -41,13 +44,15 @@ const contentTypesItems: SelectItem[] = [
     { label: 'Animes', value: 'anime' },
 ];
 const orderBy = ref(props.filters.orderBy);
-const contentType = ref(props.filters.categoryType);
-watch([orderBy, contentType], ([order, contentType]) => {
+const contentType = ref(props.filters.contentType);
+const categoryId = ref(props.filters.categoryId);
+watch([orderBy, contentType, categoryId], ([order, contentType, category]) => {
     router.visit(route('explore'), {
         method: 'get',
         data: {
             ...(order ? { orderBy: order } : {}),
             ...(contentType ? { contentType: contentType } : {}),
+            ...(category ? { categoryId: category } : {}),
         },
         preserveScroll: true,
         preserveState: true,
@@ -74,11 +79,16 @@ const clearHoveredItem = () => {
                     v-model="orderBy"
                 />
 
-                <div>
+                <div class="flex items-center gap-2">
                     <CustomSelect
                         :selectItems="contentTypesItems"
-                        placeholder="Todas las categorías"
+                        placeholder="Todos los tipos"
                         v-model="contentType"
+                    />
+                    <CustomSelect
+                        :selectItems="categoriesItems"
+                        placeholder="Todas las categorías"
+                        v-model="categoryId"
                     />
                 </div>
             </section>

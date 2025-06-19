@@ -1,18 +1,24 @@
 <script setup lang="ts">
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { selectItem } from '@/types';
+import { SelectItem as SelectItemType } from '@/types';
+import { computed } from 'vue';
 
 const props = defineProps<{
-    selectItems: selectItem[];
+    selectItems: SelectItemType[];
     placeholder: string;
-    modelValue?: string | null;
+    modelValue?: string | number | null;
 }>();
+
+const selectedLabel = computed(() => {
+    const selectedItem = props.selectItems.find(item => item.value === props.modelValue);
+    return selectedItem?.label ?? null;
+});
 
 const emit = defineEmits<{
-    (e: 'update:modelValue', value: string | null): void;
+    (e: 'update:modelValue', value: string | number | null): void;
 }>();
 
-function onUpdateModelValue(value: string) {
+function onUpdateModelValue(value: string | number | null) {
     emit('update:modelValue', value === props.modelValue ? null : value);
 }
 </script>
@@ -20,7 +26,7 @@ function onUpdateModelValue(value: string) {
 <template>
     <Select :modelValue="modelValue" @update:modelValue="onUpdateModelValue">
         <SelectTrigger>
-            <SelectValue :placeholder="modelValue ?? placeholder" class="capitalize" />
+            <SelectValue :placeholder="selectedLabel ?? placeholder" class="capitalize" />
         </SelectTrigger>
         <SelectContent>
             <SelectGroup>

@@ -21,7 +21,7 @@ export interface NavItem {
 
 export interface SelectItem {
     label: string;
-    value: string;
+    value: string | number;
 }
 
 export interface SharedData extends PageProps {
