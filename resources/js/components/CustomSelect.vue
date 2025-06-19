@@ -10,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const selectedLabel = computed(() => {
-    const selectedItem = props.selectItems.find(item => item.value === props.modelValue);
+    const selectedItem = props.selectItems.find((item) => item.value === props.modelValue);
     return selectedItem?.label ?? null;
 });
 

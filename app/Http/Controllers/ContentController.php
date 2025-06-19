@@ -11,6 +11,10 @@ class ContentController extends Controller
 {
     public function explore(Request $request)
     {
+        $validated = $request->validate([
+            'searchContent' => 'nullable|string|max:255',
+        ]);
+
         $query = Content::query();
 
         if ($request->filled('contentType')) {
@@ -19,6 +23,10 @@ class ContentController extends Controller
 
         if ($request->filled('categoryId')) {
             $query->where('category_id', $request->input('categoryId'));
+        }
+
+        if ($request->filled('searchContent')) {
+            $query->where('title', 'like', '%' . $request->input('searchContent') . '%');
         }
 
         switch ($request->input('orderBy')) {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
 import CustomSelect from '@/components/CustomSelect.vue';
+import SearchInput from '@/components/SearchInput.vue';
 import { Card, CardContent } from '@/components/ui/card';
 import Pagination from '@/components/ui/pagination/Pagination.vue';
 import PaginationContent from '@/components/ui/pagination/PaginationContent.vue';
@@ -43,16 +44,18 @@ const contentTypesItems: SelectItem[] = [
     { label: 'Películas', value: 'movie' },
     { label: 'Animes', value: 'anime' },
 ];
-const orderBy = ref(props.filters.orderBy);
-const contentType = ref(props.filters.contentType);
-const categoryId = ref(props.filters.categoryId);
-watch([orderBy, contentType, categoryId], ([order, contentType, category]) => {
+const orderBy = ref<string | null>(props.filters.orderBy);
+const contentType = ref<string | null>(props.filters.contentType);
+const categoryId = ref<number | null>(props.filters.categoryId);
+const searchContent = ref<string>('')
+watch([orderBy, contentType, categoryId, searchContent], ([order, contentType, category, search]) => {
     router.visit(route('explore'), {
         method: 'get',
         data: {
             ...(order ? { orderBy: order } : {}),
             ...(contentType ? { contentType: contentType } : {}),
             ...(category ? { categoryId: category } : {}),
+            ...(search ? { searchContent: search } : {}),
         },
         preserveScroll: true,
         preserveState: true,
@@ -80,6 +83,7 @@ const clearHoveredItem = () => {
                 />
 
                 <div class="flex items-center gap-2">
+                    <SearchInput @search="(value) => searchContent = value" />
                     <CustomSelect
                         :selectItems="contentTypesItems"
                         placeholder="Todos los tipos"
