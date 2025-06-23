@@ -5,7 +5,20 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
+import { createI18n } from 'vue-i18n';
 import { initializeTheme } from './composables/useAppearance';
+import en from '../../lang/en/en.json';
+import es from '../../lang/es/es.json';
+
+const i18n = createI18n({
+    legacy: false,
+    locale: 'en',
+    fallbackLocale: 'en',
+    messages: {
+        en,
+        es
+    },
+})
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -29,6 +42,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(i18n)
             .mount(el);
     },
     progress: {

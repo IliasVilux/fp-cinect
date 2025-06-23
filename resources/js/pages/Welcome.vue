@@ -5,6 +5,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import type { Category, Content } from '@/types/models'
 import AppFooter from '@/components/AppFooter.vue';
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{
     categories: Category[]
@@ -51,8 +54,7 @@ const features = [
         <div
             class="max-w-4xl mx-auto relative z-10 flex flex-col items-center justify-center min-h-[500px] p-8 text-center text-neutral-50 pt-44">
             <img src="/images/logo-full.webp" alt="Cinect logo full" class="w-60 lg:w-96" />
-            <h1 class="text-3xl lg:text-6xl font-black mt-2 lg:mt-4 mb-5 lg:mb-10">Descubre películas, series, animes y
-                mucho más</h1>
+            <h1 class="text-3xl lg:text-6xl font-black mt-2 lg:mt-4 mb-5 lg:mb-10">{{ t('welcome.title') }}</h1>
             <p class="lg:text-2xl">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit doloremque laudantium repellat!
             </p>
