@@ -10,16 +10,6 @@ import { initializeTheme } from './composables/useAppearance';
 import en from '../../lang/en/en.json';
 import es from '../../lang/es/es.json';
 
-const i18n = createI18n({
-    legacy: false,
-    locale: 'en',
-    fallbackLocale: 'en',
-    messages: {
-        en,
-        es
-    },
-})
-
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
     interface ImportMetaEnv {
@@ -39,6 +29,16 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
+        const i18n = createI18n({
+            legacy: false,
+            locale: props.initialPage.props.locale || 'en',
+            fallbackLocale: 'en',
+            messages: {
+                en,
+                es
+            },
+        })
+
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)

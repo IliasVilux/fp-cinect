@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+Route::post('/localization', LocalizationController::class)->name('localization');
 
 Route::middleware('auth')->group(function () {
     Route::redirect('settings', '/settings/profile');
