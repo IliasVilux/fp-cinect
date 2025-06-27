@@ -5,6 +5,7 @@ import { Link, router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CustomSelect from './CustomSelect.vue';
+import { Languages } from 'lucide-vue-next';
 
 const navItems: NavItem[] = [
     {
@@ -34,8 +35,8 @@ const navItems: NavItem[] = [
 
 const { locale } = useI18n();
 const langOptions: SelectItem[] = [
-    { label: 'EN', value: 'en' },
-    { label: 'ES', value: 'es' },
+    { label: 'English', value: 'en' },
+    { label: 'Español', value: 'es' },
 ];
 const langValue = ref<string | null>(locale.value);
 watch(langValue, (langValue) => {
@@ -54,10 +55,9 @@ watch(langValue, (langValue) => {
 </script>
 
 <template>
-    <CustomSelect :selectItems="langOptions" placeholder="Todos los tipos" v-model="langValue" />
     <footer class="text-center">
         <Separator />
-        <div class="p-10">
+        <div class="flex flex-col gap-6 px-2 lg:px-4 py-4 lg:py-8">
             <div class="flex flex-col items-start gap-2 lg:flex-row lg:items-center lg:justify-center lg:gap-x-4">
                 <Link
                     v-for="item in navItems"
@@ -68,7 +68,12 @@ watch(langValue, (langValue) => {
                     {{ item.title }}
                 </Link>
             </div>
-            <p class="mt-4 text-xs text-neutral-500">© {{ new Date().getFullYear() }} Cinect. All rights reserved.</p>
+            <CustomSelect :selectItems="langOptions" placeholder="Todos los tipos" v-model="langValue" class="lg:mx-auto">
+                <template v-slot:icon>
+                    <Languages class="size-4" />
+                </template>
+            </CustomSelect>
+            <p class="text-xs text-neutral-500">© {{ new Date().getFullYear() }} Cinect. All rights reserved.</p>
         </div>
     </footer>
 </template>

@@ -2,12 +2,14 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { SelectItem as SelectItemType } from '@/types';
 import { computed } from 'vue';
+import { WithClassAsProps } from './ui/carousel/interface';
+import { cn } from '@/lib/utils';
 
 const props = defineProps<{
     selectItems: SelectItemType[];
     placeholder: string;
     modelValue?: string | number | null;
-}>();
+} & WithClassAsProps>();
 
 const selectedLabel = computed(() => {
     const selectedItem = props.selectItems.find((item) => item.value === props.modelValue);
@@ -25,10 +27,11 @@ function onUpdateModelValue(value: string | number | null) {
 
 <template>
     <Select :modelValue="modelValue" @update:modelValue="onUpdateModelValue">
-        <SelectTrigger>
+        <SelectTrigger :class="cn('', props.class)">
+            <slot name="icon" />
             <SelectValue :placeholder="selectedLabel ?? placeholder" class="capitalize" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent align="center">
             <SelectGroup>
                 <SelectItem v-for="item in selectItems" :value="item.value" :key="item.label" class="capitalize">
                     {{ item.label }}
