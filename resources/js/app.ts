@@ -7,8 +7,7 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { createI18n } from 'vue-i18n';
 import { initializeTheme } from './composables/useAppearance';
-import en from '../../lang/en/en.json';
-import es from '../../lang/es/es.json';
+import loadLocaleMessages from '@/lang';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -33,10 +32,7 @@ createInertiaApp({
             legacy: false,
             locale: props.initialPage.props.locale || 'en',
             fallbackLocale: 'en',
-            messages: {
-                en,
-                es
-            },
+            messages: loadLocaleMessages(),
         })
 
         createApp({ render: () => h(App, props) })
@@ -46,7 +42,7 @@ createInertiaApp({
             .mount(el);
     },
     progress: {
-        color: '#4B5563',
+        color: '#3730A3',
     },
 });
 
