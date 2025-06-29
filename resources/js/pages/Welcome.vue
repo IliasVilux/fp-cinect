@@ -1,134 +1,134 @@
 <script setup lang="ts">
-import WelcomeHeader from '@/components/WelcomeHeader.vue';
-import { Head } from '@inertiajs/vue3';
-import { Card, CardContent } from '@/components/ui/card'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
-import type { Category, Content } from '@/types/models'
 import AppFooter from '@/components/AppFooter.vue';
-import { useI18n } from 'vue-i18n'
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import WelcomeHeader from '@/components/WelcomeHeader.vue';
+import type { Category, Content } from '@/types/models';
+import { Head } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n()
+const { t, locale, messages } = useI18n();
 
 defineProps<{
-    categories: Category[]
-    trendingContents: Content[]
-}>()
+    categories: Category[];
+    trendingContents: Content[];
+}>();
 
-const features = [
-    {
-        title: 'Descubre nuevo contenido',
-        description: 'Explora películas, series y animes recomendados para ti según tus gustos.',
-        icon: ''
-    },
-    {
-        title: 'Guarda tu contenido según tus preferencias',
-        description: 'Crea listas personalizadas y accede a tu contenido favorito fácilmente.',
-        icon: ''
-    },
-    {
-        title: 'Vota y haz reviews',
-        description: 'Comparte tu opinión y vota el contenido que más te gusta.',
-        icon: ''
-    },
-    {
-        title: 'Tu catálogo, a tu manera',
-        description: 'Organiza, filtra y descubre nuevo contenido como nunca antes.',
-        icon: ''
-    }
-]
+const features = messages.value[locale.value].welcome.features;
 </script>
 
 <template>
-
     <Head title="Welcome">
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     </Head>
     <WelcomeHeader />
-    <section class="relative w-full mb-16">
+    <section class="relative mb-16 w-full">
         <!-- Imagen de fondo -->
-        <img src="/images/welcome/hero-background.webp" alt="Interestellar background image"
-            class="absolute inset-0 h-full w-full object-cover z-0 mask-b-from-25% brightness-[.7]" />
+        <img
+            src="/images/welcome/hero-background.webp"
+            alt="Interestellar background image"
+            class="absolute inset-0 z-0 h-full w-full mask-b-from-25% object-cover brightness-[.7]"
+        />
 
         <!-- Contenido -->
-        <div
-            class="max-w-4xl mx-auto relative z-10 flex flex-col items-center justify-center min-h-[500px] p-8 text-center text-neutral-50 pt-44">
+        <div class="relative z-10 mx-auto flex min-h-[500px] max-w-4xl flex-col items-center justify-center p-8 pt-44 text-center text-neutral-50">
             <img src="/images/logo-full.webp" alt="Cinect logo full" class="w-60 lg:w-96" />
-            <h1 class="text-3xl lg:text-6xl font-black mt-2 lg:mt-4 mb-5 lg:mb-10">{{ t('welcome.title') }}</h1>
+            <h1 class="mt-2 mb-5 text-3xl font-black lg:mt-4 lg:mb-10 lg:text-6xl">{{ t('welcome.hero.title') }}</h1>
             <p class="lg:text-2xl">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit doloremque laudantium repellat!
+                {{ t('welcome.hero.subtitle') }}
             </p>
         </div>
     </section>
 
-    <section class="w-full overflow-x-hidden mb-5">
-        <h2 class="text-2xl lg:text-3xl lg:text-center font-medium lg:font-bold mb-4">Entretenimiento incomparable</h2>
+    <section class="mb-5 w-full overflow-x-hidden">
+        <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">{{ t('welcome.block1.title') }}</h2>
 
-        <Carousel class="relative w-full" :opts="{
-            align: 'start',
-        }" v-slot="{ canScrollPrev, canScrollNext }">
-            <div class="hidden md:flex absolute left-0 h-full w-32 bg-gradient-to-r from-[#101010] from-10% to-neutral-900/0 z-10 opacity-0 transition-opacity duration-300" :class="{ 'opacity-100': canScrollPrev }"></div>
-            <div class="hidden md:flex absolute right-0 h-full w-32 bg-gradient-to-l from-[#101010] from-10% to-neutral-900/0 z-10 opacity-0 transition-opacity duration-300" :class="{ 'opacity-100': canScrollNext }"></div>
+        <Carousel
+            class="relative w-full"
+            :opts="{
+                align: 'start',
+            }"
+            v-slot="{ canScrollPrev, canScrollNext }"
+        >
+            <div
+                class="absolute left-0 z-10 hidden h-full w-32 bg-gradient-to-r from-[#101010] from-10% to-neutral-900/0 opacity-0 transition-opacity duration-300 md:flex"
+                :class="{ 'opacity-100': canScrollPrev }"
+            ></div>
+            <div
+                class="absolute right-0 z-10 hidden h-full w-32 bg-gradient-to-l from-[#101010] from-10% to-neutral-900/0 opacity-0 transition-opacity duration-300 md:flex"
+                :class="{ 'opacity-100': canScrollNext }"
+            ></div>
 
             <!-- Contenido -->
             <CarouselContent>
-                <CarouselItem v-for="category in categories" :key="category.id"
-                    class="basis-1/2 md:basis-1/4 lg:basis-1/6">
-                    <Card class="relative rounded-lg overflow-hidden aspect-[5/8]">
+                <CarouselItem v-for="category in categories" :key="category.id" class="basis-1/2 md:basis-1/4 lg:basis-1/6">
+                    <Card class="relative aspect-[5/8] overflow-hidden rounded-lg">
                         <CardContent>
                             <!-- Imagen de fondo -->
-                            <img src="/images/welcome/hero-background.webp"
+                            <img
+                                src="/images/welcome/hero-background.webp"
                                 :alt="`${category.content.title} cover image`"
-                                class="absolute inset-0 size-full object-cover z-0 mask-b-from-70% mask-b-to-95%" />
+                                class="absolute inset-0 z-0 size-full mask-b-from-70% mask-b-to-95% object-cover"
+                            />
 
                             <!-- Contenido -->
-                            <div class="absolute z-10 mb-4 bottom-0 left-0 w-full text-center">
-                                <p class="capitalize text-lg font-bold">{{ category.name }}</p>
+                            <div class="absolute bottom-0 left-0 z-10 mb-4 w-full text-center">
+                                <p class="text-lg font-bold capitalize">{{ category.name }}</p>
                                 <p class="text-[10px] font-medium">{{ category.content.title }}</p>
                             </div>
                         </CardContent>
                     </Card>
                 </CarouselItem>
             </CarouselContent>
-            <CarouselPrevious class="h-16 z-20" />
-            <CarouselNext class="h-16 z-20" />
+            <CarouselPrevious class="z-20 h-16" />
+            <CarouselNext class="z-20 h-16" />
         </Carousel>
     </section>
 
-    <section class="w-full min-h-[400px] lg:min-h-[600px] relative lg:flex items-end overflow-hidden mb-16">
+    <section class="relative mb-16 min-h-[400px] w-full items-end overflow-hidden lg:flex lg:min-h-[600px]">
         <!-- Imagen de fondo -->
-        <img v-if="trendingContents.length && trendingContents[0].cover_image"
-            src="/images/welcome/hero-background.webp" :alt="trendingContents[0].title"
-            class="lg:absolute inset-0 w-full h-full object-cover z-0 mask-b-from-20% lg:mask-b-from-70% lg:mask-b-to-95% lg:mask-x-from-65%" />
+        <img
+            v-if="trendingContents.length && trendingContents[0].cover_image"
+            src="/images/welcome/hero-background.webp"
+            :alt="trendingContents[0].title"
+            class="inset-0 z-0 h-full w-full mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
+        />
 
         <!-- Contenido -->
-        <div class="z-10 max-w-4xl mx-auto -mt-20 lg:my-0 size-full px-2 lg:px-4">
+        <div class="z-10 mx-auto -mt-20 size-full max-w-4xl px-2 lg:my-0 lg:px-4">
             <!-- Textos -->
             <div class="relative mb-4">
-                <h1 class="text-2xl font-black uppercase space text-center md:text-start">Tendencias</h1>
-                <p class="max-w-2xl text-4xl md:text-6xl lg:text-7xl font-extralight">Lo que todos están viendo ahora
-                    mismo</p>
+                <h1 class="space text-center text-2xl font-black uppercase md:text-start">{{ t('welcome.block2.title') }}</h1>
+                <p class="max-w-2xl text-4xl font-extralight md:text-6xl lg:text-7xl">{{ t('welcome.block2.subtitle') }}</p>
             </div>
 
             <!-- Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <img v-for="content in trendingContents.slice(1)" :key="content.id"
-                    src="/images/welcome/hero-background.webp" :alt="content.title"
-                    class="object-cover size-full rounded-xl overflow-hidden aspect-square">
+            <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
+                <img
+                    v-for="content in trendingContents.slice(1)"
+                    :key="content.id"
+                    src="/images/welcome/hero-background.webp"
+                    :alt="content.title"
+                    class="aspect-square size-full overflow-hidden rounded-xl object-cover"
+                />
             </div>
         </div>
     </section>
 
-    <section class="w-full px-2 lg:px-4 mb-16">
-        <h2 class="text-2xl lg:text-3xl lg:text-center font-medium lg:font-bold mb-4">Más motivos para unirte</h2>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-2">
-            <div v-for="(feature, i) in features" :key="i"
-                class="bg-neutral-900 rounded-xl border border-neutral-800 p-4 h-full flex flex-col justify-between">
+    <section class="mb-16 w-full px-2 lg:px-4">
+        <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">{{ t('welcome.block3.title') }}</h2>
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-2 lg:grid-cols-4">
+            <div
+                v-for="(feature, i) in features"
+                :key="i"
+                class="flex h-full flex-col justify-between rounded-xl border border-neutral-800 bg-neutral-900 p-4"
+            >
                 <div class="mb-6">
-                    <p class="text-lg font-bold mb-2">{{ feature.title }}</p>
+                    <p class="mb-2 text-lg font-bold">{{ feature.title }}</p>
                     <p class="text-neutral-300">{{ feature.description }}</p>
                 </div>
-                <div class="size-8 bg-indigo-500 ml-auto">{{ feature.icon }}</div>
+                <!-- <div class="ml-auto size-8 bg-indigo-500">{{ feature.icon }}</div> -->
             </div>
         </div>
     </section>

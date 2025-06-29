@@ -1,0 +1,38 @@
+{
+    "header": {
+        "dashboard": "Panel de control",
+        "login": "Iniciar sesión"
+    },
+    "hero": {
+        "title": "Descubre películas, series, animes y más",
+        "subtitle": "Esta es una aplicación de ejemplo para demostrar la localización en español."
+    },
+    "block1": {
+        "title": "Entretenimiento incomparable"
+    },
+    "block2": {
+        "title": "Tendencias",
+        "subtitle": "Lo que todos están viendo ahora mismo"
+    },
+    "block3": {
+        "title": "Más razones para unirte"
+    },
+    "features": [
+        {
+            "title": "Descubre nuevo contenido",
+            "description": "Explora películas, series y animes recomendados para ti según tus gustos."
+        },
+        {
+            "title": "Guarda tu contenido según tus preferencias",
+            "description": "Crea listas personalizadas y accede a tu contenido favorito fácilmente."
+        },
+        {
+            "title": "Vota y haz reviews",
+            "description": "Comparte tu opinión y vota el contenido que más te gusta."
+        },
+        {
+            "title": "Tu catálogo, a tu manera",
+            "description": "Organiza, filtra y descubre nuevo contenido como nunca antes."
+        }
+    ]
+}

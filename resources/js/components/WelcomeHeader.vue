@@ -2,6 +2,9 @@
 import { Link } from '@inertiajs/vue3';
 import AppLogoIcon from './AppLogoIcon.vue';
 import AppLogo from './AppLogo.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -19,14 +22,14 @@ import AppLogo from './AppLogo.vue';
                     :href="route('dashboard')"
                     class="inline-block rounded-full bg-neutral-50 hover:bg-neutral-200 px-5 py-1.5 leading-normal"
                 >
-                    Dashboard
+                    {{ t('welcome.header.dashboard') }}
                 </Link>
                 <template v-else>
                     <Link
                         :href="route('login')"
                         class="inline-block rounded-full bg-neutral-50 hover:bg-neutral-200 px-5 py-1.5 leading-normal"
                     >
-                        Log in
+                        {{ t('welcome.header.login') }}
                     </Link>
                 </template>
             </nav>

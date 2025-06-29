@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Content;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,10 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): Response
     {
-        return Inertia::render('auth/ConfirmPassword');
+        $content = Content::whereNotNull('cover_image')->inRandomOrder()->first();
+        return Inertia::render('auth/ConfirmPassword', [
+            'content' => $content,
+        ]);
     }
 
     /**
