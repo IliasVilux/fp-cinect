@@ -30,14 +30,18 @@ const clearHoveredItem = () => {
 <template>
     <Head title="Dashboard" />
     <AppLayout layout="header">
-        <section class="w-full max-w-6xl flex flex-col gap-4 md:flex-row md:gap-10 mx-auto md:mt-20">
+        <section class="mx-auto flex w-full max-w-6xl flex-col gap-4 md:mt-20 md:flex-row md:gap-10">
             <div class="w-full md:max-w-96">
                 <div class="aspect-[6/8] w-full">
-                    <img src="/images/welcome/hero-background.webp" :alt="content.title" class="size-full md:rounded-lg object-cover mask-b-from-80% mask-b-to-100% md:mask-none" />
+                    <img
+                        src="/images/welcome/hero-background.webp"
+                        :alt="content.title"
+                        class="size-full mask-b-from-80% mask-b-to-100% object-cover md:rounded-lg md:mask-none"
+                    />
                 </div>
             </div>
 
-            <div class="w-full -mt-12 md:-mt-0 px-2 lg:px-0 z-10">
+            <div class="z-10 -mt-12 w-full px-2 md:-mt-0 lg:px-0">
                 <h2 class="mb-2 text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
                 <div class="mb-8 flex h-5 items-center space-x-2 text-sm text-neutral-400">
                     <p v-if="content.release_year">{{ content.release_year }}</p>
@@ -62,13 +66,13 @@ const clearHoveredItem = () => {
                     </TabsContent>
 
                     <TabsContent value="seasons">
-                        <Carousel :opts="{ align: 'center' }" v-slot="{ canScrollPrev, canScrollNext }" class="relative w-full mb-4">
+                        <Carousel :opts="{ align: 'center' }" v-slot="{ canScrollPrev, canScrollNext }" class="relative mb-4 w-full">
                             <CarouselContent>
                                 <CarouselItem
                                     v-for="season in content.seasons"
                                     :key="season.id"
                                     @click="selectedSeason = selectedSeason?.id === season.id ? null : season"
-                                    class="group basis-1/2 md:basis-1/4 pl-2 cursor-pointer"
+                                    class="group basis-1/2 cursor-pointer pl-2 md:basis-1/4"
                                 >
                                     <Card
                                         class="flex h-full min-h-20 justify-end rounded-lg px-3 py-1 transition duration-200 group-hover:border-indigo-600 group-hover:bg-[#120e28]"
@@ -108,11 +112,11 @@ const clearHoveredItem = () => {
             </div>
         </section>
 
-        <section class="w-full max-w-6xl mx-auto mt-20 border-sidebar-border/70 relative h-56 rounded-xl border px-2 lg:px-0">
+        <section class="border-sidebar-border/70 relative mx-auto mt-20 h-56 w-full max-w-6xl rounded-xl border px-2 lg:px-0">
             <PlaceholderPattern />
         </section>
 
-        <section v-if="relatedContents.length > 0" class="w-full max-w-6xl mx-auto mt-20">
+        <section v-if="relatedContents.length > 0" class="mx-auto mt-20 w-full max-w-6xl">
             <div class="mb-2 flex items-baseline justify-between px-2 lg:px-0">
                 <h2 class="z-10 text-xl font-semibold tracking-tight">More like this</h2>
             </div>

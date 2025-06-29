@@ -44,7 +44,7 @@ const clearHoveredItem = () => {
     <Head title="Dashboard" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
-            <div class="relative mb-7 grid auto-rows-min grid-cols-3 gap-2 lg:gap-4 p-2 lg:p-4 lg:mb-10">
+            <div class="relative mb-7 grid auto-rows-min grid-cols-3 gap-2 p-2 lg:mb-10 lg:gap-4 lg:p-4">
                 <Link
                     v-for="content in cardsbuttonContent"
                     :key="content.id"

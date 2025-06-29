@@ -38,13 +38,30 @@ const submit = () => {
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="name">{{ t('register.form.name.label') }}</Label>
-                    <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" v-model="form.name" :placeholder="t('register.form.name.placeholder')" />
+                    <Input
+                        id="name"
+                        type="text"
+                        required
+                        autofocus
+                        :tabindex="1"
+                        autocomplete="name"
+                        v-model="form.name"
+                        :placeholder="t('register.form.name.placeholder')"
+                    />
                     <InputError :message="form.errors.name" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="email">{{ t('register.form.email.label') }}</Label>
-                    <Input id="email" type="email" required :tabindex="2" autocomplete="email" v-model="form.email" :placeholder="t('register.form.email.placeholder')" />
+                    <Input
+                        id="email"
+                        type="email"
+                        required
+                        :tabindex="2"
+                        autocomplete="email"
+                        v-model="form.email"
+                        :placeholder="t('register.form.email.placeholder')"
+                    />
                     <InputError :message="form.errors.email" />
                 </div>
 
@@ -82,7 +99,7 @@ const submit = () => {
                 </Button>
             </div>
 
-            <div class="text-center text-sm text-muted-foreground">
+            <div class="text-muted-foreground text-center text-sm">
                 {{ t('register.logIn.title') }}
                 <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">{{ t('register.logIn.link') }}</TextLink>
             </div>

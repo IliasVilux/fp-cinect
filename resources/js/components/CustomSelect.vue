@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 import { SelectItem as SelectItemType } from '@/types';
 import { computed } from 'vue';
 import { WithClassAsProps } from './ui/carousel/interface';
-import { cn } from '@/lib/utils';
 
-const props = defineProps<{
-    selectItems: SelectItemType[];
-    placeholder: string;
-    modelValue?: string | number | null;
-} & WithClassAsProps>();
+const props = defineProps<
+    {
+        selectItems: SelectItemType[];
+        placeholder: string;
+        modelValue?: string | number | null;
+    } & WithClassAsProps
+>();
 
 const selectedLabel = computed(() => {
     const selectedItem = props.selectItems.find((item) => item.value === props.modelValue);

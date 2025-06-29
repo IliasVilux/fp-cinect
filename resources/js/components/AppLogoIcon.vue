@@ -8,9 +8,5 @@ const props = defineProps<{
 </script>
 
 <template>
-    <img
-        src="/images/logo-mini.svg"
-        alt="Cinect logo Mini"
-        :class="cn('w-full', props.class)"
-    />
+    <img src="/images/logo-mini.svg" alt="Cinect logo Mini" :class="cn('w-full', props.class)" />
 </template>

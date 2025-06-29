@@ -9,9 +9,7 @@ defineProps<{
 }>();
 
 const page = usePage<SharedData>();
-const currentPath = computed(() =>
-  new URL(page.url, window.location.origin).pathname
-);
+const currentPath = computed(() => new URL(page.url, window.location.origin).pathname);
 </script>
 
 <template>
@@ -19,10 +17,7 @@ const currentPath = computed(() =>
         <SidebarGroupLabel>CINECT</SidebarGroupLabel>
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
-                <SidebarMenuButton
-                    as-child :is-active="item.href === currentPath"
-                    :tooltip="item.title"
-                >
+                <SidebarMenuButton as-child :is-active="item.href === currentPath" :tooltip="item.title">
                     <Link :href="item.href">
                         <component :is="item.icon" />
                         <span>{{ item.title }}</span>

@@ -2,10 +2,10 @@
 import { Separator } from '@/components/ui/separator';
 import { SelectItem, type NavItem } from '@/types';
 import { Link, router } from '@inertiajs/vue3';
+import { Languages } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CustomSelect from './CustomSelect.vue';
-import { Languages } from 'lucide-vue-next';
 
 const navItems: NavItem[] = [
     {
@@ -57,7 +57,7 @@ watch(langValue, (langValue) => {
 <template>
     <footer class="text-center">
         <Separator />
-        <div class="flex flex-col gap-6 px-2 lg:px-4 py-4 lg:py-8">
+        <div class="flex flex-col gap-6 px-2 py-4 lg:px-4 lg:py-8">
             <div class="flex flex-col items-start gap-2 lg:flex-row lg:items-center lg:justify-center lg:gap-x-4">
                 <Link
                     v-for="item in navItems"

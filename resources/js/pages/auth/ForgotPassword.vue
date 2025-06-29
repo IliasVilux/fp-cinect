@@ -38,7 +38,15 @@ const submit = () => {
             <form @submit.prevent="submit">
                 <div class="grid gap-2">
                     <Label for="email">{{ t('forgot-password.form.email.label') }}</Label>
-                    <Input id="email" type="email" name="email" autocomplete="off" v-model="form.email" autofocus :placeholder="t('forgot-password.form.email.placeholder')" />
+                    <Input
+                        id="email"
+                        type="email"
+                        name="email"
+                        autocomplete="off"
+                        v-model="form.email"
+                        autofocus
+                        :placeholder="t('forgot-password.form.email.placeholder')"
+                    />
                     <InputError :message="form.errors.email" />
                 </div>
 
@@ -50,7 +58,7 @@ const submit = () => {
                 </div>
             </form>
 
-            <div class="space-x-1 text-center text-sm text-muted-foreground">
+            <div class="text-muted-foreground space-x-1 text-center text-sm">
                 <span>{{ t('forgot-password.logIn.title') }}</span>
                 <TextLink :href="route('login')">{{ t('forgot-password.logIn.link') }}</TextLink>
             </div>

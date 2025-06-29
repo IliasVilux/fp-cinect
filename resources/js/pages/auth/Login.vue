@@ -89,7 +89,7 @@ const submit = () => {
                 </Button>
             </div>
 
-            <div class="text-center text-sm text-muted-foreground">
+            <div class="text-muted-foreground text-center text-sm">
                 {{ t('login.singUp.title') }}
                 <TextLink :href="route('register')" :tabindex="5">{{ t('login.singUp.link') }}</TextLink>
             </div>

@@ -1,13 +1,13 @@
 import '../css/app.css';
 
+import loadLocaleMessages from '@/lang';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
-import { ZiggyVue } from 'ziggy-js';
 import { createI18n } from 'vue-i18n';
+import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
-import loadLocaleMessages from '@/lang';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -33,7 +33,7 @@ createInertiaApp({
             locale: props.initialPage.props.locale || 'en',
             fallbackLocale: 'en',
             messages: loadLocaleMessages(),
-        })
+        });
 
         createApp({ render: () => h(App, props) })
             .use(plugin)

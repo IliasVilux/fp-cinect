@@ -75,10 +75,10 @@ const clearHoveredItem = () => {
     <Head title="Explora" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
-            <section class="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-2 mt-2 xl:mt-4 px-2 xl:px-4">
-                <div class="flex flex-col gap-2 w-full xl:flex-row xl:items-end">
+            <section class="mt-2 flex flex-col gap-2 px-2 xl:mt-4 xl:flex-row xl:items-end xl:justify-between xl:px-4">
+                <div class="flex w-full flex-col gap-2 xl:flex-row xl:items-end">
                     <SearchInput @search="(value) => (searchContent = value)" />
-                    <div class="flex gap-2 w-full">
+                    <div class="flex w-full gap-2">
                         <CustomSelect :selectItems="contentTypesItems" placeholder="Todos los tipos" v-model="contentType" />
                         <CustomSelect :selectItems="categoriesItems" placeholder="Todas las categorías" v-model="categoryId" class="w-full lg:w-48" />
                     </div>
