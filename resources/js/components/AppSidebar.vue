@@ -6,34 +6,27 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { Compass, Fan, Film, LayoutGrid, Tv } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { useI18n } from 'vue-i18n';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Series',
-        href: '/dashboard/series',
-        icon: Tv,
-    },
-    {
-        title: 'Movies',
-        href: '/dashboard/movie',
-        icon: Film,
-    },
-    {
-        title: 'Animes',
-        href: '/dashboard/anime',
-        icon: Fan,
-    },
-    {
-        title: 'Explorar',
-        href: '/explore',
-        icon: Compass,
-    },
-];
+const { locale, messages } = useI18n();
+
+const icons = {
+  LayoutGrid,
+  Tv,
+  Film,
+  Fan,
+  Compass,
+};
+const rawItems = messages.value[locale.value]['app-sidebar-items'] as {
+  title: string;
+  href: string;
+  icon: keyof typeof icons;
+}[];
+
+const mainNavItems: NavItem[] = rawItems.map(item => ({
+  ...item,
+  icon: icons[item.icon] || item.icon,
+}));
 </script>
 
 <template>

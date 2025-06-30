@@ -10,6 +10,9 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Content, Season } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 defineProps<{
     content: Content;
@@ -28,7 +31,7 @@ const clearHoveredItem = () => {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head :title="content.title" />
     <AppLayout layout="header">
         <section class="mx-auto flex w-full max-w-6xl flex-col gap-4 md:mt-20 md:flex-row md:gap-10">
             <div class="w-full md:max-w-96">
@@ -47,16 +50,16 @@ const clearHoveredItem = () => {
                     <p v-if="content.release_year">{{ content.release_year }}</p>
                     <Separator v-if="content.release_year" orientation="vertical" />
                     <p v-if="content.type == 'movie'">{{ content.duration }}</p>
-                    <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} seasons</p>
+                    <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons') }}</p>
                     <Separator orientation="vertical" />
                     <p>{{ content.category.name }}</p>
                 </div>
 
                 <Tabs class="w-full" defaultValue="overview" as="section">
                     <TabsList>
-                        <TabsTrigger value="overview">Overview</TabsTrigger>
-                        <TabsTrigger v-if="content.type != 'movie' && content.seasons.length > 0" value="seasons"> Seasons</TabsTrigger>
-                        <TabsTrigger value="trailer">Trailer</TabsTrigger>
+                        <TabsTrigger value="overview">{{ t('detail.overview') }}</TabsTrigger>
+                        <TabsTrigger v-if="content.type != 'movie' && content.seasons.length > 0" value="seasons">{{ t('detail.seasons') }}</TabsTrigger>
+                        <TabsTrigger value="trailer">{{ t('detail.trailer') }}</TabsTrigger>
                     </TabsList>
 
                     <Separator orientation="horizontal" class="mb-4" />
@@ -98,7 +101,7 @@ const clearHoveredItem = () => {
                                     <p class="text-xs font-light text-neutral-300">Ep{{ episode.episode_number }}</p>
                                     <p>{{ episode.title }}</p>
                                     <p class="text-end text-xs text-neutral-400 md:text-start">
-                                        Duration: {{ episode.duration ? `${episode.duration} mins` : 'N/S' }}
+                                        {{ t('detail.duration') }}: {{ episode.duration ? `${episode.duration} mins` : 'N/S' }}
                                     </p>
                                 </div>
                                 <Separator orientation="horizontal" class="my-2 md:hidden" />
@@ -118,7 +121,7 @@ const clearHoveredItem = () => {
 
         <section v-if="relatedContents.length > 0" class="mx-auto mt-20 w-full max-w-6xl">
             <div class="mb-2 flex items-baseline justify-between px-2 lg:px-0">
-                <h2 class="z-10 text-xl font-semibold tracking-tight">More like this</h2>
+                <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('detail.moreLikeThis') }}</h2>
             </div>
             <ContentCarousel
                 :contents="relatedContents"

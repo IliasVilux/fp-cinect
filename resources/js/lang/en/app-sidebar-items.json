@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Dashboard",
+        "href": "/dashboard",
+        "icon": "LayoutGrid"
+    },
+    {
+        "title": "Tv Shows",
+        "href": "/dashboard/series",
+        "icon": "Tv"
+    },
+    {
+        "title": "Movies",
+        "href": "/dashboard/movie",
+        "icon": "Film"
+    },
+    {
+        "title": "Animes",
+        "href": "/dashboard/anime",
+        "icon": "Fan"
+    },
+    {
+        "title": "Explore",
+        "href": "/explore",
+        "icon": "Compass"
+    }
+]

@@ -1,0 +1,34 @@
+{
+    "orderTitle": "Ordenar por",
+    "order": [
+        {
+            "label": "Nombre (A → Z)",
+            "value": "name_asc"
+        },
+        {
+            "label": "Nombre (Z → A)",
+            "value": "name_desc"
+        },
+        {
+            "label": "Más recientes",
+            "value": "recent"
+        }
+    ],
+    "contentTypeTitle": "Todos los tipos",
+    "contentTypes": [
+        {
+            "label": "Series",
+            "value": "series"
+        },
+        {
+            "label": "Películas",
+            "value": "movie"
+        },
+        {
+            "label": "Animes",
+            "value": "anime"
+        }
+    ],
+    "categoryTitle": "Todas las categorías",
+    "search": "Buscar..."
+}

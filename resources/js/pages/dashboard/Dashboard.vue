@@ -7,13 +7,11 @@ import { type BreadcrumbItem } from '@/types';
 import { Content } from '@/types/models';
 import { Head, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-    },
-];
+const { t, locale, messages } = useI18n();
+
+const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['dashboard-breadcrumbs'] as BreadcrumbItem[];
 
 defineProps<{
     cardsbuttonContent: Content[];
@@ -41,7 +39,7 @@ const clearHoveredItem = () => {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head :title="t('dashboard.head.title')" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
             <div class="relative mb-7 grid auto-rows-min grid-cols-3 gap-2 p-2 lg:mb-10 lg:gap-4 lg:p-4">
@@ -72,7 +70,7 @@ const clearHoveredItem = () => {
 
             <section class="z-10">
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
-                    <h2 class="z-10 text-xl font-semibold tracking-tight">Añadidos recientemente</h2>
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard.addedRecently') }}</h2>
                 </div>
                 <ContentCarousel
                     :contents="recentContents"
@@ -84,8 +82,8 @@ const clearHoveredItem = () => {
 
             <section class="z-10">
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
-                    <h2 class="z-10 text-xl font-semibold tracking-tight">Series</h2>
-                    <TextLink :href="route('dashboard.category', 'movie')">Ver más</TextLink>
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard.tvShows') }}</h2>
+                    <TextLink :href="route('dashboard.category', 'movie')">{{ t('dashboard.watchMore') }}</TextLink>
                 </div>
                 <ContentCarousel
                     :contents="series"
@@ -97,8 +95,8 @@ const clearHoveredItem = () => {
 
             <section class="z-10">
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
-                    <h2 class="z-10 text-xl font-semibold tracking-tight">Movies</h2>
-                    <TextLink :href="route('dashboard.category', 'series')">Ver más</TextLink>
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard.movies') }}</h2>
+                    <TextLink :href="route('dashboard.category', 'series')">{{ t('dashboard.watchMore') }}</TextLink>
                 </div>
                 <ContentCarousel
                     :contents="movies"
@@ -110,8 +108,8 @@ const clearHoveredItem = () => {
 
             <section class="z-10">
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
-                    <h2 class="z-10 text-xl font-semibold tracking-tight">Animes</h2>
-                    <TextLink :href="route('dashboard.category', 'anime')">Ver más</TextLink>
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard.animes') }}</h2>
+                    <TextLink :href="route('dashboard.category', 'anime')">{{ t('dashboard.watchMore') }}</TextLink>
                 </div>
                 <ContentCarousel
                     :contents="animes"

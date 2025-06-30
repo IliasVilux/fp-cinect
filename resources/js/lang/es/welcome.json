@@ -1,4 +1,7 @@
 {
+    "head": {
+        "title": "Bienvenido a Cinect"
+    },
     "header": {
         "dashboard": "Panel de control",
         "login": "Iniciar sesión"

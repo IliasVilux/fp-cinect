@@ -1,4 +1,7 @@
 {
+    "head": {
+        "title": "Welcome to Cinect"
+    },
     "header": {
         "dashboard": "Dashboard",
         "login": "Log in"

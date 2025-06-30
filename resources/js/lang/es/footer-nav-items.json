@@ -1,0 +1,25 @@
+[
+    {
+        "title": "Inicio",
+        "href": "home"
+    },
+    {
+        "title": "Panel de control",
+        "href": "dashboard"
+    },
+    {
+        "title": "Series",
+        "href": "dashboard.category",
+        "category": "series"
+    },
+    {
+        "title": "Películas",
+        "href": "dashboard.category",
+        "category": "movies"
+    },
+    {
+        "title": "Animes",
+        "href": "dashboard.category",
+        "category": "animes"
+    }
+]

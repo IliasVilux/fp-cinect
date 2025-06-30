@@ -6,38 +6,13 @@ import { Languages } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CustomSelect from './CustomSelect.vue';
+import languages from '@/lang/languages.json';
 
-const navItems: NavItem[] = [
-    {
-        title: 'Home',
-        href: 'home',
-    },
-    {
-        title: 'Dashboard',
-        href: 'dashboard',
-    },
-    {
-        title: 'Series',
-        href: 'dashboard.category',
-        category: 'series',
-    },
-    {
-        title: 'Movies',
-        href: 'dashboard.category',
-        category: 'movies',
-    },
-    {
-        title: 'Animes',
-        href: 'dashboard.category',
-        category: 'animes',
-    },
-];
+const { t, locale, messages } = useI18n();
 
-const { locale } = useI18n();
-const langOptions: SelectItem[] = [
-    { label: 'English', value: 'en' },
-    { label: 'Español', value: 'es' },
-];
+const navItems: NavItem[] = messages.value[locale.value]['footer-nav-items'] as NavItem[];
+
+const langOptions: SelectItem[] = languages;
 const langValue = ref<string | null>(locale.value);
 watch(langValue, (langValue) => {
     if (!langValue) return;
@@ -73,7 +48,7 @@ watch(langValue, (langValue) => {
                     <Languages class="size-4" />
                 </template>
             </CustomSelect>
-            <p class="text-xs text-neutral-500">© {{ new Date().getFullYear() }} Cinect. All rights reserved.</p>
+            <p class="text-xs text-neutral-500">© {{ new Date().getFullYear() }} {{ t('footer.copyright') }}</p>
         </div>
     </footer>
 </template>

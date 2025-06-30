@@ -7,15 +7,11 @@ import { BreadcrumbItem } from '@/types';
 import { Category, Content } from '@/types/models';
 import { Head, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Series',
-        href: '/dashboard',
-    },
-];
+const { t, locale, messages } = useI18n();
 
-defineProps<{
+const props = defineProps<{
     featuredContent: Content;
     contentType: string;
     trendingContents: Content[];
@@ -24,6 +20,8 @@ defineProps<{
         contents: Content[];
     }[];
 }>();
+
+const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['dashboard-content-breadcrumbs'][props.contentType] as BreadcrumbItem[];
 
 const hoveredItemId = ref<string | null>(null);
 const setHoveredItem = (id: string) => {
@@ -52,7 +50,7 @@ const clearHoveredItem = () => {
                         :href="route('login')"
                         class="w-fit rounded-full bg-neutral-50 px-5 py-1.5 leading-normal text-neutral-900 hover:bg-neutral-200"
                     >
-                        Ver más
+                        {{ t('dashboard-content.watchMore') }}
                     </Link>
                 </div>
 
@@ -63,7 +61,7 @@ const clearHoveredItem = () => {
 
             <section class="z-10 lg:-mt-40">
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
-                    <h2 class="z-10 text-xl font-semibold tracking-tight">Tendencias</h2>
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard-content.trending') }}</h2>
                 </div>
                 <ContentCarousel
                     :contents="trendingContents"
@@ -75,7 +73,7 @@ const clearHoveredItem = () => {
 
             <section>
                 <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
-                    <h2 class="z-10 text-xl font-semibold tracking-tight">Para tí</h2>
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard-content.forYou') }}</h2>
                 </div>
                 <div class="grid grid-cols-2 gap-2 px-2 md:grid-cols-4 lg:grid-cols-6 lg:px-4">
                     <div

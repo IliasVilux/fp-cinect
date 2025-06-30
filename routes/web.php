@@ -9,8 +9,6 @@ Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])
     ->group(function () {
-        Route::get('dashboard/{category}/{subcategory}', [DashboardController::class, 'indexSubcategory'])
-            ->name('dashboard.subcategory');
         Route::get('dashboard', [DashboardController::class, 'index'])
             ->name('dashboard');
         Route::get('dashboard/{category}', [DashboardController::class, 'indexCategory'])

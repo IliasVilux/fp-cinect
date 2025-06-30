@@ -13,6 +13,9 @@ import { Link, usePage } from '@inertiajs/vue3';
 import { Compass, Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
 import { computed } from 'vue';
 import AppLogoIcon from './AppLogoIcon.vue';
+import { useI18n } from 'vue-i18n';
+
+const { locale, messages } = useI18n();
 
 interface Props {
     breadcrumbs?: BreadcrumbItem[];
@@ -31,33 +34,23 @@ const activeItemStyles = computed(
     () => (url: string) => (isCurrentRoute.value(url) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : ''),
 );
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Series',
-        href: '/dashboard/series',
-        icon: Tv,
-    },
-    {
-        title: 'Movies',
-        href: '/dashboard/movie',
-        icon: Film,
-    },
-    {
-        title: 'Animes',
-        href: '/dashboard/anime',
-        icon: Fan,
-    },
-    {
-        title: 'Explorar',
-        href: '/explore',
-        icon: Compass,
-    },
-];
+const icons = {
+  LayoutGrid,
+  Tv,
+  Film,
+  Fan,
+  Compass,
+};
+const rawItems = messages.value[locale.value]['app-sidebar-items'] as {
+  title: string;
+  href: string;
+  icon: keyof typeof icons;
+}[];
+
+const mainNavItems: NavItem[] = rawItems.map(item => ({
+  ...item,
+  icon: icons[item.icon] || item.icon,
+}));
 </script>
 
 <template>
