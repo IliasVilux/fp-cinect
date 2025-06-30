@@ -1,0 +1,9 @@
+{
+    "base": {
+        "titleShort": "Configuración de apariencia"
+    },
+    "baseSmall": {
+        "title": "Configuración de apariencia",
+        "description": "Actualiza la configuración de apariencia de tu cuenta"
+    }
+}

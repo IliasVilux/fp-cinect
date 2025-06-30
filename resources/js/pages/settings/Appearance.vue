@@ -7,22 +7,20 @@ import { type BreadcrumbItem } from '@/types';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
+import { useI18n } from 'vue-i18n';
 
-const breadcrumbItems: BreadcrumbItem[] = [
-    {
-        title: 'Appearance settings',
-        href: '/settings/appearance',
-    },
-];
+const { t, locale, messages } = useI18n();
+
+const breadcrumbItems: BreadcrumbItem[] = messages.value[locale.value]['settings-appearance-breadcrumbs'] as BreadcrumbItem[];
 </script>
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
-        <Head title="Appearance settings" />
+        <Head :title="t('settings-appearance.base.titleShort')" />
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall title="Appearance settings" description="Update your account's appearance settings" />
+                <HeadingSmall :title="t('settings-appearance.baseSmall.title')" :description="t('settings-appearance.baseSmall.description')" />
                 <AppearanceTabs />
             </div>
         </SettingsLayout>

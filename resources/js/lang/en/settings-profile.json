@@ -1,0 +1,45 @@
+{
+    "base": {
+        "titleShort": "Profile Settings"
+    },
+    "baseSmall": {
+        "title": "Profile information",
+        "description": "Update your profile information and email address."
+    },
+    "form": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Enter your name"
+        },
+        "email": {
+            "label": "Email",
+            "placeholder": "Enter your email",
+            "unverified": "Your email address is unverified.",
+            "resend": "Click here to resend the verification email.",
+            "verificationLinkSent": "A new verification link has been sent to your email address."
+        },
+        "submit": "Save changes",
+        "submited": "Saved."
+    },
+    "deleteUser": {
+        "base": {
+            "title": "Delete Account",
+            "description": "Delete your account and all of its resources"
+        },
+        "warning": {
+            "title": "Warning",
+            "description": "Please proceed with caution, this cannot be undone."
+        },
+        "delete": "Delete account",
+        "modal":{
+            "title": "Are you sure you want to delete your account?",
+            "description": "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+            "password": {
+                "label": "Password",
+                "placeholder": "Enter your password"
+            },
+            "cancel": "Cancel",
+            "submit": "Delete Account"
+        }
+    }
+}
