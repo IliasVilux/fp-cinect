@@ -1,3 +1,32 @@
 {
+    "navItems": [
+        {
+            "title": "Cinect",
+            "href": "home"
+        },
+        {
+            "title": "Home",
+            "href": "dashboard"
+        },
+        {
+            "title": "Series",
+            "href": "dashboard.category",
+            "category": "series"
+        },
+        {
+            "title": "Movies",
+            "href": "dashboard.category",
+            "category": "movies"
+        },
+        {
+            "title": "Animes",
+            "href": "dashboard.category",
+            "category": "animes"
+        },
+        {
+            "title": "Explore",
+            "href": "explore"
+        }
+    ],
     "copyright": "Cinect. All rights reserved."
 }

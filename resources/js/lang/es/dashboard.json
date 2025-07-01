@@ -1,10 +1,20 @@
 {
+    "breadcrumbs": [
+        {
+            "title": "Inicio",
+            "href": "/dashboard"
+        }
+    ],
     "head": {
-        "title": "Panel de control"
+        "title": "Inicio"
     },
-    "addedRecently": "Añadido recientemente",
-    "tvShows": "Series",
-    "movies": "Películas",
-    "animes": "Animes",
-    "watchMore": "Ver más"
+    "sections": {
+        "carousel": {
+            "addedRecently": "Añadido recientemente",
+            "tvShows": "Series de TV",
+            "movies": "Películas",
+            "animes": "Animes",
+            "watchMore": "Ver más"
+        }
+    }
 }

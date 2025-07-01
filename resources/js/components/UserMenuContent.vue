@@ -17,6 +17,7 @@ const handleLogout = () => {
 };
 
 defineProps<Props>();
+
 </script>
 
 <template>
@@ -30,7 +31,7 @@ defineProps<Props>();
         <DropdownMenuItem :as-child="true">
             <Link class="block w-full" :href="route('profile.edit')" prefetch as="button">
                 <Settings class="mr-2 h-4 w-4" />
-                {{ t('app-sidebar-footer.settings') }}
+                {{ t('app-layout.userMenu.settings') }}
             </Link>
         </DropdownMenuItem>
     </DropdownMenuGroup>
@@ -38,7 +39,7 @@ defineProps<Props>();
     <DropdownMenuItem :as-child="true">
         <Link class="block w-full" method="post" :href="route('logout')" @click="handleLogout" as="button">
             <LogOut class="mr-2 h-4 w-4" />
-            {{ t('app-sidebar-footer.logOut') }}
+            {{ t('app-layout.userMenu.logOut') }}
         </Link>
     </DropdownMenuItem>
 </template>

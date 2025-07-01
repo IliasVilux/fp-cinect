@@ -1,0 +1,33 @@
+{
+    "navItems": [
+        {
+            "title": "Home",
+            "href": "/dashboard",
+            "iconKey": "LayoutGrid"
+        },
+        {
+            "title": "Tv Shows",
+            "href": "/dashboard/series",
+            "iconKey": "Tv"
+        },
+        {
+            "title": "Movies",
+            "href": "/dashboard/movie",
+            "iconKey": "Film"
+        },
+        {
+            "title": "Animes",
+            "href": "/dashboard/anime",
+            "iconKey": "Fan"
+        },
+        {
+            "title": "Explore",
+            "href": "/explore",
+            "iconKey": "Compass"
+        }
+    ],
+    "userMenu": {
+        "settings": "Settings",
+        "logOut": "Log out"
+    }
+}

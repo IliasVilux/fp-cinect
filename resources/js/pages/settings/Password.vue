@@ -14,7 +14,7 @@ import { useI18n } from 'vue-i18n';
 
 const { t, locale, messages } = useI18n();
 
-const breadcrumbItems: BreadcrumbItem[] = messages.value[locale.value]['settings-password-breadcrumbs'] as BreadcrumbItem[];
+const breadcrumbItems: BreadcrumbItem[] = messages.value[locale.value]['settings'].password.breadcrumbs as BreadcrumbItem[];
 
 const passwordInput = ref<HTMLInputElement | null>(null);
 const currentPasswordInput = ref<HTMLInputElement | null>(null);
@@ -50,15 +50,15 @@ const updatePassword = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
-        <Head :title="t('settings-password.base.titleShort')" />
+        <Head :title="t('settings.password.base.titleShort')" />
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall :title="t('settings-password.baseSmall.title')" :description="t('settings-password.baseSmall.description')" />
+                <HeadingSmall :title="t('settings.password.baseSmall.title')" :description="t('settings.password.baseSmall.description')" />
 
                 <form @submit.prevent="updatePassword" class="space-y-6">
                     <div class="grid gap-2">
-                        <Label for="current_password">{{ t('settings-password.form.currentPassword.label') }}</Label>
+                        <Label for="current_password">{{ t('settings.password.form.currentPassword.label') }}</Label>
                         <Input
                             id="current_password"
                             ref="currentPasswordInput"
@@ -66,13 +66,13 @@ const updatePassword = () => {
                             type="password"
                             class="mt-1 block w-full"
                             autocomplete="current-password"
-                            :placeholder="t('settings-password.form.currentPassword.placeholder')"
+                            :placeholder="t('settings.password.form.currentPassword.placeholder')"
                         />
                         <InputError :message="form.errors.current_password" />
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password">{{ t('settings-password.form.newPassword.label') }}</Label>
+                        <Label for="password">{{ t('settings.password.form.newPassword.label') }}</Label>
                         <Input
                             id="password"
                             ref="passwordInput"
@@ -80,26 +80,26 @@ const updatePassword = () => {
                             type="password"
                             class="mt-1 block w-full"
                             autocomplete="new-password"
-                            :placeholder="t('settings-password.form.newPassword.placeholder')"
+                            :placeholder="t('settings.password.form.newPassword.placeholder')"
                         />
                         <InputError :message="form.errors.password" />
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password_confirmation">{{ t('settings-password.form.confirmPassword.label') }}</Label>
+                        <Label for="password_confirmation">{{ t('settings.password.form.confirmPassword.label') }}</Label>
                         <Input
                             id="password_confirmation"
                             v-model="form.password_confirmation"
                             type="password"
                             class="mt-1 block w-full"
                             autocomplete="new-password"
-                            :placeholder="t('settings-password.form.confirmPassword.placeholder')"
+                            :placeholder="t('settings.password.form.confirmPassword.placeholder')"
                         />
                         <InputError :message="form.errors.password_confirmation" />
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="form.processing">{{ t('settings-password.form.submit') }}</Button>
+                        <Button :disabled="form.processing">{{ t('settings.password.form.submit') }}</Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"
@@ -107,7 +107,7 @@ const updatePassword = () => {
                             leave-active-class="transition ease-in-out"
                             leave-to-class="opacity-0"
                         >
-                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ t('settings-password.form.submited') }}</p>
+                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ t('settings.password.form.submited') }}</p>
                         </Transition>
                     </div>
                 </form>

@@ -3,39 +3,45 @@
         "title": "Welcome to Cinect"
     },
     "header": {
-        "dashboard": "Dashboard",
+        "dashboard": "Discover",
         "login": "Log in"
     },
     "hero": {
         "title": "Discover films, tv shows, animes & more",
         "subtitle": "This is a sample application to demonstrate localization in English."
     },
-    "block1": {
-        "title": "Unmatched Entertainment"
-    },
-    "block2": {
-        "title": "Trends",
-        "subtitle": "What everyone is watching right now"
-    },
-    "block3": {
-        "title": "More reasons to join"
-    },
-    "features": [
-        {
-            "title": "Discover new content",
-            "description": "Explore movies, series, and animes recommended for you based on your tastes."
+    "sections": {
+        "categories": {
+            "title": "Unmatched Entertainment"
         },
-        {
-            "title": "Save your content according to your preferences",
-            "description": "Create personalized lists and easily access your favorite content."
+        "trending": {
+            "title": "Trends",
+            "subtitle": "What everyone is watching right now"
         },
-        {
-            "title": "Vote and write reviews",
-            "description": "Share your opinion and vote for the content you like the most."
-        },
-        {
-            "title": "Your catalog, your way",
-            "description": "Organize, filter, and discover new content like never before."
+        "features": {
+            "title": "More reasons to join",
+            "items": [
+                {
+                    "title": "Discover new content",
+                    "description": "Explore movies, series, and animes recommended for you based on your tastes.",
+                    "iconKey": "Telescope"
+                },
+                {
+                    "title": "Save your content according to your preferences",
+                    "description": "Create personalized lists and easily access your favorite content.",
+                    "iconKey": "Bookmark"
+                },
+                {
+                    "title": "Vote and write reviews",
+                    "description": "Share your opinion and vote for the content you like the most.",
+                    "iconKey": "Star"
+                },
+                {
+                    "title": "Your catalog, your way",
+                    "description": "Organize, filter, and discover new content like never before.",
+                    "iconKey": "BookMarked"
+                }
+            ]
         }
-    ]
+    }
 }

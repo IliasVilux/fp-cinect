@@ -33,7 +33,9 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="content.title" />
     <AppLayout layout="header">
+        <!-- CONTENT INFORMATION -->
         <section class="mx-auto flex w-full max-w-6xl flex-col gap-4 md:mt-20 md:flex-row md:gap-10">
+            <!-- Poster image -->
             <div class="w-full md:max-w-96">
                 <div class="aspect-[6/8] w-full">
                     <img
@@ -44,6 +46,7 @@ const clearHoveredItem = () => {
                 </div>
             </div>
 
+            <!-- Tabs -->
             <div class="z-10 -mt-12 w-full px-2 md:-mt-0 lg:px-0">
                 <h2 class="mb-2 text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
                 <div class="mb-8 flex h-5 items-center space-x-2 text-sm text-neutral-400">
@@ -115,10 +118,12 @@ const clearHoveredItem = () => {
             </div>
         </section>
 
+        <!-- REVIEWS -->
         <section class="border-sidebar-border/70 relative mx-auto mt-20 h-56 w-full max-w-6xl rounded-xl border px-2 lg:px-0">
             <PlaceholderPattern />
         </section>
 
+        <!-- RELATED CONTENTS -->
         <section v-if="relatedContents.length > 0" class="mx-auto mt-20 w-full max-w-6xl">
             <div class="mb-2 flex items-baseline justify-between px-2 lg:px-0">
                 <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('detail.moreLikeThis') }}</h2>

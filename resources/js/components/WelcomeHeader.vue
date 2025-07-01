@@ -17,18 +17,13 @@ const { t } = useI18n();
                 <!-- Logo completo para pantallas grandes -->
                 <AppLogo class="hidden h-10 md:flex" />
             </div>
+
             <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
+                :href="route($page.props.auth.user ? 'dashboard' : 'login')"
                 class="inline-block rounded-full bg-neutral-50 px-5 py-1.5 leading-normal hover:bg-neutral-200"
             >
-                {{ t('welcome.header.dashboard') }}
+                {{ t($page.props.auth.user ? 'welcome.header.dashboard' : 'welcome.header.login') }}
             </Link>
-            <template v-else>
-                <Link :href="route('login')" class="inline-block rounded-full bg-neutral-50 px-5 py-1.5 leading-normal hover:bg-neutral-200">
-                    {{ t('welcome.header.login') }}
-                </Link>
-            </template>
         </nav>
     </header>
 </template>

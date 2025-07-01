@@ -1,5 +1,49 @@
 {
     "head": {
         "title": "Explore"
+    },
+    "breadcrumbs": [
+        {
+            "title": "Explore",
+            "href": "/explore"
+        }
+    ],
+    "filters": {
+        "orderTitle": "Order by",
+        "order": [
+            {
+                "label": "Name (A → Z)",
+                "value": "name_asc"
+            },
+            {
+                "label": "Name (Z → A)",
+                "value": "name_desc"
+            },
+            {
+                "label": "Most Recent",
+                "value": "recent"
+            }
+        ],
+        "contentTypeTitle": "All Types",
+        "contentTypes": [
+            {
+                "label": "TV Shows",
+                "value": "series"
+            },
+            {
+                "label": "Movies",
+                "value": "movie"
+            },
+            {
+                "label": "Animes",
+                "value": "anime"
+            }
+        ],
+        "categoryTitle": "All Categories",
+        "search": "Search..."
+    },
+    "pagination": {
+        "previous": "Anterior",
+        "next": "Siguiente"
     }
 }

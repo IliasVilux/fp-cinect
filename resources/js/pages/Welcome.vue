@@ -5,6 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import WelcomeHeader from '@/components/WelcomeHeader.vue';
 import type { Category, Content } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
+import { Bookmark, BookMarked, Star, Telescope } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 
 const { t, locale, messages } = useI18n();
@@ -14,7 +15,22 @@ defineProps<{
     trendingContents: Content[];
 }>();
 
-const features = messages.value[locale.value].welcome.features;
+const icons = {
+    Telescope,
+    Bookmark,
+    Star,
+    BookMarked,
+};
+const rawItems = messages.value[locale.value]['welcome'].sections.features.items as {
+    title: string;
+    description: string;
+    iconKey: keyof typeof icons;
+}[];
+
+const features = rawItems.map(({ iconKey, ...item }) => ({
+    ...item,
+    icon: icons[iconKey] || iconKey,
+}));
 </script>
 
 <template>
@@ -22,18 +38,21 @@ const features = messages.value[locale.value].welcome.features;
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     </Head>
+
     <WelcomeHeader />
+
+    <!-- HERO -->
     <section class="relative mb-16 w-full">
-        <!-- Imagen de fondo -->
+        <!-- Background image -->
         <img
             src="/images/welcome/hero-background.webp"
-            alt="Interestellar background image"
+            alt="Cinect"
             class="absolute inset-0 z-0 h-full w-full mask-b-from-25% object-cover brightness-[.7]"
         />
 
-        <!-- Contenido -->
+        <!-- Content -->
         <div class="relative z-10 mx-auto flex min-h-[500px] max-w-4xl flex-col items-center justify-center p-8 pt-44 text-center text-neutral-50">
-            <img src="/images/logo-full.webp" alt="Cinect logo full" class="w-60 lg:w-96" />
+            <img src="/images/logo-full.webp" alt="Cinect logo" class="w-60 lg:w-96" />
             <h1 class="mt-2 mb-5 text-3xl font-black lg:mt-4 lg:mb-10 lg:text-6xl">{{ t('welcome.hero.title') }}</h1>
             <p class="lg:text-2xl">
                 {{ t('welcome.hero.subtitle') }}
@@ -41,8 +60,9 @@ const features = messages.value[locale.value].welcome.features;
         </div>
     </section>
 
+    <!-- CATEGORIES -->
     <section class="mb-5 w-full overflow-x-hidden">
-        <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">{{ t('welcome.block1.title') }}</h2>
+        <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">{{ t('welcome.sections.categories.title') }}</h2>
 
         <Carousel
             class="relative w-full"
@@ -68,7 +88,7 @@ const features = messages.value[locale.value].welcome.features;
                             <!-- Imagen de fondo -->
                             <img
                                 src="/images/welcome/hero-background.webp"
-                                :alt="`${category.content.title} cover image`"
+                                :alt="category.content.title"
                                 class="absolute inset-0 z-0 size-full mask-b-from-70% mask-b-to-95% object-cover"
                             />
 
@@ -86,8 +106,9 @@ const features = messages.value[locale.value].welcome.features;
         </Carousel>
     </section>
 
+    <!-- TRENDS -->
     <section class="relative mb-16 min-h-[400px] w-full items-end overflow-hidden lg:flex lg:min-h-[600px]">
-        <!-- Imagen de fondo -->
+        <!-- Background image -->
         <img
             v-if="trendingContents.length && trendingContents[0].cover_image"
             src="/images/welcome/hero-background.webp"
@@ -95,15 +116,15 @@ const features = messages.value[locale.value].welcome.features;
             class="inset-0 z-0 h-full w-full mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
         />
 
-        <!-- Contenido -->
+        <!-- Content -->
         <div class="z-10 mx-auto -mt-20 size-full max-w-4xl px-2 lg:my-0 lg:px-4">
-            <!-- Textos -->
+            <!-- Title -->
             <div class="relative mb-4">
-                <h1 class="space text-center text-2xl font-black uppercase md:text-start">{{ t('welcome.block2.title') }}</h1>
-                <p class="max-w-2xl text-4xl font-extralight md:text-6xl lg:text-7xl">{{ t('welcome.block2.subtitle') }}</p>
+                <h1 class="space text-center text-2xl font-black uppercase md:text-start">{{ t('welcome.sections.trending.title') }}</h1>
+                <p class="max-w-2xl text-4xl font-extralight md:text-6xl lg:text-7xl">{{ t('welcome.sections.trending.subtitle') }}</p>
             </div>
 
-            <!-- Grid -->
+            <!-- Grid images -->
             <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
                 <img
                     v-for="content in trendingContents.slice(1)"
@@ -116,8 +137,10 @@ const features = messages.value[locale.value].welcome.features;
         </div>
     </section>
 
+    <!-- FEATURES -->
     <section class="mb-16 w-full px-2 lg:px-4">
-        <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">{{ t('welcome.block3.title') }}</h2>
+        <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">{{ t('welcome.sections.features.title') }}</h2>
+
         <div class="mx-auto grid max-w-7xl grid-cols-1 gap-2 lg:grid-cols-4">
             <div
                 v-for="(feature, i) in features"
@@ -128,7 +151,7 @@ const features = messages.value[locale.value].welcome.features;
                     <p class="mb-2 text-lg font-bold">{{ feature.title }}</p>
                     <p class="text-neutral-300">{{ feature.description }}</p>
                 </div>
-                <!-- <div class="ml-auto size-8 bg-indigo-500">{{ feature.icon }}</div> -->
+                <component :is="feature.icon" class="ml-auto size-6 lg:size-8" />
             </div>
         </div>
     </section>

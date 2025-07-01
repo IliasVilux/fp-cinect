@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n';
 
 const { t, locale, messages } = useI18n();
 
-const sidebarNavItems: NavItem[] = messages.value[locale.value]['settings-layout'].navItems as NavItem[];
+const sidebarNavItems: NavItem[] = messages.value[locale.value]['settings'].layout.navItems as NavItem[];
 
 const page = usePage();
 
@@ -17,7 +17,7 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
 
 <template>
     <div class="px-4 py-6">
-        <Heading :title="t('settings-layout.base.title')" description="t('settings-layout.base.description')" />
+        <Heading :title="t('settings.layout.base.title')" :description="t('settings.layout.base.description')" />
 
         <div class="flex flex-col space-y-8 md:space-y-0 lg:flex-row lg:space-y-0 lg:space-x-12">
             <aside class="w-full max-w-xl lg:w-48">

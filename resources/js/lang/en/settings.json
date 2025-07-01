@@ -1,0 +1,136 @@
+{
+    "layout": {
+        "base": {
+            "title": "Settings",
+            "description": "Manage your profile and account settings"
+        },
+        "navItems": [
+            {
+                "title": "Profile",
+                "href": "/settings/profile"
+            },
+            {
+                "title": "Password",
+                "href": "/settings/password"
+            },
+            {
+                "title": "Appearance",
+                "href": "/settings/appearance"
+            }
+        ]
+    },
+    "profile": {
+        "breadcrumbs": [
+            {
+                "title": "Profile settings",
+                "href": "/settings/profile"
+            }
+        ],
+        "base": {
+            "titleShort": "Profile Settings"
+        },
+        "baseSmall": {
+            "title": "Profile information",
+            "description": "Update your profile information and email address."
+        },
+        "form": {
+            "name": {
+                "label": "Name",
+                "placeholder": "Enter your name"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Enter your email",
+                "unverified": "Your email address is unverified.",
+                "resend": "Click here to resend the verification email.",
+                "verificationLinkSent": "A new verification link has been sent to your email address."
+            },
+            "submit": "Save changes",
+            "submited": "Saved."
+        },
+        "deleteUser": {
+            "base": {
+                "title": "Delete Account",
+                "description": "Delete your account and all of its resources"
+            },
+            "warning": {
+                "title": "Warning",
+                "description": "Please proceed with caution, this cannot be undone."
+            },
+            "delete": "Delete account",
+            "modal": {
+                "title": "Are you sure you want to delete your account?",
+                "description": "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+                "password": {
+                    "label": "Password",
+                    "placeholder": "Enter your password"
+                },
+                "cancel": "Cancel",
+                "submit": "Delete Account"
+            }
+        }
+    },
+    "password": {
+        "breadcrumbs": [
+            {
+                "title": "Password settings",
+                "href": "/settings/password"
+            }
+        ],
+        "base": {
+            "titleShort": "Password settings"
+        },
+        "baseSmall": {
+            "title": "Update password",
+            "description": "Ensure your account is using a long, random password to stay secure"
+        },
+        "form": {
+            "currentPassword": {
+                "label": "Current password",
+                "placeholder": "Enter your current password"
+            },
+            "newPassword": {
+                "label": "New password",
+                "placeholder": "Enter a new password"
+            },
+            "confirmPassword": {
+                "label": "Confirm password",
+                "placeholder": "Confirm your new password"
+            },
+            "submit": "Save changes",
+            "submited": "Saved."
+        }
+    },
+    "appearance": {
+        "breadcrumbs": [
+            {
+                "title": "Appearance settings",
+                "href": "/settings/appearance"
+            }
+        ],
+        "base": {
+            "titleShort": "Appearance settings"
+        },
+        "baseSmall": {
+            "title": "Appearance settings",
+            "description": "Update your account's appearance settings"
+        },
+        "tabs": [
+            {
+                "value": "light",
+                "iconKey": "Sun",
+                "label": "Light"
+            },
+            {
+                "value": "dark",
+                "iconKey": "Moon",
+                "label": "Dark"
+            },
+            {
+                "value": "system",
+                "iconKey": "Monitor",
+                "label": "System"
+            }
+        ]
+    }
+}

@@ -10,7 +10,7 @@ import languages from '@/lang/languages.json';
 
 const { t, locale, messages } = useI18n();
 
-const navItems: NavItem[] = messages.value[locale.value]['footer-nav-items'] as NavItem[];
+const navItems: NavItem[] = messages.value[locale.value]['footer'].navItems as NavItem[];
 
 const langOptions: SelectItem[] = languages;
 const langValue = ref<string | null>(locale.value);

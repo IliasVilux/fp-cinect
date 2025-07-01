@@ -29,13 +29,13 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout :title="t('confirm-password.base.title')" :description="t('confirm-password.base.description')" :content="content">
-        <Head :title="t('confirm-password.base.titleShort')" />
+    <AuthLayout :title="t('auth.confirmPassword.base.title')" :description="t('auth.confirmPassword.base.description')" :content="content">
+        <Head :title="t('auth.confirmPassword.base.titleShort')" />
 
         <form @submit.prevent="submit">
             <div class="space-y-6">
                 <div class="grid gap-2">
-                    <Label htmlFor="password">{{ t('confirm-password.form.password.label') }}</Label>
+                    <Label htmlFor="password">{{ t('auth.confirmPassword.form.password.label') }}</Label>
                     <Input
                         id="password"
                         type="password"
@@ -52,7 +52,7 @@ const submit = () => {
                 <div class="flex items-center">
                     <Button class="w-full" :disabled="form.processing">
                         <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                        {{ t('confirm-password.form.submit') }}
+                        {{ t('auth.confirmPassword.form.submit') }}
                     </Button>
                 </div>
             </div>

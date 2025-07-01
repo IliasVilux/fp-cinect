@@ -1,10 +1,20 @@
 {
+    "breadcrumbs": [
+        {
+            "title": "Home",
+            "href": "/dashboard"
+        }
+    ],
     "head": {
-        "title": "Dashboard"
+        "title": "Home"
     },
-    "addedRecently": "Added recently",
-    "tvShows": "TV Shows",
-    "movies": "Movies",
-    "animes": "Animes",
-    "watchMore": "Watch more"
+    "sections": {
+        "carousel": {
+            "addedRecently": "Added recently",
+            "tvShows": "Tv Shows",
+            "movies": "Movies",
+            "animes": "Animes",
+            "watchMore": "Watch more"
+        }
+    }
 }

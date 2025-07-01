@@ -47,38 +47,38 @@ const closeModal = () => {
 
 <template>
     <div class="space-y-6">
-        <HeadingSmall :title="t('settings-profile.deleteUser.base.title')" :description="t('settings-profile.deleteUser.base.description')" />
+        <HeadingSmall :title="t('settings.profile.deleteUser.base.title')" :description="t('settings.profile.deleteUser.base.description')" />
         <div class="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
             <div class="relative space-y-0.5 text-red-600 dark:text-red-100">
-                <p class="font-medium">{{ t('settings-profile.deleteUser.warning.title') }}</p>
-                <p class="text-sm">{{ t('settings-profile.deleteUser.warning.description') }}</p>
+                <p class="font-medium">{{ t('settings.profile.deleteUser.warning.title') }}</p>
+                <p class="text-sm">{{ t('settings.profile.deleteUser.warning.description') }}</p>
             </div>
             <Dialog>
                 <DialogTrigger as-child>
-                    <Button variant="destructive">{{ t('settings-profile.deleteUser.delete') }}</Button>
+                    <Button variant="destructive">{{ t('settings.profile.deleteUser.delete') }}</Button>
                 </DialogTrigger>
                 <DialogContent>
                     <form class="space-y-6" @submit="deleteUser">
                         <DialogHeader class="space-y-3">
-                            <DialogTitle>{{ t('settings-profile.deleteUser.modal.title') }}</DialogTitle>
+                            <DialogTitle>{{ t('settings.profile.deleteUser.modal.title') }}</DialogTitle>
                             <DialogDescription>
-                                {{ t('settings-profile.deleteUser.modal.description') }}
+                                {{ t('settings.profile.deleteUser.modal.description') }}
                             </DialogDescription>
                         </DialogHeader>
 
                         <div class="grid gap-2">
-                            <Label for="password" class="sr-only">{{ t('settings-profile.deleteUser.modal.password.label') }}</Label>
-                            <Input id="password" type="password" name="password" ref="passwordInput" v-model="form.password" :placeholder="t('settings-profile.deleteUser.modal.password.placeholder')" />
+                            <Label for="password" class="sr-only">{{ t('settings.profile.deleteUser.modal.password.label') }}</Label>
+                            <Input id="password" type="password" name="password" ref="passwordInput" v-model="form.password" :placeholder="t('settings.profile.deleteUser.modal.password.placeholder')" />
                             <InputError :message="form.errors.password" />
                         </div>
 
                         <DialogFooter class="gap-2">
                             <DialogClose as-child>
-                                <Button variant="secondary" @click="closeModal">{{ t('settings-profile.deleteUser.modal.cancel') }}</Button>
+                                <Button variant="secondary" @click="closeModal">{{ t('settings.profile.deleteUser.modal.cancel') }}</Button>
                             </DialogClose>
 
                             <Button variant="destructive" :disabled="form.processing">
-                                <button type="submit">{{ t('settings-profile.deleteUser.modal.submit') }}</button>
+                                <button type="submit">{{ t('settings.profile.deleteUser.modal.submit') }}</button>
                             </Button>
                         </DialogFooter>
                     </form>

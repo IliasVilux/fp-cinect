@@ -1,4 +1,24 @@
 {
+    "breadcrumbs": {
+        "series": [
+            {
+                "title": "Tv Shows",
+                "href": "/dashboard/series"
+            }
+        ],
+        "movie": [
+            {
+                "title": "Movies",
+                "href": "/dashboard/movie"
+            }
+        ],
+        "anime": [
+            {
+                "title": "Animes",
+                "href": "/dashboard/anime"
+            }
+        ]
+    },
     "watchMore": "Watch more",
     "trending": "Trending",
     "forYou": "For you"

@@ -27,8 +27,8 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout :title="t('forgot-password.base.title')" :description="t('forgot-password.base.description')" :content="content">
-        <Head :title="t('forgot-password.base.titleShort')" />
+    <AuthLayout :title="t('auth.forgotPassword.base.title')" :description="t('auth.forgotPassword.base.description')" :content="content">
+        <Head :title="t('auth.forgotPassword.base.titleShort')" />
 
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
@@ -37,7 +37,7 @@ const submit = () => {
         <div class="space-y-6">
             <form @submit.prevent="submit">
                 <div class="grid gap-2">
-                    <Label for="email">{{ t('forgot-password.form.email.label') }}</Label>
+                    <Label for="email">{{ t('auth.forgotPassword.form.email.label') }}</Label>
                     <Input
                         id="email"
                         type="email"
@@ -45,7 +45,7 @@ const submit = () => {
                         autocomplete="off"
                         v-model="form.email"
                         autofocus
-                        :placeholder="t('forgot-password.form.email.placeholder')"
+                        :placeholder="t('auth.forgotPassword.form.email.placeholder')"
                     />
                     <InputError :message="form.errors.email" />
                 </div>
@@ -53,14 +53,14 @@ const submit = () => {
                 <div class="my-6 flex items-center justify-start">
                     <Button class="w-full" :disabled="form.processing">
                         <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                        {{ t('forgot-password.form.submit') }}
+                        {{ t('auth.forgotPassword.form.submit') }}
                     </Button>
                 </div>
             </form>
 
             <div class="text-muted-foreground space-x-1 text-center text-sm">
-                <span>{{ t('forgot-password.logIn.title') }}</span>
-                <TextLink :href="route('login')">{{ t('forgot-password.logIn.link') }}</TextLink>
+                <span>{{ t('auth.forgotPassword.logIn.title') }}</span>
+                <TextLink :href="route('login')">{{ t('auth.forgotPassword.logIn.link') }}</TextLink>
             </div>
         </div>
     </AuthLayout>

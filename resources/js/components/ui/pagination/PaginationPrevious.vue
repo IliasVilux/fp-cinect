@@ -29,7 +29,7 @@ const forwarded = useForwardProps(delegatedProps)
   >
     <slot>
       <ChevronLeftIcon />
-      <span class="hidden sm:block">{{ t('pagination.previous') }}</span>
+      <span class="hidden sm:block">{{ t('explore.pagination.previous') }}</span>
     </slot>
   </PaginationPrev>
 </template>

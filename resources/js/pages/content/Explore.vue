@@ -28,11 +28,11 @@ const props = defineProps<{
     };
 }>();
 
-const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['explore-breadcrumbs'] as BreadcrumbItem[];
+const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['explore'].breadcrumbs as BreadcrumbItem[];
 
-const orderItems: SelectItem[] = messages.value[locale.value]['explore-filters'].order as SelectItem[]; // Best and worst rated, most and least popular, etc.
+const orderItems: SelectItem[] = messages.value[locale.value]['explore'].filters.order as SelectItem[]; // Best and worst rated, most and least popular, etc.
 
-const contentTypesItems: SelectItem[] = messages.value[locale.value]['explore-filters'].contentTypes as SelectItem[];
+const contentTypesItems: SelectItem[] = messages.value[locale.value]['explore'].filters.contentTypes as SelectItem[];
 
 const orderBy = ref<string | null>(props.filters.orderBy);
 const contentType = ref<string | null>(props.filters.contentType);
@@ -65,18 +65,20 @@ const clearHoveredItem = () => {
     <Head :title="t('explore.head.title')" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-10 rounded-xl">
+            <!-- FILTERS -->
             <section class="mt-2 flex flex-col gap-2 px-2 xl:mt-4 xl:flex-row xl:items-end xl:justify-between xl:px-4">
                 <div class="flex w-full flex-col gap-2 xl:flex-row xl:items-end">
                     <SearchInput @search="(value) => (searchContent = value)" />
                     <div class="flex w-full gap-2">
-                        <CustomSelect :selectItems="contentTypesItems" :placeholder="t('explore-filters.contentTypeTitle')" v-model="contentType" />
-                        <CustomSelect :selectItems="categoriesItems" :placeholder="t('explore-filters.categoryTitle')" v-model="categoryId" class="w-full lg:w-48" />
+                        <CustomSelect :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" v-model="contentType" />
+                        <CustomSelect :selectItems="categoriesItems" :placeholder="t('explore.filters.categoryTitle')" v-model="categoryId" class="w-full lg:w-48" />
                     </div>
                 </div>
 
-                <CustomSelect :selectItems="orderItems" :placeholder="t('explore-filters.orderTitle')" v-model="orderBy" />
+                <CustomSelect :selectItems="orderItems" :placeholder="t('explore.filters.orderTitle')" v-model="orderBy" />
             </section>
 
+            <!-- CONTENT GRID -->
             <section class="grid grid-cols-2 gap-2 px-2 lg:grid-cols-4 lg:px-4 xl:grid-cols-6">
                 <Link :href="route('content.detail', content.id)" v-for="content in contents.data" :key="content.id">
                     <Card
@@ -108,6 +110,7 @@ const clearHoveredItem = () => {
                 </Link>
             </section>
 
+            <!-- PAGINATION -->
             <Pagination :items-per-page="contents.per_page" :total="contents.total" :default-page="contents.current_page">
                 <PaginationContent v-slot="{ items }">
                     <PaginationPrevious :disabled="!contents.prev_page_url" class="cursor-pointer" @click="router.visit(contents.prev_page_url)" />

@@ -41,15 +41,15 @@ const icons = {
   Fan,
   Compass,
 };
-const rawItems = messages.value[locale.value]['app-sidebar-items'] as {
+const rawItems = messages.value[locale.value]['app-layout'].navItems as {
   title: string;
   href: string;
-  icon: keyof typeof icons;
+  iconKey: keyof typeof icons;
 }[];
 
-const mainNavItems: NavItem[] = rawItems.map(item => ({
+const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
   ...item,
-  icon: icons[item.icon] || item.icon,
+  icon: icons[iconKey] || iconKey,
 }));
 </script>
 

@@ -3,39 +3,45 @@
         "title": "Bienvenido a Cinect"
     },
     "header": {
-        "dashboard": "Panel de control",
+        "dashboard": "Descubre",
         "login": "Iniciar sesión"
     },
     "hero": {
         "title": "Descubre películas, series, animes y más",
         "subtitle": "Esta es una aplicación de ejemplo para demostrar la localización en español."
     },
-    "block1": {
-        "title": "Entretenimiento incomparable"
-    },
-    "block2": {
-        "title": "Tendencias",
-        "subtitle": "Lo que todos están viendo ahora mismo"
-    },
-    "block3": {
-        "title": "Más razones para unirte"
-    },
-    "features": [
-        {
-            "title": "Descubre nuevo contenido",
-            "description": "Explora películas, series y animes recomendados para ti según tus gustos."
+    "sections": {
+        "categories": {
+            "title": "Entretenimiento incomparable"
         },
-        {
-            "title": "Guarda tu contenido según tus preferencias",
-            "description": "Crea listas personalizadas y accede a tu contenido favorito fácilmente."
+        "trending": {
+            "title": "Tendencias",
+            "subtitle": "Lo que todos están viendo ahora mismo"
         },
-        {
-            "title": "Vota y haz reviews",
-            "description": "Comparte tu opinión y vota el contenido que más te gusta."
-        },
-        {
-            "title": "Tu catálogo, a tu manera",
-            "description": "Organiza, filtra y descubre nuevo contenido como nunca antes."
+        "features": {
+            "title": "Más razones para unirte",
+            "items": [
+                {
+                    "title": "Descubre nuevo contenido",
+                    "description": "Explora películas, series y animes recomendados para ti según tus gustos.",
+                    "iconKey": "Telescope"
+                },
+                {
+                    "title": "Guarda tu contenido según tus preferencias",
+                    "description": "Crea listas personalizadas y accede fácilmente a tu contenido favorito.",
+                    "iconKey": "Bookmark"
+                },
+                {
+                    "title": "Vota y comparte tus opiniones",
+                    "description": "Comparte tu opinión y vota por el contenido que más te gusta.",
+                    "iconKey": "Star"
+                },
+                {
+                    "title": "Tu catálogo, a tu manera",
+                    "description": "Organiza, filtra y descubre nuevo contenido como nunca antes.",
+                    "iconKey": "BookMarked"
+                }
+            ]
         }
-    ]
+    }
 }
