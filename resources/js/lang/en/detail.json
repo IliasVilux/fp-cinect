@@ -1,6 +1,6 @@
 {
     "overview": "overview",
-    "seasons": "seasons",
+    "seasons": "season | seasons",
     "trailer": "trailer",
     "duration": "Duration",
     "moreLikeThis": "More like this"

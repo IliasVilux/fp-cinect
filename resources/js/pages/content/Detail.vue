@@ -53,7 +53,7 @@ const clearHoveredItem = () => {
                     <p v-if="content.release_year">{{ content.release_year }}</p>
                     <Separator v-if="content.release_year" orientation="vertical" />
                     <p v-if="content.type == 'movie'">{{ content.duration }}</p>
-                    <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons') }}</p>
+                    <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons', content.seasons.length) }}</p>
                     <Separator orientation="vertical" />
                     <p>{{ content.category.name }}</p>
                 </div>
