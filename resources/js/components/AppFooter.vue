@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Separator } from '@/components/ui/separator';
+import languages from '@/lang/languages.json';
 import { SelectItem, type NavItem } from '@/types';
 import { Link, router } from '@inertiajs/vue3';
 import { Languages } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CustomSelect from './CustomSelect.vue';
-import languages from '@/lang/languages.json';
 
 const { t, locale, messages } = useI18n();
 

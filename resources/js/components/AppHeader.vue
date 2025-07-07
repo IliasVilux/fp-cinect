@@ -12,8 +12,8 @@ import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { Compass, Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
 import { computed } from 'vue';
-import AppLogoIcon from './AppLogoIcon.vue';
 import { useI18n } from 'vue-i18n';
+import AppLogoIcon from './AppLogoIcon.vue';
 
 const { locale, messages } = useI18n();
 
@@ -35,21 +35,21 @@ const activeItemStyles = computed(
 );
 
 const icons = {
-  LayoutGrid,
-  Tv,
-  Film,
-  Fan,
-  Compass,
+    LayoutGrid,
+    Tv,
+    Film,
+    Fan,
+    Compass,
 };
 const rawItems = messages.value[locale.value]['app-layout'].navItems as {
-  title: string;
-  href: string;
-  iconKey: keyof typeof icons;
+    title: string;
+    href: string;
+    iconKey: keyof typeof icons;
 }[];
 
 const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
-  ...item,
-  icon: icons[iconKey] || iconKey,
+    ...item,
+    icon: icons[iconKey] || iconKey,
 }));
 </script>
 

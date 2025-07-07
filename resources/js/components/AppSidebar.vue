@@ -5,27 +5,27 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, Sid
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { Compass, Fan, Film, LayoutGrid, Tv } from 'lucide-vue-next';
-import AppLogo from './AppLogo.vue';
 import { useI18n } from 'vue-i18n';
+import AppLogo from './AppLogo.vue';
 
 const { locale, messages } = useI18n();
 
 const icons = {
-  LayoutGrid,
-  Tv,
-  Film,
-  Fan,
-  Compass,
+    LayoutGrid,
+    Tv,
+    Film,
+    Fan,
+    Compass,
 };
 const rawItems = messages.value[locale.value]['app-layout'].navItems as {
-  title: string;
-  href: string;
-  iconKey: keyof typeof icons;
+    title: string;
+    href: string;
+    iconKey: keyof typeof icons;
 }[];
 
 const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
-  ...item,
-  icon: icons[iconKey] || iconKey,
+    ...item,
+    icon: icons[iconKey] || iconKey,
 }));
 </script>
 

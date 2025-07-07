@@ -61,7 +61,9 @@ const clearHoveredItem = () => {
                 <Tabs class="w-full" defaultValue="overview" as="section">
                     <TabsList>
                         <TabsTrigger value="overview">{{ t('detail.overview') }}</TabsTrigger>
-                        <TabsTrigger v-if="content.type != 'movie' && content.seasons.length > 0" value="seasons">{{ t('detail.seasons') }}</TabsTrigger>
+                        <TabsTrigger v-if="content.type != 'movie' && content.seasons.length > 0" value="seasons">{{
+                            t('detail.seasons')
+                        }}</TabsTrigger>
                         <TabsTrigger value="trailer">{{ t('detail.trailer') }}</TabsTrigger>
                     </TabsList>
 

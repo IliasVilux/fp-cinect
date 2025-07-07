@@ -17,7 +17,6 @@ const handleLogout = () => {
 };
 
 defineProps<Props>();
-
 </script>
 
 <template>

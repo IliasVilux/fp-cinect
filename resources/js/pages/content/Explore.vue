@@ -71,7 +71,12 @@ const clearHoveredItem = () => {
                     <SearchInput @search="(value) => (searchContent = value)" />
                     <div class="flex w-full gap-2">
                         <CustomSelect :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" v-model="contentType" />
-                        <CustomSelect :selectItems="categoriesItems" :placeholder="t('explore.filters.categoryTitle')" v-model="categoryId" class="w-full lg:w-48" />
+                        <CustomSelect
+                            :selectItems="categoriesItems"
+                            :placeholder="t('explore.filters.categoryTitle')"
+                            v-model="categoryId"
+                            class="w-full lg:w-48"
+                        />
                     </div>
                 </div>
 
