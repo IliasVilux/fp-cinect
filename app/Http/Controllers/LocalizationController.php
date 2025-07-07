@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LocalizationController extends Controller
 {
@@ -16,6 +17,11 @@ class LocalizationController extends Controller
         ]);
 
         session(['locale' => $validated['locale']]);
+
+        if (Auth::check()) {
+            Auth::user()->update(['locale' => $validated['locale']]);
+        }
+
         return redirect()->back();
     }
 }

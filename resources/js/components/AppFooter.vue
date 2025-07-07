@@ -2,18 +2,21 @@
 import { Separator } from '@/components/ui/separator';
 import languages from '@/lang/languages.json';
 import { SelectItem, type NavItem } from '@/types';
-import { Link, router } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import { Languages } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CustomSelect from './CustomSelect.vue';
 
 const { t, locale, messages } = useI18n();
+const page = usePage();
+const backendLocale = page.props.locale as string;
 
+locale.value = backendLocale;
 const navItems: NavItem[] = messages.value[locale.value]['footer'].navItems as NavItem[];
 
 const langOptions: SelectItem[] = languages;
-const langValue = ref<string | null>(locale.value);
+const langValue = ref<string | null>(backendLocale);
 watch(langValue, (langValue) => {
     if (!langValue) return;
 

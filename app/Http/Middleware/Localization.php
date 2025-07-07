@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Localization
@@ -15,7 +16,13 @@ class Localization
      */
     public function handle(Request $request, Closure $next): Response
     {
-        app()->setLocale(session('locale', config('app.locale')));
+        if (Auth::check())
+        {
+            app()->setLocale(Auth::user()->locale);
+        } else {
+            app()->setLocale(session('locale', config('app.locale')));
+        }
+
         return $next($request);
     }
 }
