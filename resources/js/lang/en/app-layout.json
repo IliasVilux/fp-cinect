@@ -26,6 +26,7 @@
             "iconKey": "Compass"
         }
     ],
+    "searchPlaceholder": "Search for movies, tv shows, animes...",
     "userMenu": {
         "settings": "Settings",
         "logOut": "Log out"

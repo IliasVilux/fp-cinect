@@ -25,6 +25,7 @@ const props = defineProps<{
         orderBy: string | null;
         contentType: string | null;
         categoryId: number | null;
+        searchContent: string | null;
     };
 }>();
 
@@ -37,7 +38,7 @@ const contentTypesItems: SelectItem[] = messages.value[locale.value]['explore'].
 const orderBy = ref<string | null>(props.filters.orderBy);
 const contentType = ref<string | null>(props.filters.contentType);
 const categoryId = ref<number | null>(props.filters.categoryId);
-const searchContent = ref<string>('');
+const searchContent = ref<string>(props.filters.searchContent ?? '');
 watch([orderBy, contentType, categoryId, searchContent], ([order, contentType, category, search]) => {
     router.visit(route('explore'), {
         method: 'get',
@@ -68,7 +69,7 @@ const clearHoveredItem = () => {
             <!-- FILTERS -->
             <section class="mt-2 flex flex-col gap-2 px-2 xl:mt-4 xl:flex-row xl:items-end xl:justify-between xl:px-4">
                 <div class="flex w-full flex-col gap-2 xl:flex-row xl:items-end">
-                    <SearchInput @search="(value) => (searchContent = value)" />
+                    <SearchInput v-model="searchContent" :placeholder="t('explore.filters.search')" />
                     <div class="flex w-full gap-2">
                         <CustomSelect :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" v-model="contentType" />
                         <CustomSelect

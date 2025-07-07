@@ -55,7 +55,7 @@ class ContentController extends Controller
         return Inertia::render('content/Explore', [
             'categoriesItems' => $categories,
             'contents' => $contents,
-            'filters' => $request->only(['orderBy', 'contentType', 'categoryId']),
+            'filters' => $request->only(['orderBy', 'contentType', 'categoryId', 'searchContent']),
         ]);
     }
     public function detail(int $id)

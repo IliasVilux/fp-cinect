@@ -9,13 +9,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, usePage, router } from '@inertiajs/vue3';
 import { Compass, Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppLogoIcon from './AppLogoIcon.vue';
+import SearchInput from './SearchInput.vue';
 
-const { locale, messages } = useI18n();
+const { t, locale, messages } = useI18n();
 
 interface Props {
     breadcrumbs?: BreadcrumbItem[];
@@ -51,6 +52,21 @@ const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
     ...item,
     icon: icons[iconKey] || iconKey,
 }));
+
+const isSearching = ref(false);
+const searchQuery = ref('');
+function submitSearch() {
+    const trimedInput = searchQuery.value.trim();
+
+    if (trimedInput.length > 0) {
+        router.visit(route('explore'), {
+            method: 'get',
+            data: {
+                searchContent: trimedInput,
+            }
+        });
+    }
+}
 </script>
 
 <template>
@@ -111,9 +127,13 @@ const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
                 </div>
 
                 <div class="ml-auto flex items-center space-x-2">
-                    <Button variant="ghost" size="icon" class="group h-9 w-9 cursor-pointer">
-                        <Search class="size-5 opacity-80 group-hover:opacity-100" />
-                    </Button>
+                    <div>
+                        <Button v-if="!isSearching" @click="isSearching = true" variant="ghost" size="icon" class="group h-9 w-9 cursor-pointer">
+                            <Search class="size-5 opacity-80 group-hover:opacity-100" />
+                        </Button>
+
+                        <SearchInput v-else v-model="searchQuery" @search="submitSearch" @blur="isSearching = false" :placeholder="t('app-layout.searchPlaceholder')" :closeOnBlur="true" />
+                    </div>
 
                     <DropdownMenu>
                         <DropdownMenuTrigger :as-child="true">
