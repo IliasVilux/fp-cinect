@@ -11,7 +11,6 @@ import PaginationNext from '@/components/ui/pagination/PaginationNext.vue';
 import PaginationPrevious from '@/components/ui/pagination/PaginationPrevious.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem, SelectItem } from '@/types';
-import { Category } from '@/types/models';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -19,7 +18,7 @@ import { useI18n } from 'vue-i18n';
 const { t, locale, messages } = useI18n();
 
 const props = defineProps<{
-    categoriesItems: Category[];
+    categoriesItems: SelectItem[];
     contents: any;
     filters: {
         orderBy: string | null;
@@ -71,11 +70,11 @@ const clearHoveredItem = () => {
                 <div class="flex w-full flex-col gap-2 xl:flex-row xl:items-end">
                     <SearchInput v-model="searchContent" :placeholder="t('explore.filters.search')" />
                     <div class="flex w-full gap-2">
-                        <CustomSelect :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" v-model="contentType" />
+                        <CustomSelect v-model="contentType" :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" />
                         <CustomSelect
+                            v-model="categoryId"
                             :selectItems="categoriesItems"
                             :placeholder="t('explore.filters.categoryTitle')"
-                            v-model="categoryId"
                             class="w-full lg:w-48"
                         />
                     </div>
