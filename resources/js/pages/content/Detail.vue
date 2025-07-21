@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
 import ContentCarousel from '@/components/ContentCarousel.vue';
+import InputError from '@/components/InputError.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Dialog, DialogDescription, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Content, Season } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
+import { LoaderCircle, Star } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -48,14 +54,66 @@ const clearHoveredItem = () => {
 
             <!-- Tabs -->
             <div class="z-10 -mt-12 w-full px-2 md:-mt-0 lg:px-0">
-                <h2 class="mb-2 text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
-                <div class="mb-8 flex h-5 items-center space-x-2 text-sm text-neutral-400">
-                    <p v-if="content.release_year">{{ content.release_year }}</p>
-                    <Separator v-if="content.release_year" orientation="vertical" />
-                    <p v-if="content.type == 'movie'">{{ content.duration }}</p>
-                    <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons', content.seasons.length) }}</p>
-                    <Separator orientation="vertical" />
-                    <p>{{ content.category.name }}</p>
+                <div>
+                    <!-- Title and Rating -->
+                    <div class="mb-2 flex items-center justify-between">
+                        <h2 class="text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
+                        <div class="flex items-baseline space-x-1 md:space-x-2">
+                            <Dialog>
+                                <DialogTrigger as-child>
+                                    <Button variant="outline">
+                                        <h3 class="text-lg">{{ content.ratings_avg_rating ? Number(content.ratings_avg_rating).toFixed(1) : '—' }}</h3>
+                                        <component :is="Star" class="size-4 fill-yellow-300 text-yellow-300" />
+                                    </Button>
+                                </DialogTrigger>
+
+                                <DialogContent class="sm:max-w-md">
+                                    <DialogHeader>
+                                        <DialogTitle>{{ t('detail.review.title') }}</DialogTitle>
+                                        <DialogDescription>
+                                            {{ t('detail.review.description') }}
+                                        </DialogDescription>
+                                    </DialogHeader>
+
+                                    <form id="form">
+                                        <div class="flex w-full space-x-5 md:space-x-4 md:px-10">
+                                            <Star
+                                                v-for="n in 5"
+                                                :key="n"
+                                                class="size-full aspect-square cursor-pointer"
+                                            />
+                                        </div>
+
+                                        <div class="grid gap-3 mt-4">
+                                            <Label for="review">{{ t('detail.review.reviewLabel') }}</Label>
+                                            <Textarea
+                                                id="review"
+                                                :placeholder="t('detail.review.reviewPlaceholder')"
+                                            />
+                                            <InputError />
+                                        </div>
+
+                                        <DialogFooter>
+                                            <Button type="submit" class="mt-4 sm:justify-start">
+                                                <LoaderCircle class="size-4 animate-spin" />
+                                                {{ t('detail.review.submit') }}
+                                            </Button>
+                                        </DialogFooter>
+                                    </form>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="mb-8 flex h-5 items-center space-x-2 text-sm text-neutral-400">
+                        <p v-if="content.release_year">{{ content.release_year }}</p>
+                        <Separator v-if="content.release_year" orientation="vertical" />
+                        <p v-if="content.type == 'movie'">{{ content.duration }}</p>
+                        <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons', content.seasons.length) }}</p>
+                        <Separator orientation="vertical" />
+                        <p>{{ content.category.name }}</p>
+                    </div>
                 </div>
 
                 <Tabs class="w-full" defaultValue="overview" as="section">
