@@ -3,5 +3,12 @@
     "seasons": "temporada | temporadas",
     "trailer": "tráiler",
     "duration": "Duración",
-    "moreLikeThis": "Más como esto"
+    "moreLikeThis": "Más como esto",
+    "review": {
+        "title": "Califica este contenido",
+        "description": "Por favor deja una calificación y una crítica sobre este contenido. Tus críticas nos ayudan a mejorar nuestras recomendaciones.",
+        "reviewLabel": "Crítica",
+        "reviewPlaceholder": "Escribe tu opinión aquí...",
+        "submit": "Enviar"
+    }
 }

@@ -11,11 +11,15 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])
             ->name('dashboard');
+
         Route::get('dashboard/{category}', [DashboardController::class, 'indexCategory'])
             ->name('dashboard.category');
+
         Route::get('explore', [ContentController::class, 'explore'])
             ->name('explore');
+
         Route::get('content/{id}', [ContentController::class, 'detail'])->name('content.detail');
+        Route::post('content/{id}', [ContentController::class, 'storeReview'])->name('content.store-review');
     });
 
 require __DIR__ . '/settings.php';

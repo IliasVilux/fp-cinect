@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 
 class Content extends Model
 {
@@ -68,11 +70,27 @@ class Content extends Model
     }
 
     /**
+     * Get the rating for the content made by the user.
+     */
+    public function userRating(): HasOne
+    {
+        return $this->hasOne(Rating::class)->where('user_id', Auth::id());
+    }
+
+    /**
      * Get the reviews for the content.
      */
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Get the revciew for the content made by the user.
+     */
+    public function userReview(): HasOne
+    {
+        return $this->hasOne(Review::class)->where('user_id', Auth::id());
     }
 
     /**

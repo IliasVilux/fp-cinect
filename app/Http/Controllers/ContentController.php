@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\Category;
+use App\Models\Rating;
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ContentController extends Controller
@@ -60,9 +63,10 @@ class ContentController extends Controller
     }
     public function detail(int $id)
     {
-        $content = Content::with(['category', 'seasons.episodes'])->findOrFail($id);
+        $content = Content::with(['category', 'seasons.episodes', 'userRating', 'userReview'])->withAvg('ratings', 'rating')->findOrFail($id);
+
         $relatedContents = Content::where('category_id', $content->category_id)
-            ->where('id', '!=', $content->id)
+            ->where('id', '!=', $content->getKey())
             ->where('type', $content->type)
             ->inRandomOrder()
             ->take(10)
@@ -72,5 +76,32 @@ class ContentController extends Controller
             'content' => $content,
             'relatedContents' => $relatedContents,
         ]);
+    }
+
+    public function storeReview(Request $request, int $id)
+    {
+        $validated = $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'nullable|string|max:1000',
+        ]);
+
+        $content = Content::findOrFail($id);
+        $userId = Auth::id();
+
+        Rating::updateOrCreate(
+            ['user_id' => $userId, 'content_id' => $content->getKey()],
+            ['rating' => $validated['rating']]
+        );
+
+        if (!empty($validated['review'])) {
+            Review::updateOrCreate(
+                ['user_id' => $userId, 'content_id' => $content->getKey()],
+                ['review_text' => $validated['review']]
+            );
+        } else {
+            Review::where('user_id', $userId)->where('content_id', $content->getKey())->delete();
+        }
+
+        return back();
     }
 }

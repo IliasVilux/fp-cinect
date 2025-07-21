@@ -12,16 +12,21 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/AppLayout.vue';
+import { cn } from '@/lib/utils';
 import { Content, Season } from '@/types/models';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle, Star } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-defineProps<{
-    content: Content;
+const props = defineProps<{
+    content: Content & {
+        ratings_avg_rating?: string;
+        user_rating?: { rating: number };
+        user_review?: { review_text: string };
+    };
     relatedContents: Content[];
 }>();
 
@@ -33,6 +38,35 @@ const setHoveredItem = (id: string) => {
 };
 const clearHoveredItem = () => {
     hoveredItemId.value = null;
+};
+
+const form = useForm({
+    rating: props.content.user_rating?.rating || 0,
+    review: props.content.user_review?.review_text || '',
+});
+const dialogOpen = ref(false);
+const handleDialogOpenChange = (open: boolean) => {
+    dialogOpen.value = open;
+    if (!open) {
+        form.reset();
+    }
+};
+const handleRating = (rating: number) => {
+    if (form.rating === rating) {
+        form.rating = 0;
+        return;
+    }
+
+    form.rating = rating;
+};
+const submit = () => {
+    form.post(route('content.store-review', props.content.id), {
+        onFinish: () => {
+            dialogOpen.value = false;
+        },
+        preserveScroll: true,
+        preserveState: true,
+    });
 };
 </script>
 
@@ -59,7 +93,7 @@ const clearHoveredItem = () => {
                     <div class="mb-2 flex items-center justify-between">
                         <h2 class="text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
                         <div class="flex items-baseline space-x-1 md:space-x-2">
-                            <Dialog>
+                            <Dialog :open="dialogOpen" @update:open="handleDialogOpenChange">
                                 <DialogTrigger as-child>
                                     <Button variant="outline">
                                         <h3 class="text-lg">{{ content.ratings_avg_rating ? Number(content.ratings_avg_rating).toFixed(1) : '—' }}</h3>
@@ -75,12 +109,18 @@ const clearHoveredItem = () => {
                                         </DialogDescription>
                                     </DialogHeader>
 
-                                    <form id="form">
+                                    <form id="form" @submit.prevent="submit">
                                         <div class="flex w-full space-x-5 md:space-x-4 md:px-10">
                                             <Star
                                                 v-for="n in 5"
                                                 :key="n"
                                                 class="size-full aspect-square cursor-pointer"
+                                                :class="cn(
+                                                n <= form.rating
+                                                    ? 'text-yellow-300 fill-yellow-300'
+                                                    : 'text-neutral-700 fill-neutral-700'
+                                                )"
+                                                @click="handleRating(n)"
                                             />
                                         </div>
 
@@ -88,14 +128,15 @@ const clearHoveredItem = () => {
                                             <Label for="review">{{ t('detail.review.reviewLabel') }}</Label>
                                             <Textarea
                                                 id="review"
+                                                v-model="form.review"
                                                 :placeholder="t('detail.review.reviewPlaceholder')"
                                             />
-                                            <InputError />
+                                            <InputError :message="form.errors.review" />
                                         </div>
 
                                         <DialogFooter>
-                                            <Button type="submit" class="mt-4 sm:justify-start">
-                                                <LoaderCircle class="size-4 animate-spin" />
+                                            <Button type="submit" class="mt-4 sm:justify-start" :disabled="form.processing || form.rating === 0">
+                                                <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                                                 {{ t('detail.review.submit') }}
                                             </Button>
                                         </DialogFooter>
