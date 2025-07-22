@@ -81,12 +81,24 @@ class ContentController extends Controller
     public function storeReview(Request $request, int $id)
     {
         $validated = $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
+            'rating' => 'nullable|integer|min:0|max:5',
             'review' => 'nullable|string|max:1000',
         ]);
 
         $content = Content::findOrFail($id);
         $userId = Auth::id();
+
+        if ($validated['rating'] === 0) {
+            Rating::where('user_id', $userId)
+                ->where('content_id', $content->getKey())
+                ->delete();
+
+            Review::where('user_id', $userId)
+                ->where('content_id', $content->getKey())
+                ->delete();
+
+            return back();
+        }
 
         Rating::updateOrCreate(
             ['user_id' => $userId, 'content_id' => $content->getKey()],
@@ -99,7 +111,9 @@ class ContentController extends Controller
                 ['review_text' => $validated['review']]
             );
         } else {
-            Review::where('user_id', $userId)->where('content_id', $content->getKey())->delete();
+            Review::where('user_id', $userId)
+                ->where('content_id', $content->getKey())
+                ->delete();
         }
 
         return back();

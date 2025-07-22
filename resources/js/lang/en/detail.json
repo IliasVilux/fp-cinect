@@ -7,8 +7,10 @@
     "review": {
         "title": "Rate this content",
         "description": "Please leave a rating and review for this content. Your feedback helps us improve our recommendations.",
+        "ratingHint": "Click the same star again to clear your rating.",
         "reviewLabel": "Review",
         "reviewPlaceholder": "Write your opinion here...",
+        "reviewHint": "Clearing the text will remove your review.",
         "submit": "Submit"
     }
 }

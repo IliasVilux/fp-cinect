@@ -65,7 +65,7 @@ const submit = () => {
             dialogOpen.value = false;
         },
         preserveScroll: true,
-        preserveState: true,
+        preserveState: false,
     });
 };
 </script>
@@ -110,7 +110,7 @@ const submit = () => {
                                     </DialogHeader>
 
                                     <form id="form" @submit.prevent="submit">
-                                        <div class="flex w-full space-x-5 md:space-x-4 md:px-10">
+                                        <div class="flex w-full mb-3 space-x-5 md:space-x-4 md:px-10">
                                             <Star
                                                 v-for="n in 5"
                                                 :key="n"
@@ -123,19 +123,21 @@ const submit = () => {
                                                 @click="handleRating(n)"
                                             />
                                         </div>
+                                        <p class="text-muted-foreground text-center text-xs mb-4" v-show="form.rating !== 0">{{ t('detail.review.ratingHint') }}</p>
 
-                                        <div class="grid gap-3 mt-4">
+                                        <div class="grid gap-3">
                                             <Label for="review">{{ t('detail.review.reviewLabel') }}</Label>
                                             <Textarea
                                                 id="review"
                                                 v-model="form.review"
                                                 :placeholder="t('detail.review.reviewPlaceholder')"
                                             />
+                                            <p class="text-muted-foreground text-xs" v-show="form.review != ''">{{ t('detail.review.reviewHint') }}</p>
                                             <InputError :message="form.errors.review" />
                                         </div>
 
                                         <DialogFooter>
-                                            <Button type="submit" class="mt-4 sm:justify-start" :disabled="form.processing || form.rating === 0">
+                                            <Button type="submit" class="mt-4 sm:justify-start" :disabled="form.processing">
                                                 <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                                                 {{ t('detail.review.submit') }}
                                             </Button>

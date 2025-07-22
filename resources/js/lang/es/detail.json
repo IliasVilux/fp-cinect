@@ -7,8 +7,10 @@
     "review": {
         "title": "Califica este contenido",
         "description": "Por favor deja una calificación y una crítica sobre este contenido. Tus críticas nos ayudan a mejorar nuestras recomendaciones.",
+        "ratingHint": "Haz clic de nuevo en la misma estrella para borrar tu puntuación.",
         "reviewLabel": "Crítica",
         "reviewPlaceholder": "Escribe tu opinión aquí...",
+        "reviewHint": "Vaciar el texto eliminará tu crítica.",
         "submit": "Enviar"
     }
 }
