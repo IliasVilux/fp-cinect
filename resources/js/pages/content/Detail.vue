@@ -14,13 +14,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { getInitials } from '@/composables/useInitials';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { cn } from '@/lib/utils';
+import type { SharedData, User } from '@/types';
 import { Content, Review, Season } from '@/types/models';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import 'dayjs/locale/es';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { LoaderCircle, Star } from 'lucide-vue-next';
+import { LoaderCircle, Star, Trash2 } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -29,6 +30,8 @@ const { t, locale } = useI18n();
 dayjs.extend(relativeTime);
 dayjs.locale(locale.value);
 
+const page = usePage<SharedData>();
+const user = page.props.auth.user as User;
 const props = defineProps<{
     content: Content & {
         ratings_avg_rating?: string;
@@ -244,12 +247,17 @@ const submit = () => {
                                 {{ getInitials(review.user?.name) }}
                             </AvatarFallback>
                         </Avatar>
-                        <div>
+                        <div class="flex w-full flex-col gap-y-2">
                             <div class="flex items-baseline gap-x-2">
                                 <p class="text-sm font-semibold">@{{ review.user.name }}</p>
                                 <p class="text-muted-foreground text-xs">{{ dayjs(review.created_at).fromNow() }}</p>
                             </div>
-                            <p class="text-pretty">{{ review.review_text }}</p>
+                            <div class="w-full flex items-start justify-between">
+                                <p class="text-pretty">{{ review.review_text }}</p>
+                                <Link :href="route('review.delete', review.id)" method="delete" v-if="review.user.id === user.id">
+                                    <Trash2 class="aspect-square size-full cursor-pointer" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
