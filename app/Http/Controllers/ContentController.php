@@ -63,7 +63,7 @@ class ContentController extends Controller
     }
     public function detail(int $id)
     {
-        $content = Content::with(['category', 'seasons.episodes', 'userRating', 'userReview'])->withAvg('ratings', 'rating')->findOrFail($id);
+        $content = Content::with(['category', 'seasons.episodes', 'userRating', 'userReview', 'reviews.user'])->withAvg('ratings', 'rating')->findOrFail($id);
 
         $relatedContents = Content::where('category_id', $content->category_id)
             ->where('id', '!=', $content->getKey())

@@ -12,5 +12,6 @@
         "reviewPlaceholder": "Escribe tu opinión aquí...",
         "reviewHint": "Vaciar el texto eliminará tu crítica.",
         "submit": "Enviar"
-    }
+    },
+    "reviewCount": "{count} reviews | {count} review | {count} reviews"
 }

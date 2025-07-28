@@ -1,3 +1,5 @@
+import { User } from ".";
+
 export interface Content {
     id: number;
     title: string;
@@ -39,4 +41,17 @@ export interface Season {
     created_at: string;
     updated_at: string;
     episodes?: Episode[];
+}
+
+export interface Review {
+    id: number;
+    review_text: string;
+    user_id: number;
+    content_id: number;
+    created_at: string;
+    updated_at: string;
+    user: {
+        name: string;
+        avatar?: string;
+    };
 }

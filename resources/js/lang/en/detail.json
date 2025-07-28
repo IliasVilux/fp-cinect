@@ -12,5 +12,6 @@
         "reviewPlaceholder": "Write your opinion here...",
         "reviewHint": "Clearing the text will remove your review.",
         "submit": "Submit"
-    }
+    },
+    "reviewCount": "{count} reviews | {count} review | {count} reviews"
 }
