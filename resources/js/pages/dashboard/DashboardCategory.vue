@@ -19,6 +19,7 @@ const props = defineProps<{
         category: Category;
         contents: Content[];
     }[];
+    topTen: Content[];
 }>();
 
 const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['dashboard-content'].breadcrumbs[props.contentType] as BreadcrumbItem[];
@@ -70,6 +71,19 @@ const clearHoveredItem = () => {
                 </div>
                 <ContentCarousel
                     :contents="trendingContents"
+                    :hoveredItemId="hoveredItemId"
+                    :setHoveredItem="setHoveredItem"
+                    :clearHoveredItem="clearHoveredItem"
+                />
+            </section>
+
+            <!-- TOP 10 -->
+            <section>
+                <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard-content.topTen') }}</h2>
+                </div>
+                <ContentCarousel
+                    :contents="topTen"
                     :hoveredItemId="hoveredItemId"
                     :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem"

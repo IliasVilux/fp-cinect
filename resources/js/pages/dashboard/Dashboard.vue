@@ -5,7 +5,7 @@ import TextLink from '@/components/TextLink.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Content } from '@/types/models';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link  } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -18,6 +18,7 @@ defineProps<{
     series: Content[];
     movies: Content[];
     animes: Content[];
+    topTen: Content[];
 }>();
 
 const hoveredImage = ref<string | null>(null);
@@ -79,6 +80,19 @@ const clearHoveredItem = () => {
                 </div>
                 <ContentCarousel
                     :contents="recentContents"
+                    :hoveredItemId="hoveredItemId"
+                    :setHoveredItem="setHoveredItem"
+                    :clearHoveredItem="clearHoveredItem"
+                />
+            </section>
+
+            <!-- TOP 10 GLOBAL -->
+            <section class="z-10">
+                <div class="mb-2 flex items-baseline justify-between px-2 lg:px-4">
+                    <h2 class="z-10 text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.topTen') }}</h2>
+                </div>
+                <ContentCarousel
+                    :contents="topTen"
                     :hoveredItemId="hoveredItemId"
                     :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem"

@@ -14,7 +14,8 @@
             "tvShows": "Tv Shows",
             "movies": "Movies",
             "animes": "Animes",
-            "watchMore": "Watch more"
+            "watchMore": "Watch more",
+            "topTen": "Top 10"
         }
     }
 }

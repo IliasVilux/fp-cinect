@@ -14,6 +14,12 @@ class DashboardController extends Controller
         $recentContents = Content::orderBy('created_at', 'desc')
             ->take(10)
             ->get();
+
+        $topTen = Content::withAvg('ratings', 'rating')
+            ->orderBy('ratings_avg_rating', 'desc')
+            ->take(10)
+            ->get();
+
         $serie = Content::where('type', 'series')->inRandomOrder()->first();
         $movie = Content::where('type', 'movie')->inRandomOrder()->first();
         $anime = Content::where('type', 'anime')->inRandomOrder()->first();
@@ -28,6 +34,7 @@ class DashboardController extends Controller
             'series' => $series,
             'movies' => $movies,
             'animes' => $animes,
+            'topTen' => $topTen,
         ]);
     }
 
@@ -35,6 +42,12 @@ class DashboardController extends Controller
     {
         // Randomly select a hero content from the specified category
         $featuredContent = Content::where('type', $category)->with('category')->inRandomOrder()->first();
+
+        $topTen = Content::where('type', $category)
+            ->withAvg('ratings', 'rating')
+            ->orderBy('ratings_avg_rating', 'desc')
+            ->take(10)
+            ->get();
 
         $weekAgo = Carbon::now()->subWeek();
         // Get trending category content based on reviews, ratings, and favorite lists in the last week
@@ -72,7 +85,9 @@ class DashboardController extends Controller
             'featuredContent' => $featuredContent,
             'contentType' => $category,
             'trendingContents' => $trendingContents,
-            'contentsGroupedByCategory' => $contentsGroupedByCategory
+            'contentsGroupedByCategory' => $contentsGroupedByCategory,
+            'topTen' => $topTen,
+
         ]);
     }
 }
