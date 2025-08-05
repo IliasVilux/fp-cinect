@@ -45,7 +45,7 @@ class WelcomeController extends Controller
 
         return Inertia::render('Welcome', [
             'categories' => $categories,
-            'trendingContents' => $trendingContents,
+            'trendingContents' => $trendingContents->values()->all(),
         ]);
     }
 }
