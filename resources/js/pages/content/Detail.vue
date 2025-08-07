@@ -271,7 +271,6 @@ const submit = () => {
                     :hoveredItemId="hoveredItemId"
                     :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem"
-                    :isDetailPage="true"
                 />
             </section>
 

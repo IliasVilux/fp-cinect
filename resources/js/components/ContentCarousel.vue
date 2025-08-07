@@ -13,7 +13,6 @@ const props = defineProps<
         hoveredItemId: string | null;
         setHoveredItem: (id: string) => void;
         clearHoveredItem: () => void;
-        isDetailPage?: boolean;
     } & WithClassAsProps
 >();
 const isHovering = ref(false);
@@ -28,24 +27,24 @@ const isHovering = ref(false);
         @mouseleave="isHovering = false"
     >
         <div
-            class="pointer-events-none absolute z-10 hidden h-full w-24 bg-gradient-to-r from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block"
+            class="pointer-events-none absolute left-0 top-0 hidden h-full w-24 bg-gradient-to-r from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block z-10"
             :class="[canScrollPrev && !isHovering ? 'md:opacity-100' : 'opacity-0']"
         />
         <div
-            class="pointer-events-none absolute right-0 z-10 hidden h-full w-24 bg-gradient-to-l from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block"
+            class="pointer-events-none absolute right-0 top-0 hidden h-full w-24 bg-gradient-to-l from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block z-10"
             :class="[canScrollNext && !isHovering ? 'md:opacity-100' : 'opacity-0']"
         />
 
-        <CarouselContent :class="{ 'px-2 lg:px-4': !isDetailPage }">
+        <CarouselContent>
             <CarouselItem
                 v-for="content in contents"
                 :key="content.id"
-                class="group basis-1/2 transition duration-1000 md:basis-1/4 lg:basis-1/6"
+                :class="cn(
+                    'group transition duration-1000 basis-1/2 md:basis-1/4 lg:basis-1/6',
+                    hoveredItemId && hoveredItemId !== String(content.id) && 'brightness-75'
+                )"
                 @mouseenter="setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem"
-                :class="{
-                    'brightness-75': hoveredItemId && hoveredItemId !== String(content.id),
-                }"
             >
                 <Link :href="route('content.detail', content.id)">
                     <Card
@@ -55,14 +54,14 @@ const isHovering = ref(false);
                             <img
                                 :src="content.cover_image || '/images/welcome/hero-background.webp'"
                                 :alt="`${content.title} cover image`"
-                                class="absolute inset-0 z-0 size-full object-cover"
+                                class="absolute inset-0 size-full object-cover"
                             />
 
                             <div
-                                class="pointer-events-none absolute right-0 bottom-0 z-10 h-20 w-full bg-neutral-950 mask-t-from-10% mask-t-to-100% transition-opacity duration-300 group-hover:opacity-100 lg:opacity-0"
+                                class="pointer-events-none absolute bottom-0 right-0 h-20 w-full bg-neutral-950 mask-t-from-10% mask-t-to-100% transition-opacity duration-300 group-hover:opacity-100 lg:opacity-0 z-10"
                             />
 
-                            <div class="absolute bottom-0 left-0 z-20 mb-4 w-full text-center">
+                            <div class="absolute bottom-0 left-0 w-full mb-4 text-center z-20">
                                 <p class="mx-2 truncate text-sm font-medium transition-opacity duration-200 group-hover:opacity-100 lg:opacity-0">
                                     {{ content.title }}
                                 </p>
