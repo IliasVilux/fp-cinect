@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
     <AppSidebarLayout v-if="layout === 'sidebar'" :breadcrumbs="breadcrumbs">
         <slot />
     </AppSidebarLayout>
-    <AppHeaderLayout v-else :breadcrumbs="breadcrumbs">
+    <AppHeaderLayout v-else :breadcrumbs="breadcrumbs" class="w-full max-w-6xl mx-auto">
         <slot />
     </AppHeaderLayout>
 </template>
