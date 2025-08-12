@@ -1,5 +1,3 @@
-import { User } from ".";
-
 export interface Content {
     id: number;
     title: string;

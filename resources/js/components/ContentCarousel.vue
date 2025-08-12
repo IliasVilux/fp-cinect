@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 import type { Content } from '@/types/models';
-import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { WithClassAsProps } from './ui/carousel/interface';
+import ContentCard from '@/components/ContentCard.vue';
 
 const props = defineProps<
     {
@@ -46,29 +45,10 @@ const isHovering = ref(false);
                 @mouseenter="setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem"
             >
-                <Link :href="route('content.detail', content.id)">
-                    <Card
-                        class="relative aspect-[5/8] overflow-hidden rounded-lg transition duration-200 group-hover:-translate-y-1 group-hover:border-indigo-600 group-hover:bg-[#120e28]"
-                    >
-                        <CardContent>
-                            <img
-                                :src="content.cover_image || '/images/welcome/hero-background.webp'"
-                                :alt="`${content.title} cover image`"
-                                class="absolute inset-0 size-full object-cover"
-                            />
-
-                            <div
-                                class="pointer-events-none absolute bottom-0 right-0 h-20 w-full bg-neutral-950 mask-t-from-10% mask-t-to-100% transition-opacity duration-300 group-hover:opacity-100 lg:opacity-0 z-10"
-                            />
-
-                            <div class="absolute bottom-0 left-0 w-full mb-4 text-center z-20">
-                                <p class="mx-2 truncate text-sm font-medium transition-opacity duration-200 group-hover:opacity-100 lg:opacity-0">
-                                    {{ content.title }}
-                                </p>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </Link>
+                <ContentCard
+                    :content="content"
+                    class="relative aspect-[5/8] overflow-hidden rounded-lg transition duration-200 group-hover:-translate-y-1 group-hover:border-indigo-600 group-hover:bg-[#120e28]"
+                />
             </CarouselItem>
         </CarouselContent>
 
