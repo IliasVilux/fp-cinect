@@ -8,26 +8,42 @@ use Inertia\Response;
 
 class DashboardController extends Controller
 {
-    public function index(ContentService $service): Response
+    public function __construct(
+        private ContentService $contentService,
+    ) {}
+
+    /**
+     * Show the main dashboard page.
+     *
+     * @return Response
+     */
+    public function index()
     {
         return Inertia::render('dashboard/Dashboard', [
-            'cardsbuttonContent' => $service->getRandomCards(),
-            'recentContents' => $service->getLatest(),
-            'series' => $service->getByType('series'),
-            'movies' => $service->getByType('movie'),
-            'animes' => $service->getByType('anime'),
-            'topTen' => $service->getTopTen(),
+            'cardsbuttonContent' => $this->contentService->getRandomCards(),
+            'recentContents' => $this->contentService->getLatest(),
+            'series' => $this->contentService->getByType('series'),
+            'movies' => $this->contentService->getByType('movie'),
+            'animes' => $this->contentService->getByType('anime'),
+            'topTen' => $this->contentService->getTopTen(),
         ]);
     }
 
-    public function indexCategory(ContentService $service, string $category)
+    /**
+     * Show dashboard page for a specific category.
+     *
+     * @param string $category Content type/category ('series', 'movie', 'anime')
+     *
+     * @return \Inertia\Response
+     */
+    public function indexCategory(string $category)
     {
         return Inertia::render('dashboard/DashboardCategory', [
-            'featuredContent' => $service->getFeatured($category),
+            'featuredContent' => $this->contentService->getFeatured($category),
             'contentType' => $category,
-            'trendingContents' => $service->getTrending($category),
-            'contentsGroupedByCategory' => $service->getGroupedByCategory($category),
-            'topTen' => $service->getTopTen($category),
+            'trendingContents' => $this->contentService->getTrending($category),
+            'contentsGroupedByCategory' => $this->contentService->getGroupedByCategory($category),
+            'topTen' => $this->contentService->getTopTen($category),
 
         ]);
     }

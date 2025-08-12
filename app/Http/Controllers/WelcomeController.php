@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use App\Services\ContentService;
 use App\Services\WelcomeService;
 use Inertia\Inertia;
-use Inertia\Response;
 
 class WelcomeController extends Controller
 {
-    public function index(WelcomeService $welcomeService, ContentService $contentService): Response
+    public function __construct(
+        private WelcomeService $welcomeService,
+        private ContentService $contentService,
+    ) {}
+
+    /**
+     * Show welcome page.
+     *
+     * @return \Inertia\Response
+     */
+    public function index()
     {
         return Inertia::render('Welcome', [
-            'categories' => $welcomeService->getCategories(),
-            'trendingContents' => $contentService->getTrending(),
+            'categories' => $this->welcomeService->getCategories(),
+            'trendingContents' => $this->contentService->getTrending(),
         ]);
     }
 }

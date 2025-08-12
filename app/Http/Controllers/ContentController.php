@@ -4,80 +4,68 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\Category;
-use App\Models\Rating;
-use App\Models\Review;
+use App\Services\ContentService;
+use App\Services\RatingService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ContentController extends Controller
 {
+    public function __construct(
+        private ContentService $contentService,
+        private RatingService $ratingService,
+    ) {}
+
+    /**
+     * Show explore page.
+     *
+     * @param Request $request The request containing filters for content
+     *
+     * @return \Inertia\Response
+     */
     public function explore(Request $request)
     {
         $validated = $request->validate([
             'searchContent' => 'nullable|string|max:255',
+            'contentType' => 'nullable|string',
+            'categoryId' => 'nullable|integer',
+            'orderBy' => 'nullable|string',
         ]);
 
-        $query = Content::query();
-
-        if ($request->filled('contentType')) {
-            $query->where('type', $request->input('contentType'));
-        }
-
-        if ($request->filled('categoryId')) {
-            $query->where('category_id', $request->input('categoryId'));
-        }
-
-        if ($request->filled('searchContent')) {
-            $query->where('title', 'like', '%' . $request->input('searchContent') . '%');
-        }
-
-        switch ($request->input('orderBy')) {
-            case 'name_asc':
-                $query->orderBy('title', 'asc');
-                break;
-            case 'name_desc':
-                $query->orderBy('title', 'desc');
-                break;
-            case 'recent':
-                $query->orderBy('created_at', 'desc');
-                break;
-            case 'top_rated':
-                $query->orderBy('rating', 'desc'); // ! TODO: when ratings are implemented
-                break;
-            case 'low_rated':
-                $query->orderBy('rating', 'asc'); // ! TODO: when ratings are implemented
-                break;
-            default:
-                $query->latest();
-        }
-
-        $contents = $query->paginate(24);
         $categories = Category::select(['name as label', 'id as value'])->get();
 
         return Inertia::render('content/Explore', [
             'categoriesItems' => $categories,
-            'contents' => $contents,
-            'filters' => $request->only(['orderBy', 'contentType', 'categoryId', 'searchContent']),
+            'contents' => $this->contentService->getFiltered($validated),
+            'filters' => $validated,
         ]);
     }
+
+    /**
+     * Show detail page for specific content.
+     *
+     * @param int $id The content ID
+     *
+     * @return \Inertia\Response
+     */
     public function detail(int $id)
     {
-        $content = Content::with(['category', 'seasons.episodes', 'userRating', 'userReview', 'reviews.user'])->withAvg('ratings', 'rating')->findOrFail($id);
-
-        $relatedContents = Content::where('category_id', $content->category_id)
-            ->where('id', '!=', $content->getKey())
-            ->where('type', $content->type)
-            ->inRandomOrder()
-            ->take(10)
-            ->get();
+        $content = $this->contentService->getById($id);
 
         return Inertia::render('content/Detail', [
             'content' => $content,
-            'relatedContents' => $relatedContents,
+            'relatedContents' => $this->contentService->getRelated($content),
         ]);
     }
 
+    /**
+     * Store or update rating and review for content.
+     *
+     * @param Request $request The request containing rating and review data
+     * @param int $id The content ID
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeReview(Request $request, int $id)
     {
         $validated = $request->validate([
@@ -86,35 +74,8 @@ class ContentController extends Controller
         ]);
 
         $content = Content::findOrFail($id);
-        $userId = Auth::id();
 
-        if ($validated['rating'] === 0) {
-            Rating::where('user_id', $userId)
-                ->where('content_id', $content->getKey())
-                ->delete();
-
-            Review::where('user_id', $userId)
-                ->where('content_id', $content->getKey())
-                ->delete();
-
-            return back();
-        }
-
-        Rating::updateOrCreate(
-            ['user_id' => $userId, 'content_id' => $content->getKey()],
-            ['rating' => $validated['rating']]
-        );
-
-        if (!empty($validated['review'])) {
-            Review::updateOrCreate(
-                ['user_id' => $userId, 'content_id' => $content->getKey()],
-                ['review_text' => $validated['review']]
-            );
-        } else {
-            Review::where('user_id', $userId)
-                ->where('content_id', $content->getKey())
-                ->delete();
-        }
+        $this->ratingService->upsertRatingAndReview($content, $validated);
 
         return back();
     }

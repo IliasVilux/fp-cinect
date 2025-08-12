@@ -8,7 +8,14 @@ use Illuminate\Support\Facades\Auth;
 class LocalizationController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Handle the localization update request.
+     *
+     * Validates the 'locale' input, updates session and user preference (if logged in),
+     * then redirects back to the previous page.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(Request $request)
     {

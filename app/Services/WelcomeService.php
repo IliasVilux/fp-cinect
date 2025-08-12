@@ -24,7 +24,7 @@ class WelcomeService
             }
         ])->get();
 
-        return $categories->map(function ($category) {
+        return $categories->map(function (Category $category) {
             $category->content = $category->contents->first();
             unset($category->contents);
             return $category;
