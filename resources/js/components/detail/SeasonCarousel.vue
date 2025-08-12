@@ -8,11 +8,11 @@ const props = defineProps<{
     selectedSeason?: Season | null;
 }>();
 const emit = defineEmits<{
-  (e: 'update:selectedSeason', value: Season | null): void;
+    (e: 'update:selectedSeason', value: Season | null): void;
 }>();
 
 const toggleSeason = (season: Season) => {
-  emit('update:selectedSeason', props.selectedSeason?.id === season.id ? null : season);
+    emit('update:selectedSeason', props.selectedSeason?.id === season.id ? null : season);
 };
 </script>
 
@@ -26,7 +26,7 @@ const toggleSeason = (season: Season) => {
                 class="group basis-1/2 cursor-pointer pl-2 md:basis-1/4"
             >
                 <Card
-                    class="flex justify-end h-full min-h-20 rounded-lg px-3 py-1 transition duration-200 group-hover:border-indigo-600 group-hover:bg-[#120e28]"
+                    class="flex h-full min-h-20 justify-end rounded-lg px-3 py-1 transition duration-200 group-hover:border-indigo-600 group-hover:bg-[#120e28]"
                     :class="{
                         'border-indigo-600': selectedSeason && selectedSeason?.id === season.id,
                     }"

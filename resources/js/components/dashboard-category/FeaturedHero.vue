@@ -11,22 +11,19 @@ defineProps<{
 </script>
 
 <template>
-    <section class="relative w-full aspect-[9/16] md:aspect-video">
+    <section class="relative aspect-[9/16] w-full md:aspect-video">
         <!-- Background image -->
         <img
             :src="featuredContent.cover_image || '/images/welcome/hero-background.webp'"
             alt="Hero Image"
-            class="absolute inset-0 size-full object-cover z-0 mask-b-from-15% mask-b-to-85% lg:mask-l-from-30% lg:mask-l-to-95% lg:mask-b-from-55% lg:mask-b-to-100%"
+            class="absolute inset-0 z-0 size-full mask-b-from-15% mask-b-to-85% object-cover lg:mask-b-from-55% lg:mask-b-to-100% lg:mask-l-from-30% lg:mask-l-to-95%"
         />
 
         <!-- Content -->
         <div class="absolute inset-0 z-10 flex flex-col justify-end px-2 lg:-mt-40 lg:justify-center lg:px-4">
             <h1 class="mt-2 max-w-xl text-3xl font-bold lg:text-6xl">{{ featuredContent.title }}</h1>
             <p class="my-3 max-w-xl text-lg font-light lg:mt-7 lg:mb-5">{{ featuredContent.description }}</p>
-            <Link
-                :href="route('login')"
-                class="w-fit rounded-full px-5 py-1.5 bg-neutral-50 text-neutral-900 leading-normal hover:bg-neutral-200"
-            >
+            <Link :href="route('login')" class="w-fit rounded-full bg-neutral-50 px-5 py-1.5 leading-normal text-neutral-900 hover:bg-neutral-200">
                 {{ t('dashboard-content.watchMore') }}
             </Link>
         </div>

@@ -13,11 +13,7 @@ const props = defineProps<{
 
 <template>
     <Link :href="route('content.detail', content.id)">
-        <Card
-            :class="
-                cn( props.class,)
-            "
-        >
+        <Card :class="cn(props.class)">
             <CardContent>
                 <img
                     :src="content.cover_image || '/images/welcome/hero-background.webp'"

@@ -56,32 +56,30 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="t('explore.head.title')" />
     <AppLayout :breadcrumbs="breadcrumbs">
-            <ExploreFilters
-                v-model:order-by="orderBy"
-                v-model:content-type="contentType"
-                v-model:category-id="categoryId"
-                v-model:search-content="searchContent"
-                :categoriesItems="categoriesItems"
-                :orderItems="orderItems"
-                :contentTypesItems="contentTypesItems"
+        <ExploreFilters
+            v-model:order-by="orderBy"
+            v-model:content-type="contentType"
+            v-model:category-id="categoryId"
+            v-model:search-content="searchContent"
+            :categoriesItems="categoriesItems"
+            :orderItems="orderItems"
+            :contentTypesItems="contentTypesItems"
+        />
+
+        <!-- CONTENT GRID -->
+        <section class="grid grid-cols-2 gap-2 lg:grid-cols-4 xl:grid-cols-6">
+            <ContentCard
+                v-for="content in contents.data"
+                :key="content.id"
+                :content="content"
+                class="group relative aspect-[5/8] overflow-hidden rounded-lg transition duration-200 hover:-translate-y-1 hover:border-indigo-600 hover:bg-[#120e28]"
+                @mouseenter="setHoveredItem(String(content.id))"
+                @mouseleave="clearHoveredItem"
             />
+        </section>
 
-            <!-- CONTENT GRID -->
-            <section class="grid grid-cols-2 gap-2 lg:grid-cols-4 xl:grid-cols-6">
-                <ContentCard
-                    v-for="content in contents.data"
-                    :key="content.id"
-                    :content="content"
-                    class="group relative aspect-[5/8] overflow-hidden rounded-lg transition duration-200 hover:-translate-y-1 hover:border-indigo-600 hover:bg-[#120e28]"
-                    @mouseenter="setHoveredItem(String(content.id))"
-                    @mouseleave="clearHoveredItem" />
-            </section>
+        <AppPagination v-if="contents.total > 0" :contents="contents" />
 
-            <AppPagination
-                v-if="contents.total > 0"
-                :contents="contents"
-            />
-
-            <AppFooter />
+        <AppFooter />
     </AppLayout>
 </template>

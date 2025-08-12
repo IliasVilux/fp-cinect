@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
-import HeroSection from '@/components/welcome/HeroSection.vue';
 import CategoriesSection from '@/components/welcome/CategoriesSection.vue';
 import FeaturesSection from '@/components/welcome/FeaturesSection.vue';
+import HeroSection from '@/components/welcome/HeroSection.vue';
 import TrendingSection from '@/components/welcome/TrendingSection.vue';
 import WelcomeHeader from '@/components/WelcomeHeader.vue';
 import type { Category, Content } from '@/types/models';

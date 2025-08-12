@@ -2,7 +2,7 @@
 import { Content } from '@/types/models';
 
 defineProps<{
-  trendingContents: Content[];
+    trendingContents: Content[];
 }>();
 </script>
 

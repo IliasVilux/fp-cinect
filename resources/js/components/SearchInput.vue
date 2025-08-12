@@ -2,12 +2,15 @@
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-vue-next';
 
-const props = withDefaults(defineProps<{
-  placeholder?: string;
-  closeOnBlur?: boolean;
-}>(), {
-  closeOnBlur: false,
-});
+const props = withDefaults(
+    defineProps<{
+        placeholder?: string;
+        closeOnBlur?: boolean;
+    }>(),
+    {
+        closeOnBlur: false,
+    },
+);
 const emit = defineEmits<{
     (e: 'search', value: string): void;
     (e: 'blur'): void;
@@ -19,9 +22,9 @@ function submit() {
     emit('search', modelValue.value.trim());
 }
 function handleBlur() {
-  if (props.closeOnBlur) {
-    emit('blur');
-  }
+    if (props.closeOnBlur) {
+        emit('blur');
+    }
 }
 </script>
 

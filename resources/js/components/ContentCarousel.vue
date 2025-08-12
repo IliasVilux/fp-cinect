@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import ContentCard from '@/components/ContentCard.vue';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 import type { Content } from '@/types/models';
 import { ref } from 'vue';
 import { WithClassAsProps } from './ui/carousel/interface';
-import ContentCard from '@/components/ContentCard.vue';
 
 const props = defineProps<
     {
@@ -26,11 +26,11 @@ const isHovering = ref(false);
         @mouseleave="isHovering = false"
     >
         <div
-            class="pointer-events-none absolute left-0 top-0 hidden h-full w-24 bg-gradient-to-r from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block z-10"
+            class="pointer-events-none absolute top-0 left-0 z-10 hidden h-full w-24 bg-gradient-to-r from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block"
             :class="[canScrollPrev && !isHovering ? 'md:opacity-100' : 'opacity-0']"
         />
         <div
-            class="pointer-events-none absolute right-0 top-0 hidden h-full w-24 bg-gradient-to-l from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block z-10"
+            class="pointer-events-none absolute top-0 right-0 z-10 hidden h-full w-24 bg-gradient-to-l from-neutral-950/75 to-neutral-950/0 transition-opacity duration-300 lg:block"
             :class="[canScrollNext && !isHovering ? 'md:opacity-100' : 'opacity-0']"
         />
 
@@ -38,10 +38,12 @@ const isHovering = ref(false);
             <CarouselItem
                 v-for="content in contents"
                 :key="content.id"
-                :class="cn(
-                    'group transition duration-1000 basis-1/2 md:basis-1/4 lg:basis-1/6',
-                    hoveredItemId && hoveredItemId !== String(content.id) && 'brightness-75'
-                )"
+                :class="
+                    cn(
+                        'group basis-1/2 transition duration-1000 md:basis-1/4 lg:basis-1/6',
+                        hoveredItemId && hoveredItemId !== String(content.id) && 'brightness-75',
+                    )
+                "
                 @mouseenter="setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem"
             >

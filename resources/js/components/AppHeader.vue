@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
-import { Link, usePage, router } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import { Compass, Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-next';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -63,7 +63,7 @@ function submitSearch() {
             method: 'get',
             data: {
                 searchContent: trimedInput,
-            }
+            },
         });
     }
 }
@@ -132,7 +132,14 @@ function submitSearch() {
                             <Search class="size-5 opacity-80 group-hover:opacity-100" />
                         </Button>
 
-                        <SearchInput v-else v-model="searchQuery" @search="submitSearch" @blur="isSearching = false" :placeholder="t('app-layout.searchPlaceholder')" :closeOnBlur="true" />
+                        <SearchInput
+                            v-else
+                            v-model="searchQuery"
+                            @search="submitSearch"
+                            @blur="isSearching = false"
+                            :placeholder="t('app-layout.searchPlaceholder')"
+                            :closeOnBlur="true"
+                        />
                     </div>
 
                     <DropdownMenu>

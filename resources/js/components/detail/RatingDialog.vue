@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-import { LoaderCircle, Star } from 'lucide-vue-next';
-import { useI18n } from 'vue-i18n';
-import { useForm } from '@inertiajs/vue3';
 import { Content } from '@/types/models';
+import { useForm } from '@inertiajs/vue3';
+import { LoaderCircle, Star } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const props = defineProps<{
@@ -25,11 +25,11 @@ const form = useForm({
     review: props.content.user_review?.review_text || '',
 });
 watch(
-  () => props.content.user_review?.review_text,
-  (newReview) => {
-    form.review = newReview || '';
-    form.rating = props.content.user_rating?.rating || 0;
-  }
+    () => props.content.user_review?.review_text,
+    (newReview) => {
+        form.review = newReview || '';
+        form.rating = props.content.user_rating?.rating || 0;
+    },
 );
 const dialogOpen = ref(false);
 const handleDialogOpenChange = (open: boolean) => {
@@ -81,14 +81,12 @@ const submit = () => {
                     <Star
                         v-for="n in 5"
                         :key="n"
-                        class="size-full aspect-square cursor-pointer"
-                        :class="
-                            cn(n <= form.rating ? 'fill-yellow-300 text-yellow-300' : 'fill-neutral-700 text-neutral-700')
-                        "
+                        class="aspect-square size-full cursor-pointer"
+                        :class="cn(n <= form.rating ? 'fill-yellow-300 text-yellow-300' : 'fill-neutral-700 text-neutral-700')"
                         @click="handleRating(n)"
                     />
                 </div>
-                <p v-show="form.rating !== 0" class="text-center text-xs text-muted-foreground">
+                <p v-show="form.rating !== 0" class="text-muted-foreground text-center text-xs">
                     {{ t('detail.review.ratingHint') }}
                 </p>
 

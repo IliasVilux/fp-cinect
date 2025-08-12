@@ -1,10 +1,10 @@
 <script setup lang="ts">
 defineProps<{
-  features: {
-    title: string;
-    description: string;
-    icon: any;
-  }[];
+    features: {
+        title: string;
+        description: string;
+        icon: any;
+    }[];
 }>();
 </script>
 

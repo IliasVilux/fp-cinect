@@ -37,57 +37,53 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="`${contentType} Dashboard`" />
     <AppLayout :breadcrumbs="breadcrumbs">
-            <FeaturedHero :featuredContent="featuredContent" />
+        <FeaturedHero :featuredContent="featuredContent" />
 
-            <!-- TRENDING -->
-            <section class="z-10 mb-6 lg:-mt-40">
-                    <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.trending') }}</h2>
-                <ContentCarousel
-                    :contents="trendingContents"
-                    :hoveredItemId="hoveredItemId"
-                    :setHoveredItem="setHoveredItem"
-                    :clearHoveredItem="clearHoveredItem"
-                />
-            </section>
+        <!-- TRENDING -->
+        <section class="z-10 mb-6 lg:-mt-40">
+            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.trending') }}</h2>
+            <ContentCarousel
+                :contents="trendingContents"
+                :hoveredItemId="hoveredItemId"
+                :setHoveredItem="setHoveredItem"
+                :clearHoveredItem="clearHoveredItem"
+            />
+        </section>
 
-            <!-- TOP 10 -->
-            <section class="my-6">
-                <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.topTen') }}</h2>
-                <ContentCarousel
-                    :contents="topTen"
-                    :hoveredItemId="hoveredItemId"
-                    :setHoveredItem="setHoveredItem"
-                    :clearHoveredItem="clearHoveredItem"
-                />
-            </section>
+        <!-- TOP 10 -->
+        <section class="my-6">
+            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.topTen') }}</h2>
+            <ContentCarousel
+                :contents="topTen"
+                :hoveredItemId="hoveredItemId"
+                :setHoveredItem="setHoveredItem"
+                :clearHoveredItem="clearHoveredItem"
+            />
+        </section>
 
-            <!-- FOR YOU -->
-            <section class="my-6">
-                <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.forYou') }}</h2>
-                <div class="grid grid-cols-2 gap-2 px-2 md:grid-cols-4 lg:grid-cols-6 lg:px-4">
-                    <div
-                        v-for="(item, index) in 6"
-                        :key="index"
-                        class="border-sidebar-border/70 relative aspect-[5/8] overflow-hidden rounded-xl border"
-                    >
-                        <PlaceholderPattern />
-                    </div>
+        <!-- FOR YOU -->
+        <section class="my-6">
+            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.forYou') }}</h2>
+            <div class="grid grid-cols-2 gap-2 px-2 md:grid-cols-4 lg:grid-cols-6 lg:px-4">
+                <div v-for="(item, index) in 6" :key="index" class="border-sidebar-border/70 relative aspect-[5/8] overflow-hidden rounded-xl border">
+                    <PlaceholderPattern />
                 </div>
-                <!-- <ContentCarousel :contents="trendingContents" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
+            </div>
+            <!-- <ContentCarousel :contents="trendingContents" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem" /> -->
-            </section>
+        </section>
 
-            <!-- CATEGORIES CAROUSEL -->
-            <section v-for="(group, index) in contentsGroupedByCategory" :key="index" class="my-6">
-                <h2 class="text-xl font-semibold tracking-tight">{{ group.category.name }}</h2>
-                <ContentCarousel
-                    :contents="group.contents"
-                    :hoveredItemId="hoveredItemId"
-                    :setHoveredItem="setHoveredItem"
-                    :clearHoveredItem="clearHoveredItem"
-                />
-            </section>
+        <!-- CATEGORIES CAROUSEL -->
+        <section v-for="(group, index) in contentsGroupedByCategory" :key="index" class="my-6">
+            <h2 class="text-xl font-semibold tracking-tight">{{ group.category.name }}</h2>
+            <ContentCarousel
+                :contents="group.contents"
+                :hoveredItemId="hoveredItemId"
+                :setHoveredItem="setHoveredItem"
+                :clearHoveredItem="clearHoveredItem"
+            />
+        </section>
 
-            <AppFooter />
+        <AppFooter />
     </AppLayout>
 </template>

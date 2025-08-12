@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { getInitials } from '@/composables/useInitials';
+import type { SharedData, User } from '@/types';
 import type { Review } from '@/types/models';
-import { Trash2 } from 'lucide-vue-next';
+import { Link, usePage } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import 'dayjs/locale/es';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { Link, usePage } from '@inertiajs/vue3';
-import { getInitials } from '@/composables/useInitials';
+import { Trash2 } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
-import type { SharedData, User } from '@/types';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const { t, locale } = useI18n();
 
@@ -18,7 +18,6 @@ dayjs.locale(locale.value);
 
 const page = usePage<SharedData>();
 const user = page.props.auth.user as User;
-
 
 defineProps<{
     reviews: Review[] | null;
@@ -42,9 +41,9 @@ defineProps<{
                 <div class="flex w-full flex-col gap-y-0">
                     <div class="flex items-baseline gap-x-2">
                         <p class="text-sm font-semibold">@{{ review.user.name }}</p>
-                        <p class="text-xs text-muted-foreground">{{ dayjs(review.created_at).fromNow() }}</p>
+                        <p class="text-muted-foreground text-xs">{{ dayjs(review.created_at).fromNow() }}</p>
                     </div>
-                    <div class="w-full flex items-start justify-between">
+                    <div class="flex w-full items-start justify-between">
                         <p class="text-pretty">{{ review.review_text }}</p>
                         <Link :href="route('review.delete', review.id)" method="delete" v-if="review.user.id === user.id">
                             <Trash2 class="aspect-square size-full cursor-pointer" />
