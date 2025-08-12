@@ -13,7 +13,6 @@ class LocalizationController extends Controller
      * Validates the 'locale' input, updates session and user preference (if logged in),
      * then redirects back to the previous page.
      *
-     * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

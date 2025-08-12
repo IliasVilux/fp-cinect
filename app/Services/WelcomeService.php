@@ -13,20 +13,19 @@ class WelcomeService
      * Used on the welcome page to display a carousel of all categories
      * (across all content types) with a background image from one
      * recent content item per category.
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function getCategories(): Collection
     {
         $categories = Category::with([
             'contents' => function ($query) {
                 $query->latest()->limit(1);
-            }
+            },
         ])->get();
 
         return $categories->map(function (Category $category) {
             $category->content = $category->contents->first();
             unset($category->contents);
+
             return $category;
         });
     }

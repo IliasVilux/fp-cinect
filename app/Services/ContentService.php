@@ -14,7 +14,7 @@ class ContentService
      * Trending score is calculated based on recent reviews, ratings, and favorites
      * from the last 7 days, sorted by weighted importance.
      *
-     * @param string|null $type Optional content type (e.g., 'movie', 'series', 'anime')
+     * @param  string|null  $type  Optional content type (e.g., 'movie', 'series', 'anime')
      * @return Collection
      */
     public function getTrending(?string $type = null)
@@ -27,24 +27,24 @@ class ContentService
         }
 
         return Content::withCount([
-            'reviews' => fn($q) => $q->where('created_at', '>=', $weekAgo),
-            'ratings' => fn($q) => $q->where('created_at', '>=', $weekAgo),
-            'favoriteLists' => fn($q) => $q->where('favorite_list_content.created_at', '>=', $weekAgo),
+            'reviews' => fn ($q) => $q->where('created_at', '>=', $weekAgo),
+            'ratings' => fn ($q) => $q->where('created_at', '>=', $weekAgo),
+            'favoriteLists' => fn ($q) => $q->where('favorite_list_content.created_at', '>=', $weekAgo),
         ])
-        ->get()
-        ->sortByDesc(fn(Content $content) =>
-            ($content->reviews_count * 3) +
-            ($content->ratings_count * 2) +
-            ($content->favorite_lists_count * 1)
-        )
-        ->take(5)
-        ->values();
+            ->get()
+            ->sortByDesc(
+                fn (Content $content) => ($content->reviews_count * 3) +
+                ($content->ratings_count * 2) +
+                ($content->favorite_lists_count * 1)
+            )
+            ->take(5)
+            ->values();
     }
 
     /**
      * Retrieve the top 10 highest-rated contents.
      *
-     * @param string|null $type Optional content type to filter results
+     * @param  string|null  $type  Optional content type to filter results
      * @return Collection
      */
     public function getTopTen(?string $type = null)
@@ -64,7 +64,7 @@ class ContentService
     /**
      * Retrieve the 10 most recently added contents.
      *
-     * @param string|null $type Optional content type to filter results
+     * @param  string|null  $type  Optional content type to filter results
      * @return Collection
      */
     public function getLatest(?string $type = null)
@@ -83,7 +83,7 @@ class ContentService
     /**
      * Retrieve all contents of a specific type.
      *
-     * @param string $type The content type ('movie', 'series', 'anime')
+     * @param  string  $type  The content type ('movie', 'series', 'anime')
      * @return Collection
      */
     public function getByType(string $type)
@@ -96,7 +96,7 @@ class ContentService
      *
      * Each group contains the category and its corresponding contents.
      *
-     * @param string $type The content type ('movie', 'series', 'anime')
+     * @param  string  $type  The content type ('movie', 'series', 'anime')
      * @return Collection
      */
     public function getGroupedByCategory(string $type)
@@ -105,7 +105,7 @@ class ContentService
             ->with('category')
             ->get()
             ->groupBy('category_id')
-            ->map(fn($contents) => [
+            ->map(fn ($contents) => [
                 'category' => $contents->first()->category,
                 'contents' => $contents->values(),
             ])
@@ -117,7 +117,7 @@ class ContentService
      *
      * Used as a featured item in category dashboard hero.
      *
-     * @param string $type The content type ('movie', 'series', 'anime')
+     * @param  string  $type  The content type ('movie', 'series', 'anime')
      * @return Content|null
      */
     public function getFeatured(string $type)
@@ -142,18 +142,19 @@ class ContentService
     /**
      * Retrieve a specific content with all related fields (category, seasons, episodes, ratings, ) .
      *
-     * @param string $id The content ID
+     * @param  string  $id  The content ID
      * @return Content|null
      */
     public function getById(string $id)
     {
         return Content::with(
             ['category',
-            'seasons.episodes',
-            'userRating',
-            'userReview',
-            'reviews.user'
-            ])
+                'seasons.episodes',
+                'userRating',
+                'userReview',
+                'reviews.user',
+            ]
+        )
             ->withAvg('ratings', 'rating')
             ->findOrFail($id);
     }
@@ -161,10 +162,8 @@ class ContentService
     /**
      * Retrieve 10 random contents related to specific content.
      *
-     * @param Content $content
      * @return Collection
      */
-
     public function getRelated(Content $content)
     {
         return Content::where('category_id', $content->category_id)
@@ -178,8 +177,8 @@ class ContentService
     /**
      * Retrieve filtered contents with pagination.
      *
-     * @param array $filters <text>
-     * @param int $perPage <text>
+     * @param  array  $filters  <text>
+     * @param  int  $perPage  <text>
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getFiltered(array $filters, int $perPage = 24)
@@ -187,21 +186,18 @@ class ContentService
         $query = Content::query();
 
         $query->when(
-            !empty($filters['contentType']),
-            fn($q) =>
-            $q->where('type', $filters['contentType'])
+            ! empty($filters['contentType']),
+            fn ($q) => $q->where('type', $filters['contentType'])
         );
 
         $query->when(
-            !empty($filters['categoryId']),
-            fn($q) =>
-            $q->where('category_id', $filters['categoryId'])
+            ! empty($filters['categoryId']),
+            fn ($q) => $q->where('category_id', $filters['categoryId'])
         );
 
         $query->when(
-            !empty($filters['searchContent']),
-            fn($q) =>
-            $q->where('title', 'like', '%' . $filters['searchContent'] . '%')
+            ! empty($filters['searchContent']),
+            fn ($q) => $q->where('title', 'like', '%'.$filters['searchContent'].'%')
         );
 
         $orders = [

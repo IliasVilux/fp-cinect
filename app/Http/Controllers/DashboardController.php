@@ -32,8 +32,7 @@ class DashboardController extends Controller
     /**
      * Show dashboard page for a specific category.
      *
-     * @param string $category Content type/category ('series', 'movie', 'anime')
-     *
+     * @param  string  $category  Content type/category ('series', 'movie', 'anime')
      * @return \Inertia\Response
      */
     public function indexCategory(string $category)

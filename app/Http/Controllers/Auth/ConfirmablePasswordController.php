@@ -19,6 +19,7 @@ class ConfirmablePasswordController extends Controller
     public function show(): Response
     {
         $content = Content::whereNotNull('cover_image')->inRandomOrder()->first();
+
         return Inertia::render('auth/ConfirmPassword', [
             'content' => $content,
         ]);

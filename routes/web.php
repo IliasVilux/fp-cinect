@@ -25,5 +25,5 @@ Route::middleware(['auth', 'verified'])
         Route::delete('review/{review}', [ReviewController::class, 'delete'])->name('review.delete');
     });
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';

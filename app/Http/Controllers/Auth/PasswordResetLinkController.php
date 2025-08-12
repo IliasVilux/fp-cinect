@@ -18,6 +18,7 @@ class PasswordResetLinkController extends Controller
     public function create(Request $request): Response
     {
         $content = Content::whereNotNull('cover_image')->inRandomOrder()->first();
+
         return Inertia::render('auth/ForgotPassword', [
             'status' => $request->session()->get('status'),
             'content' => $content,

@@ -14,10 +14,8 @@ class RatingService
      *
      * If rating is 0, deletes existing rating and review.
      *
-     * @param Content $content The content to rate and review
-     * @param array{rating:int, review:string} $data
-     *
-     * @return void
+     * @param  Content  $content  The content to rate and review
+     * @param  array{rating:int, review:string}  $data
      */
     public function upsertRatingAndReview(Content $content, array $data): void
     {
@@ -40,7 +38,7 @@ class RatingService
             ['rating' => $data['rating']]
         );
 
-        if (!empty($data['review'])) {
+        if (! empty($data['review'])) {
             Review::updateOrCreate(
                 ['user_id' => $userId, 'content_id' => $content->getKey()],
                 ['review_text' => $data['review']]

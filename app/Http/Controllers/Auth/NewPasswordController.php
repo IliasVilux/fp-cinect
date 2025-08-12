@@ -23,6 +23,7 @@ class NewPasswordController extends Controller
     public function create(Request $request): Response
     {
         $content = Content::whereNotNull('cover_image')->inRandomOrder()->first();
+
         return Inertia::render('auth/ResetPassword', [
             'email' => $request->email,
             'token' => $request->route('token'),
