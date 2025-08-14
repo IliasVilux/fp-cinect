@@ -53,3 +53,14 @@ export interface Review {
         avatar?: string;
     };
 }
+
+export interface FavoriteList {
+    id: number;
+    name: string;
+    description: string | null;
+    is_public: boolean;
+    user_id: number;
+    created_at: string;
+    updated_at: string;
+    contents?: Content[];
+}

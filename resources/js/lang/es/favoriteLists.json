@@ -1,0 +1,17 @@
+{
+    "breadcrumbs": {
+        "myLists": [
+            {
+                "title": "Mis listas",
+                "href": "/my-lists"
+            }
+        ],
+        "communityLists": [
+            {
+                "title": "Listas de la comunidad",
+                "href": "/community-lists"
+            }
+        ]
+    }
+}
+

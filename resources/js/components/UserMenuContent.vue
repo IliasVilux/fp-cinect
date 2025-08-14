@@ -3,7 +3,7 @@ import UserInfo from '@/components/UserInfo.vue';
 import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import type { User } from '@/types';
 import { Link, router } from '@inertiajs/vue3';
-import { LogOut, Settings } from 'lucide-vue-next';
+import { LogOut, Settings, BookMarked } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -28,8 +28,16 @@ defineProps<Props>();
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
+            <Link class="block w-full" :href="route('favouriteLists.myLists')" prefetch as="button">
+                <BookMarked class="mr-2 size-4" />
+                {{ t('app-layout.userMenu.myLists') }}
+            </Link>
+        </DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuGroup>
+        <DropdownMenuItem :as-child="true">
             <Link class="block w-full" :href="route('profile.edit')" prefetch as="button">
-                <Settings class="mr-2 h-4 w-4" />
+                <Settings class="mr-2 size-4" />
                 {{ t('app-layout.userMenu.settings') }}
             </Link>
         </DropdownMenuItem>
@@ -37,7 +45,7 @@ defineProps<Props>();
     <DropdownMenuSeparator />
     <DropdownMenuItem :as-child="true">
         <Link class="block w-full" method="post" :href="route('logout')" @click="handleLogout" as="button">
-            <LogOut class="mr-2 h-4 w-4" />
+            <LogOut class="mr-2 size-4" />
             {{ t('app-layout.userMenu.logOut') }}
         </Link>
     </DropdownMenuItem>

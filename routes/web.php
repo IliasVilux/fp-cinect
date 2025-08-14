@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FavoriteListController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,9 @@ Route::middleware(['auth', 'verified'])
         Route::post('content/{id}', [ContentController::class, 'storeReview'])->name('content.store-review');
 
         Route::delete('review/{review}', [ReviewController::class, 'delete'])->name('review.delete');
+
+        Route::get('my-lists', [FavoriteListController::class, 'myLists'])
+            ->name('favouriteLists.myLists');
     });
 
 require __DIR__.'/settings.php';

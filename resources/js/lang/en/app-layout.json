@@ -28,6 +28,7 @@
     ],
     "searchPlaceholder": "Search for movies, tv shows, animes...",
     "userMenu": {
+        "myLists": "My Lists",
         "settings": "Settings",
         "logOut": "Log out"
     }

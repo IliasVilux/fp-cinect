@@ -27,6 +27,7 @@
         }
     ],
     "userMenu": {
+        "myLists": "Mis listas",
         "settings": "Configuración",
         "logOut": "Cerrar sesión"
     }
