@@ -5,6 +5,8 @@ import type { FavoriteList } from '@/types/models';
 import { useI18n } from 'vue-i18n';
 import { BreadcrumbItem } from '@/types';
 import AppFooter from '@/components/AppFooter.vue';
+import FavoriteListDialog from '@/components/favoriteLists/favoriteListDialog.vue';
+import ContentCard from '@/components/ContentCard.vue';
 
 const { t, locale, messages } = useI18n();
 
@@ -16,8 +18,17 @@ const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['favoriteList
 </script>
 
 <template>
-    <Head :title="t('dashboard.head.title')" />
+    <Head :title="t('favoriteLists.head.myListsTitle')" />
     <AppLayout :breadcrumbs="breadcrumbs">
+            <FavoriteListDialog />
+
+            <section>
+                <div v-for="list in lists" :key="list.id">
+                    <p>{{ list.name }}</p>
+                    <p>{{ list.description }}</p>
+                    <ContentCard v-for="content in list.contents" :key="content.id" :content="content" />
+                </div>
+            </section>
         <AppFooter />
     </AppLayout>
 </template>

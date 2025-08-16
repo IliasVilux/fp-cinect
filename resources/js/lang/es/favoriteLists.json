@@ -12,6 +12,22 @@
                 "href": "/community-lists"
             }
         ]
+    },
+    "head": {
+        "myListsTitle": "Mis listas"
+    },
+    "btn": {
+        "addList": "Añadir lista",
+        "editList": "Editar lista"
+    },
+    "dialog": {
+        "title": {
+            "addList": "Añadir lista",
+            "editList": "Editar lista"
+        },
+        "description": {
+            "addList": "Crea una nueva lista de favoritos.",
+            "editList": "Edita tu lista de favoritos."
+        }
     }
 }
-

@@ -12,6 +12,23 @@
                 "href": "/community-lists"
             }
         ]
+    },
+    "head": {
+        "myListsTitle": "My Lists"
+    },
+    "btn": {
+        "addList": "Add List",
+        "editList": "Edit List"
+    },
+    "dialog": {
+        "title": {
+            "addList": "Add List",
+            "editList": "Edit List"
+        },
+        "description": {
+            "addList": "Create a new favorite list.",
+            "editList": "Edit your favorite list."
+        }
     }
 }
 
