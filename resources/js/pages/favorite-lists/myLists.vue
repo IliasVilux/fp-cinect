@@ -6,7 +6,7 @@ import { useI18n } from 'vue-i18n';
 import { BreadcrumbItem } from '@/types';
 import AppFooter from '@/components/AppFooter.vue';
 import FavoriteListDialog from '@/components/favoriteLists/favoriteListDialog.vue';
-import ContentCard from '@/components/ContentCard.vue';
+import FavoriteListCard from '@/components/favoriteLists/favoriteListCard.vue';
 
 const { t, locale, messages } = useI18n();
 
@@ -24,9 +24,7 @@ const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['favoriteList
 
             <section>
                 <div v-for="list in lists" :key="list.id">
-                    <p>{{ list.name }}</p>
-                    <p>{{ list.description }}</p>
-                    <ContentCard v-for="content in list.contents" :key="content.id" :content="content" />
+                    <FavoriteListCard :list="list" />
                 </div>
             </section>
         <AppFooter />

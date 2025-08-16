@@ -19,6 +19,18 @@ class FavoriteList extends Model
     protected $fillable = ['name', 'description', 'is_public', 'user_id'];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts()
+    {
+        return [
+            'is_public' => 'boolean',
+        ];
+    }
+
+    /**
      * Get the user that owns the list.
      */
     public function user(): BelongsTo

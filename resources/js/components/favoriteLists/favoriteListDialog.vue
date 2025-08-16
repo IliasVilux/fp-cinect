@@ -35,6 +35,34 @@ const changeListVisibility = (value: boolean) => {
 };
 
 const submit = () => {
+    if (props.list) {
+        form.put(route('favoriteLists.update', props.list.id), {
+            onFinish: () => {
+                dialogOpen.value = false;
+            },
+            preserveScroll: true,
+            preserveState: false,
+        });
+    } else {
+        form.post(route('favoriteLists.store'), {
+            onFinish: () => {
+                dialogOpen.value = false;
+            },
+            preserveScroll: true,
+            preserveState: false,
+        });
+    }
+};
+const deleteList = () => {
+    if (props.list) {
+        form.delete(route('favoriteLists.delete', props.list.id), {
+            onFinish: () => {
+                dialogOpen.value = false;
+            },
+            preserveScroll: true,
+            preserveState: false,
+        });
+    }
 };
 </script>
 
@@ -80,6 +108,10 @@ const submit = () => {
                     <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />
 
                     <DialogFooter>
+                        <Button v-if="list" variant="destructive" class="sm:justify-start" :disabled="form.processing" @click="deleteList">
+                            <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
+                            delete
+                        </Button>
                         <Button type="submit" class="sm:justify-start" :disabled="form.processing">
                             <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                             submit
