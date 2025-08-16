@@ -25,8 +25,15 @@ Route::middleware(['auth', 'verified'])
 
         Route::delete('review/{review}', [ReviewController::class, 'delete'])->name('review.delete');
 
-        Route::get('my-lists', [FavoriteListController::class, 'myLists'])
-            ->name('favouriteLists.myLists');
+        Route::controller(FavoriteListController::class)
+            ->prefix('favorite-lists')
+            ->as('favoriteLists.')
+            ->group(function () {
+                Route::get('my-lists', 'show')->name('show');
+                Route::post('/', 'store')->name('store');
+                Route::put('/{list}', 'update')->name('update');
+                Route::delete('/{list}', 'delete')->name('delete');
+            });
     });
 
 require __DIR__.'/settings.php';
