@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { FavoriteList } from '@/types/models';
-import FavoriteListDialog from '@/components/favoriteLists/favoriteListDialog.vue';
-import { Eye, EyeClosed } from 'lucide-vue-next';
 import ContentCard from '@/components/ContentCard.vue';
+import FavoriteListDialog from '@/components/favoriteLists/favoriteListDialog.vue';
+import { FavoriteList } from '@/types/models';
+import { Eye, EyeClosed } from 'lucide-vue-next';
 
 defineProps<{
     list: FavoriteList;

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { FavoriteList } from '@/types/models';
-import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { LoaderCircle } from 'lucide-vue-next';
 import { Textarea } from '@/components/ui/textarea';
+import { FavoriteList } from '@/types/models';
+import { useForm } from '@inertiajs/vue3';
+import { LoaderCircle } from 'lucide-vue-next';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -88,20 +88,12 @@ const deleteList = () => {
                 <form id="form" @submit.prevent="submit">
                     <div>
                         <Label for="title">title</Label>
-                        <Input
-                            id="title"
-                            type="text"
-                            required
-                            v-model="form.name"
-                            placeholder="List Name" />
+                        <Input id="title" type="text" required v-model="form.name" placeholder="List Name" />
                     </div>
 
                     <div>
                         <Label for="description">description</Label>
-                        <Textarea
-                            id="description"
-                            v-model="form.description"
-                            placeholder="asd" />
+                        <Textarea id="description" v-model="form.description" placeholder="asd" />
                     </div>
 
                     <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />

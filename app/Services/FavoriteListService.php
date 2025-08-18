@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\FavoriteList;
 use App\Models\Content;
+use App\Models\FavoriteList;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteListService
@@ -21,6 +21,7 @@ class FavoriteListService
             ->get()
             ->map(function ($list) use ($content) {
                 $list->has_content = $list->contents->contains($content->id);
+
                 return $list;
             });
     }

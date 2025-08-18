@@ -44,7 +44,6 @@ class ContentController extends Controller
     /**
      * Show detail page for specific content.
      *
-     * @param  FavoriteListService  $favoriteListService
      * @param  int  $id  The content ID
      * @return \Inertia\Response
      */

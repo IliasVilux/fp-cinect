@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { BookMarked } from 'lucide-vue-next';
-import type { FavoriteList } from '@/types/models';
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import type { FavoriteList } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
+import { BookMarked } from 'lucide-vue-next';
 
 defineProps<{
     lists: (FavoriteList & { has_content: boolean })[];
@@ -23,9 +32,7 @@ defineProps<{
         <DialogContent class="sm:max-w-md">
             <DialogHeader>
                 <DialogTitle>add</DialogTitle>
-                <DialogDescription>
-                    desc
-                </DialogDescription>
+                <DialogDescription> desc </DialogDescription>
             </DialogHeader>
 
             <section>
@@ -33,9 +40,7 @@ defineProps<{
                     <div class="flex items-center justify-between">
                         <p>{{ list.name }}</p>
                         <Link :href="route('favoriteLists.toggleContent', { list: list.id, content: contentId })" method="post">
-                            <Button
-                                variant="secondary"
-                            >
+                            <Button variant="secondary">
                                 {{ list.has_content ? 'Remove' : 'Add' }}
                             </Button>
                         </Link>
@@ -47,9 +52,7 @@ defineProps<{
 
             <DialogFooter>
                 <DialogClose as-child>
-                    <Button type="button" variant="secondary">
-                        Close
-                    </Button>
+                    <Button type="button" variant="secondary"> Close </Button>
                 </DialogClose>
             </DialogFooter>
         </DialogContent>
