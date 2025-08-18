@@ -79,7 +79,6 @@ const deleteList = () => {
 
             <DialogContent class="sm:max-w-md">
                 <DialogHeader>
-                    {{ form }}
                     <DialogTitle>{{ list ? t('favoriteLists.dialog.title.editList') : t('favoriteLists.dialog.title.addList') }}</DialogTitle>
                     <DialogDescription>
                         {{ list ? t('favoriteLists.dialog.description.editList') : t('favoriteLists.dialog.description.addList') }}

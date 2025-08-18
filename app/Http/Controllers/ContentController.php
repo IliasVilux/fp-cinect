@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Content;
 use App\Services\ContentService;
+use App\Services\FavoriteListService;
 use App\Services\RatingService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -43,16 +44,18 @@ class ContentController extends Controller
     /**
      * Show detail page for specific content.
      *
+     * @param  FavoriteListService  $favoriteListService
      * @param  int  $id  The content ID
      * @return \Inertia\Response
      */
-    public function detail(int $id)
+    public function detail(FavoriteListService $favoriteListService, int $id)
     {
         $content = $this->contentService->getById($id);
 
         return Inertia::render('content/Detail', [
             'content' => $content,
             'relatedContents' => $this->contentService->getRelated($content),
+            'favoriteLists' => $favoriteListService->getUserListsWithContent($content),
         ]);
     }
 

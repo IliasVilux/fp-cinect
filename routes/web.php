@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])
                 Route::post('/', 'store')->name('store');
                 Route::put('/{list}', 'update')->name('update');
                 Route::delete('/{list}', 'delete')->name('delete');
+
+                Route::post('/{list}/toggle-content/{content}', 'toggleContent')->name('toggleContent');
             });
     });
 

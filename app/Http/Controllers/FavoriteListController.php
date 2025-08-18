@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
 use App\Models\FavoriteList;
-use App\Services\FavoriteListSerivce;
+use App\Services\FavoriteListService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -12,7 +13,7 @@ use Inertia\Response;
 class FavoriteListController extends Controller
 {
     public function __construct(
-        private FavoriteListSerivce $favoriteListService,
+        private FavoriteListService $favoriteListService,
     ) {}
 
     /**
@@ -75,6 +76,19 @@ class FavoriteListController extends Controller
     {
         $this->favoriteListService->delete($list);
 
+        return back();
+    }
+
+    /**
+     * Toggle content in a favorite list.
+     *
+     * @param  FavoriteList  $list  The favorite list to toggle content in
+     * @param  Content  $content The content to toggle
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function toggleContent(FavoriteList $list, Content $content)
+    {
+        $this->favoriteListService->toggleContent($list, $content);
         return back();
     }
 }

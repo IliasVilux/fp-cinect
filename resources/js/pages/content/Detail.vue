@@ -5,10 +5,11 @@ import EpisodeList from '@/components/detail/EpisodeList.vue';
 import RatingDialog from '@/components/detail/RatingDialog.vue';
 import ReviewList from '@/components/detail/ReviewList.vue';
 import SeasonCarousel from '@/components/detail/SeasonCarousel.vue';
+import FavoriteListSelect from '@/components/favoriteLists/favoriteListSelect.vue';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Content, Review, Season } from '@/types/models';
+import { Content, FavoriteList, Review, Season } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 
 import { ref } from 'vue';
@@ -24,6 +25,7 @@ defineProps<{
         reviews?: Review[];
     };
     relatedContents: Content[];
+    favoriteLists: (FavoriteList & { has_content: boolean })[];
 }>();
 
 const selectedSeason = ref<Season | null>(null);
@@ -57,7 +59,10 @@ const clearHoveredItem = () => {
                     <!-- Title and Rating -->
                     <div class="flex items-center justify-between">
                         <h2 class="text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
-                        <RatingDialog :content="content" />
+                        <div class="flex items-center space-x-2">
+                            <FavoriteListSelect :lists="favoriteLists" :contentId="content.id" />
+                            <RatingDialog :content="content" />
+                        </div>
                     </div>
 
                     <!-- Details -->
