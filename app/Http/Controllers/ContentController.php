@@ -7,14 +7,16 @@ use App\Models\Content;
 use App\Services\ContentService;
 use App\Services\FavoriteListService;
 use App\Services\RatingService;
+use App\Services\ReviewService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ContentController extends Controller
 {
     public function __construct(
-        private ContentService $contentService,
         private RatingService $ratingService,
+        private ReviewService $reviewService,
+        private ContentService $contentService,
     ) {}
 
     /**
@@ -44,6 +46,7 @@ class ContentController extends Controller
     /**
      * Show detail page for specific content.
      *
+     * @param  FavoriteListService  $favoriteListService
      * @param  int  $id  The content ID
      * @return \Inertia\Response
      */
@@ -59,22 +62,20 @@ class ContentController extends Controller
     }
 
     /**
-     * Store or update rating and review for content.
+     * Store rating and review for a content.
      *
-     * @param  Request  $request  The request containing rating and review data
-     * @param  int  $id  The content ID
+     * @param  Request  $request  The request containing the rating and review data
+     * @param  Content  $content  The content
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeReview(Request $request, int $id)
+    public function storeRatingAndReview(Request $request, Content $content)
     {
-        $validated = $request->validate([
-            'rating' => 'nullable|integer|min:0|max:5',
-            'review' => 'nullable|string|max:1000',
-        ]);
+        $validated = $request->validate([ 'rating' => 'integer|min:0|max:5', 'review' => 'nullable|string|max:1000', ]);
 
-        $content = Content::findOrFail($id);
-
-        $this->ratingService->upsertRatingAndReview($content, $validated);
+        $this->ratingService->upsert($content, $validated['rating']);
+        if ($validated['rating'] > 0) {
+            $this->reviewService->upsert($content, $validated['review']);
+        }
 
         return back();
     }

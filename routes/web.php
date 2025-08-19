@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavoriteListController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +17,8 @@ Route::middleware(['auth', 'verified'])
         ->as('dashboard.')
         ->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('/{type}', 'showType')
-                ->whereIn('type', ['movies', 'series', 'animes'])
+            Route::get('/{type}', 'indexType')
+                ->whereIn('type', ['movie', 'series', 'anime'])
                 ->name('type');
         });
 
@@ -27,13 +28,22 @@ Route::middleware(['auth', 'verified'])
             ->group(function () {
                 Route::get('/explore', 'explore')->name('explore');
                 Route::get('/{id}', 'show')->name('show');
-                Route::post('/{id}', 'storeReview')->name('storeReview');
+                Route::post('/{content}/store-rating-review', 'storeRatingAndReview')
+                    ->name('storeRatingAndReview');
+            });
+
+        Route::controller(RatingController::class)
+            ->prefix('ratings')
+            ->as('ratings.')
+            ->group(function () {
+                Route::post('/{content}', 'upsert')->name('upsert');
             });
 
         Route::controller(ReviewController::class)
             ->prefix('reviews')
             ->as('reviews.')
             ->group(function () {
+                Route::post('/{content}', 'upsert')->name('upsert');
                 Route::delete('/{review}', 'destroy')->name('destroy');
             });
 

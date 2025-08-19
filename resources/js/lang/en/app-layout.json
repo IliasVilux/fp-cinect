@@ -25,7 +25,7 @@
         },
         {
             "title": "Explore",
-            "href": "content.explore",
+            "href": "contents.explore",
             "iconKey": "Compass"
         }
     ],

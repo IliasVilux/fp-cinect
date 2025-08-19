@@ -17,7 +17,7 @@ class DashboardController extends Controller
      *
      * @return Response
      */
-    public function show()
+    public function index()
     {
         return Inertia::render('dashboard/Dashboard', [
             'cardsbuttonContent' => $this->contentService->getRandomCards(),
@@ -35,21 +35,14 @@ class DashboardController extends Controller
      * @param  string  $type  Content type/Type ('series', 'movie', 'anime')
      * @return \Inertia\Response
      */
-    public function showType(string $type)
+    public function indexType(string $type)
     {
-        $map = [
-            'movies' => 'movie',
-            'series' => 'series',
-            'animes' => 'anime',
-        ];
-        $dbType = $map[$type] ?? abort(404);
-
         return Inertia::render('dashboard/DashboardType', [
-            'featuredContent' => $this->contentService->getFeatured($dbType),
+            'featuredContent' => $this->contentService->getFeatured($type),
             'contentType' => $type,
-            'trendingContents' => $this->contentService->getTrending($dbType),
-            'contentsGroupedByGenre' => $this->contentService->getGroupedByGenre($dbType),
-            'topTen' => $this->contentService->getTopTen($dbType),
+            'trendingContents' => $this->contentService->getTrending($type),
+            'contentsGroupedByGenre' => $this->contentService->getGroupedByGenre($type),
+            'topTen' => $this->contentService->getTopTen($type),
         ]);
     }
 }

@@ -3,14 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Content;
 use App\Services\ReviewService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
     public function __construct(
         private ReviewService $reviewService,
     ) {}
+
+    /**
+     * Upsert a review for a content.
+     *
+     * @param  Request  $request  The request containing the review data
+     * @param  Content  $content  The content
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function upsert(Request $request, Content $content)
+    {
+        $validated = $request->validate([
+            'review' => 'nullable|string|max:1000',
+        ]);
+
+        $this->reviewService->upsert($content, $validated['review']);
+
+        return back();
+    }
 
     /**
      * Delete the given review.

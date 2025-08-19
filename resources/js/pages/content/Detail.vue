@@ -2,7 +2,7 @@
 import AppFooter from '@/components/AppFooter.vue';
 import ContentCarousel from '@/components/ContentCarousel.vue';
 import EpisodeList from '@/components/detail/EpisodeList.vue';
-import RatingDialog from '@/components/detail/RatingDialog.vue';
+import RatingReviewDialog from '@/components/detail/RatingReviewDialog.vue';
 import ReviewList from '@/components/detail/ReviewList.vue';
 import SeasonCarousel from '@/components/detail/SeasonCarousel.vue';
 import FavoriteListSelect from '@/components/favoriteLists/favoriteListSelect.vue';
@@ -61,7 +61,7 @@ const clearHoveredItem = () => {
                         <h2 class="text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
                         <div class="flex items-center space-x-2">
                             <FavoriteListSelect :lists="favoriteLists" :contentId="content.id" />
-                            <RatingDialog :content="content" />
+                            <RatingReviewDialog :content="content" />
                         </div>
                     </div>
 
