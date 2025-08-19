@@ -2,27 +2,30 @@
     "navItems": [
         {
             "title": "Inicio",
-            "href": "/dashboard",
+            "href": "dashboard.show",
             "iconKey": "LayoutGrid"
         },
         {
             "title": "Series",
-            "href": "/dashboard/series",
+            "href": "dashboard.showType",
+            "type": "series",
             "iconKey": "Tv"
         },
         {
             "title": "Películas",
-            "href": "/dashboard/movie",
+            "href": "dashboard.showType",
+            "type": "movie",
             "iconKey": "Film"
         },
         {
             "title": "Animes",
-            "href": "/dashboard/anime",
+            "href": "dashboard.showType",
+            "type": "anime",
             "iconKey": "Fan"
         },
         {
             "title": "Explorar",
-            "href": "/explore",
+            "href": "content.explore",
             "iconKey": "Compass"
         }
     ],

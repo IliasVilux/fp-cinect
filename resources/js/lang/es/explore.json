@@ -5,7 +5,7 @@
     "breadcrumbs": [
         {
             "title": "Explorar",
-            "href": "/explore"
+            "href": "content.explore"
         }
     ],
     "filters": {
@@ -39,7 +39,7 @@
                 "value": "anime"
             }
         ],
-        "categoryTitle": "Todas las categorías",
+        "genreTitle": "Todas las categorías",
         "search": "Buscar..."
     },
     "pagination": {

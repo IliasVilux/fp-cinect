@@ -5,15 +5,15 @@ export interface Content {
     type: 'movie' | 'series' | 'anime';
     release_year: number | null;
     duration: number | null;
-    category_id: number;
+    genre_id: number;
     cover_image: string | null;
     created_at: string;
     updated_at: string;
     seasons?: Season[];
-    category: Category | null;
+    genre: Genre | null;
 }
 
-export interface Category {
+export interface Genre {
     id: number;
     name: string;
     created_at: string;

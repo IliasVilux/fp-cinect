@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
 import ContentCarousel from '@/components/ContentCarousel.vue';
-import CategorySelector from '@/components/dashboard/CategorySelector.vue';
+import TypeSelector from '@/components/dashboard/TypeSelector.vue';
 import TextLink from '@/components/TextLink.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -42,7 +42,7 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="t('dashboard.head.title')" />
     <AppLayout :breadcrumbs="breadcrumbs">
-        <CategorySelector
+        <TypeSelector
             :items="cardsbuttonContent"
             :hoveredImage="hoveredImage"
             @setHoveredImage="setHoveredImage"
@@ -75,7 +75,7 @@ const clearHoveredItem = () => {
         <section class="my-6">
             <div class="flex items-baseline justify-between">
                 <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.tvShows') }}</h2>
-                <TextLink :href="route('dashboard.category', 'movie')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
+                <TextLink :href="route('dashboard.showType', 'movie')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
                 :contents="series"
@@ -89,7 +89,7 @@ const clearHoveredItem = () => {
         <section class="my-6">
             <div class="flex items-baseline justify-between">
                 <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.movies') }}</h2>
-                <TextLink :href="route('dashboard.category', 'series')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
+                <TextLink :href="route('dashboard.showType', 'series')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
                 :contents="movies"
@@ -103,7 +103,7 @@ const clearHoveredItem = () => {
         <section class="my-6">
             <div class="flex items-baseline justify-between">
                 <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.animes') }}</h2>
-                <TextLink :href="route('dashboard.category', 'anime')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
+                <TextLink :href="route('dashboard.showType', 'anime')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
                 :contents="animes"

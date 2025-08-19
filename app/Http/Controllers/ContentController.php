@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Genre;
 use App\Models\Content;
 use App\Services\ContentService;
 use App\Services\FavoriteListService;
@@ -23,19 +23,19 @@ class ContentController extends Controller
      * @param  Request  $request  The request containing filters for content
      * @return \Inertia\Response
      */
-    public function explore(Request $request)
+    public function showExplore(Request $request)
     {
         $validated = $request->validate([
             'searchContent' => 'nullable|string|max:255',
             'contentType' => 'nullable|string',
-            'categoryId' => 'nullable|integer',
+            'genreId' => 'nullable|integer',
             'orderBy' => 'nullable|string',
         ]);
 
-        $categories = Category::select(['name as label', 'id as value'])->get();
+        $genres = Genre::select(['name as label', 'id as value'])->get();
 
         return Inertia::render('content/Explore', [
-            'categoriesItems' => $categories,
+            'genresItems' => $genres,
             'contents' => $this->contentService->getFiltered($validated),
             'filters' => $validated,
         ]);
@@ -47,7 +47,7 @@ class ContentController extends Controller
      * @param  int  $id  The content ID
      * @return \Inertia\Response
      */
-    public function detail(FavoriteListService $favoriteListService, int $id)
+    public function showDetail(FavoriteListService $favoriteListService, int $id)
     {
         $content = $this->contentService->getById($id);
 

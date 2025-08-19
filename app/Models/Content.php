@@ -25,16 +25,16 @@ class Content extends Model
         'type',
         'release_year',
         'duration',
-        'category_id',
+        'genre_id',
         'cover_image',
     ];
 
     /**
-     * Get the category of the content.
+     * Get the genre of the content.
      */
-    public function category(): BelongsTo
+    public function genre(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Genre::class);
     }
 
     /**
@@ -50,7 +50,7 @@ class Content extends Model
      */
     public function favoriteLists(): BelongsToMany
     {
-        return $this->belongsToMany(FavoriteList::class, 'favorite_list_content');
+        return $this->belongsToMany(FavoriteList::class, 'content_favorite_list');
     }
 
     /**

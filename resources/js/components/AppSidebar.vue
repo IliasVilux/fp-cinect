@@ -20,6 +20,7 @@ const icons = {
 const rawItems = messages.value[locale.value]['app-layout'].navItems as {
     title: string;
     href: string;
+    type?: string;
     iconKey: keyof typeof icons;
 }[];
 

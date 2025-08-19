@@ -47,7 +47,7 @@ const handleRating = (rating: number) => {
     form.rating = rating;
 };
 const submit = () => {
-    form.post(route('content.store-review', props.content.id), {
+    form.post(route('content.storeReview', props.content.id), {
         onFinish: () => {
             dialogOpen.value = false;
         },

@@ -45,6 +45,7 @@ const icons = {
 const rawItems = messages.value[locale.value]['app-layout'].navItems as {
     title: string;
     href: string;
+    type?: string;
     iconKey: keyof typeof icons;
 }[];
 
@@ -59,7 +60,7 @@ function submitSearch() {
     const trimedInput = searchQuery.value.trim();
 
     if (trimedInput.length > 0) {
-        router.visit(route('explore'), {
+        router.visit(route('content.explore'), {
             method: 'get',
             data: {
                 searchContent: trimedInput,
@@ -91,7 +92,7 @@ function submitSearch() {
                                     <Link
                                         v-for="item in mainNavItems"
                                         :key="item.title"
-                                        :href="item.href"
+                                        :href="item.type ? route(item.href, { type: item.type }) : route(item.href)"
                                         class="hover:bg-accent flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium"
                                         :class="activeItemStyles(item.href)"
                                     >
@@ -114,7 +115,7 @@ function submitSearch() {
                     <NavigationMenu class="ml-16 flex h-full">
                         <NavigationMenuList class="flex h-full space-x-8">
                             <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center">
-                                <Link :href="item.href" class="transition-colors duration-75 hover:text-indigo-500">
+                                <Link :href="item.type ? route(item.href, { type: item.type }) : route(item.href)" class="transition-colors duration-75 hover:text-indigo-500">
                                     {{ item.title }}
                                 </Link>
                                 <div

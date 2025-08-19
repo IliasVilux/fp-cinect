@@ -12,7 +12,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <Link :href="route('content.detail', content.id)">
+    <Link :href="route('content.showDetail', content.id)">
         <Card :class="cn(props.class)">
             <CardContent>
                 <img

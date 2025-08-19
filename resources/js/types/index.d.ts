@@ -16,7 +16,7 @@ export interface NavItem {
     href: string;
     icon?: LucideIcon;
     isActive?: boolean;
-    category?: string;
+    type?: string;
 }
 
 export interface SelectItem {

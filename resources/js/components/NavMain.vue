@@ -18,7 +18,7 @@ const currentPath = computed(() => new URL(page.url, window.location.origin).pat
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
                 <SidebarMenuButton as-child :is-active="item.href === currentPath" :tooltip="item.title">
-                    <Link :href="item.href">
+                    <Link :href="item.type ? route(item.href, { type: item.type }) : route(item.href)">
                         <component :is="item.icon" />
                         <span>{{ item.title }}</span>
                     </Link>

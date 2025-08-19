@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favorite_list_content', function (Blueprint $table) {
+        Schema::create('content_favorite_list', function (Blueprint $table) {
             $table->foreignId('favorite_list_id')->constrained()->cascadeOnDelete();
             $table->foreignId('content_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favorite_list_content');
+        Schema::dropIfExists('content_favorite_list');
     }
 };

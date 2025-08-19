@@ -40,7 +40,7 @@ watch(langValue, (langValue) => {
                 <Link
                     v-for="item in navItems"
                     :key="item.title"
-                    :href="item.category ? route(item.href, { category: item.category }) : route(item.href)"
+                    :href="item.type ? route(item.href, { type: item.type }) : route(item.href)"
                     class="text-sm font-semibold uppercase transition-colors duration-100 hover:text-neutral-200"
                 >
                     {{ item.title }}

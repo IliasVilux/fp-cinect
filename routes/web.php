@@ -11,19 +11,29 @@ Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])
     ->group(function () {
-        Route::get('dashboard', [DashboardController::class, 'index'])
-            ->name('dashboard');
+        Route::controller(DashboardController::class)
+        ->prefix('dashboard')
+        ->as('dashboard.')
+        ->group(function () {
+            Route::get('/', 'show')->name('show');
+            Route::get('/{type}', 'showType')->name('showType');
+        });
 
-        Route::get('dashboard/{category}', [DashboardController::class, 'indexCategory'])
-            ->name('dashboard.category');
+        Route::controller(ContentController::class)
+            ->prefix('content')
+            ->as('content.')
+            ->group(function () {
+                Route::get('/explore', 'showExplore')->name('explore');
+                Route::get('/{id}', 'showDetail')->name('showDetail');
+                Route::post('/{id}', 'storeReview')->name('storeReview');
+            });
 
-        Route::get('explore', [ContentController::class, 'explore'])
-            ->name('explore');
-
-        Route::get('content/{id}', [ContentController::class, 'detail'])->name('content.detail');
-        Route::post('content/{id}', [ContentController::class, 'storeReview'])->name('content.store-review');
-
-        Route::delete('review/{review}', [ReviewController::class, 'delete'])->name('review.delete');
+        Route::controller(ReviewController::class)
+            ->prefix('review')
+            ->as('review.')
+            ->group(function () {
+                Route::delete('/{review}', 'delete')->name('delete');
+            });
 
         Route::controller(FavoriteListController::class)
             ->prefix('favorite-lists')

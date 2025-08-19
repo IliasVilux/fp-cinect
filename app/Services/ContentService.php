@@ -26,10 +26,10 @@ class ContentService
             $query->where('type', $type);
         }
 
-        return Content::withCount([
+        return $query->withCount([
             'reviews' => fn ($q) => $q->where('created_at', '>=', $weekAgo),
             'ratings' => fn ($q) => $q->where('created_at', '>=', $weekAgo),
-            'favoriteLists' => fn ($q) => $q->where('favorite_list_content.created_at', '>=', $weekAgo),
+            'favoriteLists' => fn ($q) => $q->where('content_favorite_list.created_at', '>=', $weekAgo),
         ])
             ->get()
             ->sortByDesc(
@@ -92,21 +92,21 @@ class ContentService
     }
 
     /**
-     * Retrieve all contents of a specific type, grouped by category.
+     * Retrieve all contents of a specific type, grouped by genre.
      *
-     * Each group contains the category and its corresponding contents.
+     * Each group contains the genre and its corresponding contents.
      *
      * @param  string  $type  The content type ('movie', 'series', 'anime')
      * @return Collection
      */
-    public function getGroupedByCategory(string $type)
+    public function getGroupedByGenre(string $type)
     {
         return Content::where('type', $type)
-            ->with('category')
+            ->with('genre')
             ->get()
-            ->groupBy('category_id')
+            ->groupBy('cgenre_id')
             ->map(fn ($contents) => [
-                'category' => $contents->first()->category,
+                'genre' => $contents->first()->genre,
                 'contents' => $contents->values(),
             ])
             ->values();
@@ -115,14 +115,14 @@ class ContentService
     /**
      * Retrieve one random content of a specific type.
      *
-     * Used as a featured item in category dashboard hero.
+     * Used as a featured item in genre dashboard hero.
      *
      * @param  string  $type  The content type ('movie', 'series', 'anime')
      * @return Content|null
      */
     public function getFeatured(string $type)
     {
-        return Content::where('type', $type)->with('category')->inRandomOrder()->first();
+        return Content::where('type', $type)->with('genre')->inRandomOrder()->first();
     }
 
     /**
@@ -140,7 +140,7 @@ class ContentService
     }
 
     /**
-     * Retrieve a specific content with all related fields (category, seasons, episodes, ratings, ) .
+     * Retrieve a specific content with all related fields (genre, seasons, episodes, ratings, ) .
      *
      * @param  string  $id  The content ID
      * @return Content|null
@@ -148,7 +148,7 @@ class ContentService
     public function getById(string $id)
     {
         return Content::with(
-            ['category',
+            ['genre',
                 'seasons.episodes',
                 'userRating',
                 'userReview',
@@ -166,7 +166,7 @@ class ContentService
      */
     public function getRelated(Content $content)
     {
-        return Content::where('category_id', $content->category_id)
+        return Content::where('genre_id', $content->genre_id)
             ->where('id', '!=', $content->getKey())
             ->where('type', $content->type)
             ->inRandomOrder()
@@ -191,8 +191,8 @@ class ContentService
         );
 
         $query->when(
-            ! empty($filters['categoryId']),
-            fn ($q) => $q->where('category_id', $filters['categoryId'])
+            ! empty($filters['genreId']),
+            fn ($q) => $q->where('genre_id', $filters['genreId'])
         );
 
         $query->when(

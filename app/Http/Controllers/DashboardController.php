@@ -17,7 +17,7 @@ class DashboardController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function show()
     {
         return Inertia::render('dashboard/Dashboard', [
             'cardsbuttonContent' => $this->contentService->getRandomCards(),
@@ -30,20 +30,19 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show dashboard page for a specific category.
+     * Show dashboard page for a specific type.
      *
-     * @param  string  $category  Content type/category ('series', 'movie', 'anime')
+     * @param  string  $type  Content type/Type ('series', 'movie', 'anime')
      * @return \Inertia\Response
      */
-    public function indexCategory(string $category)
+    public function showType(string $type)
     {
-        return Inertia::render('dashboard/DashboardCategory', [
-            'featuredContent' => $this->contentService->getFeatured($category),
-            'contentType' => $category,
-            'trendingContents' => $this->contentService->getTrending($category),
-            'contentsGroupedByCategory' => $this->contentService->getGroupedByCategory($category),
-            'topTen' => $this->contentService->getTopTen($category),
-
+        return Inertia::render('dashboard/DashboardType', [
+            'featuredContent' => $this->contentService->getFeatured($type),
+            'contentType' => $type,
+            'trendingContents' => $this->contentService->getTrending($type),
+            'contentsGroupedByGenre' => $this->contentService->getGroupedByGenre($type),
+            'topTen' => $this->contentService->getTopTen($type),
         ]);
     }
 }

@@ -43,6 +43,6 @@ class FavoriteList extends Model
      */
     public function contents(): BelongsToMany
     {
-        return $this->belongsToMany(Content::class, 'favorite_list_content');
+        return $this->belongsToMany(Content::class, 'content_favorite_list');
     }
 }

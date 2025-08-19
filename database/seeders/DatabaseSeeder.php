@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Genre;
 use App\Models\Content;
 use App\Models\Episode;
 use App\Models\FavoriteList;
@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(10)->create();
+        Genre::factory(10)->create();
         $platforms = Platform::factory(5)->create();
 
         $movies = Content::factory(8)->create(['type' => 'movie']);

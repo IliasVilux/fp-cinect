@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
-import CategoriesSection from '@/components/welcome/CategoriesSection.vue';
+import GenresSection from '@/components/welcome/GenresSection.vue';
 import FeaturesSection from '@/components/welcome/FeaturesSection.vue';
 import HeroSection from '@/components/welcome/HeroSection.vue';
 import TrendingSection from '@/components/welcome/TrendingSection.vue';
 import WelcomeHeader from '@/components/WelcomeHeader.vue';
-import type { Category, Content } from '@/types/models';
+import type { Genre, Content } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 import { Bookmark, BookMarked, Star, Telescope } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
@@ -13,7 +13,7 @@ import { useI18n } from 'vue-i18n';
 const { t, locale, messages } = useI18n();
 
 defineProps<{
-    categories: Category[];
+    genres: Genre[];
     trendingContents: Content[];
 }>();
 
@@ -44,7 +44,7 @@ const features = rawItems.map(({ iconKey, ...item }) => ({
     <WelcomeHeader />
 
     <HeroSection />
-    <CategoriesSection :categories="categories" />
+    <GenresSection :genres="genres" />
     <TrendingSection :trendingContents="trendingContents" />
     <FeaturesSection :features="features" />
 

@@ -3,19 +3,19 @@
         "series": [
             {
                 "title": "Series",
-                "href": "/dashboard/series"
+                "href": "dashboard.showType"
             }
         ],
         "movie": [
             {
                 "title": "Películas",
-                "href": "/dashboard/movie"
+                "href": "dashboard.showType"
             }
         ],
         "anime": [
             {
                 "title": "Animes",
-                "href": "/dashboard/anime"
+                "href": "dashboard.showType"
             }
         ]
     },

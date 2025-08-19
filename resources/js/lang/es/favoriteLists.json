@@ -3,13 +3,13 @@
         "myLists": [
             {
                 "title": "Mis listas",
-                "href": "/my-lists"
+                "href": "favoriteLists.show"
             }
         ],
         "communityLists": [
             {
                 "title": "Listas de la comunidad",
-                "href": "/community-lists"
+                "href": "favoriteLists.showCommunity"
             }
         ]
     },

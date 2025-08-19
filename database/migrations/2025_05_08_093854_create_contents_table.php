@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('type', ['movie', 'series', 'anime']);
             $table->unsignedSmallInteger('release_year')->nullable();
             $table->unsignedSmallInteger('duration')->nullable();
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
             $table->string('cover_image')->nullable();
             $table->timestamps();
         });

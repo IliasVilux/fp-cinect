@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Genre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +23,7 @@ class ContentFactory extends Factory
             'type' => fake()->randomElement(['movie', 'series', 'anime']),
             'release_year' => fake()->optional()->year(),
             'duration' => fake()->optional()->numberBetween(1, 220),
-            'category_id' => Category::inRandomOrder()->first()->id,
+            'genre_id' => Genre::inRandomOrder()->first()->id,
             'cover_image' => fake()->optional()->imageUrl(640, 480, 'movies', true),
         ];
     }

@@ -28,9 +28,9 @@ defineProps<{
             </Link>
         </div>
 
-        <!-- Category Tag -->
+        <!-- Genre Tag -->
         <span class="absolute top-20 right-0 z-10 border-l-4 border-white bg-black/50 px-6 py-2 text-xs font-bold uppercase">{{
-            featuredContent.category.name
+            featuredContent.genre.name
         }}</span>
     </section>
 </template>

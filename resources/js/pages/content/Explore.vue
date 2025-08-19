@@ -12,12 +12,12 @@ import { useI18n } from 'vue-i18n';
 const { t, locale, messages } = useI18n();
 
 const props = defineProps<{
-    categoriesItems: SelectItem[];
+    genresItems: SelectItem[];
     contents: any;
     filters: {
         orderBy: string | null;
         contentType: string | null;
-        categoryId: number | null;
+        genreId: number | null;
         searchContent: string | null;
     };
 }>();
@@ -28,15 +28,15 @@ const contentTypesItems: SelectItem[] = messages.value[locale.value]['explore'].
 
 const orderBy = ref<string | null>(props.filters.orderBy);
 const contentType = ref<string | null>(props.filters.contentType);
-const categoryId = ref<number | null>(props.filters.categoryId);
+const genreId = ref<number | null>(props.filters.genreId);
 const searchContent = ref<string>(props.filters.searchContent ?? '');
-watch([orderBy, contentType, categoryId, searchContent], ([order, contentType, category, search]) => {
-    router.visit(route('explore'), {
+watch([orderBy, contentType, genreId, searchContent], ([order, contentType, genre, search]) => {
+    router.visit(route('content.explore'), {
         method: 'get',
         data: {
             ...(order ? { orderBy: order } : {}),
             ...(contentType ? { contentType: contentType } : {}),
-            ...(category ? { categoryId: category } : {}),
+            ...(genre ? { genreId: genre } : {}),
             ...(search ? { searchContent: search } : {}),
         },
         preserveScroll: true,
@@ -59,9 +59,9 @@ const clearHoveredItem = () => {
         <ExploreFilters
             v-model:order-by="orderBy"
             v-model:content-type="contentType"
-            v-model:category-id="categoryId"
+            v-model:genre-id="genreId"
             v-model:search-content="searchContent"
-            :categoriesItems="categoriesItems"
+            :genresItems="genresItems"
             :orderItems="orderItems"
             :contentTypesItems="contentTypesItems"
         />

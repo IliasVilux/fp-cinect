@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue';
 import ContentCarousel from '@/components/ContentCarousel.vue';
-import FeaturedHero from '@/components/dashboard-category/FeaturedHero.vue';
+import FeaturedHero from '@/components/dashboard-type/FeaturedHero.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem } from '@/types';
-import { Category, Content } from '@/types/models';
+import { Genre, Content } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -16,8 +16,8 @@ const props = defineProps<{
     featuredContent: Content;
     contentType: string;
     trendingContents: Content[];
-    contentsGroupedByCategory: {
-        category: Category;
+    contentsGroupedByGenre: {
+        genre: Genre;
         contents: Content[];
     }[];
     topTen: Content[];
@@ -73,9 +73,9 @@ const clearHoveredItem = () => {
                     :clearHoveredItem="clearHoveredItem" /> -->
         </section>
 
-        <!-- CATEGORIES CAROUSEL -->
-        <section v-for="(group, index) in contentsGroupedByCategory" :key="index" class="my-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ group.category.name }}</h2>
+        <!-- GENRE CAROUSEL -->
+        <section v-for="(group, index) in contentsGroupedByGenre" :key="index" class="my-6">
+            <h2 class="text-xl font-semibold tracking-tight">{{ group.genre.name }}</h2>
             <ContentCarousel
                 :contents="group.contents"
                 :hoveredItemId="hoveredItemId"

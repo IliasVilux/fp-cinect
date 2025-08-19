@@ -6,26 +6,26 @@
         },
         {
             "title": "Inicio",
-            "href": "dashboard"
+            "href": "dashboard.show"
         },
         {
             "title": "Series",
-            "href": "dashboard.category",
-            "category": "series"
+            "href": "dashboard.showType",
+            "type": "series"
         },
         {
             "title": "Películas",
-            "href": "dashboard.category",
-            "category": "movies"
+            "href": "dashboard.showType",
+            "type": "movie"
         },
         {
             "title": "Animes",
-            "href": "dashboard.category",
-            "category": "animes"
+            "href": "dashboard.showType",
+            "type": "anime"
         },
         {
             "title": "Explorar",
-            "href": "explore"
+            "href": "content.explore"
         }
     ],
     "copyright": "Cinect. Todos los derechos reservados."

@@ -11,7 +11,7 @@
         "subtitle": "This is a sample application to demonstrate localization in English."
     },
     "sections": {
-        "categories": {
+        "genres": {
             "title": "Unmatched Entertainment"
         },
         "trending": {

@@ -2,31 +2,31 @@
 
 namespace App\Services;
 
-use App\Models\Category;
+use App\Models\Genre;
 use Illuminate\Support\Collection;
 
 class WelcomeService
 {
     /**
-     * Retrieve all categories with one recent content each.
+     * Retrieve all genres with one recent content each.
      *
-     * Used on the welcome page to display a carousel of all categories
+     * Used on the welcome page to display a carousel of all genres
      * (across all content types) with a background image from one
-     * recent content item per category.
+     * recent content item per genre.
      */
-    public function getCategories(): Collection
+    public function getGenres(): Collection
     {
-        $categories = Category::with([
+        $genres = Genre::with([
             'contents' => function ($query) {
                 $query->latest()->limit(1);
             },
         ])->get();
 
-        return $categories->map(function (Category $category) {
-            $category->content = $category->contents->first();
-            unset($category->contents);
+        return $genres->map(function (Genre $genre) {
+            $genre->content = $genre->contents->first();
+            unset($genre->contents);
 
-            return $category;
+            return $genre;
         });
     }
 }

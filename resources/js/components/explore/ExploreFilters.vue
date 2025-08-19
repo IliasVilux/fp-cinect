@@ -7,14 +7,14 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 defineProps<{
-    categoriesItems: SelectItem[];
+    genresItems: SelectItem[];
     orderItems: SelectItem[];
     contentTypesItems: SelectItem[];
 }>();
 
 const orderBy = defineModel<string | null>('orderBy');
 const contentType = defineModel<string | null>('contentType');
-const categoryId = defineModel<number | null>('categoryId');
+const genreId = defineModel<number | null>('genreId');
 const searchContent = defineModel<string>('searchContent');
 </script>
 
@@ -25,9 +25,9 @@ const searchContent = defineModel<string>('searchContent');
             <div class="flex w-full gap-2">
                 <CustomSelect v-model="contentType" :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" />
                 <CustomSelect
-                    v-model="categoryId"
-                    :selectItems="categoriesItems"
-                    :placeholder="t('explore.filters.categoryTitle')"
+                    v-model="genreId"
+                    :selectItems="genresItems"
+                    :placeholder="t('explore.filters.genreTitle')"
                     class="w-full lg:w-48"
                 />
             </div>
