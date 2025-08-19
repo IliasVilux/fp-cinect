@@ -3,19 +3,19 @@
         "series": [
             {
                 "title": "Tv Shows",
-                "href": "dashboard.showType"
+                "href": "dashboard.type"
             }
         ],
         "movie": [
             {
                 "title": "Movies",
-                "href": "dashboard.showType"
+                "href": "dashboard.type"
             }
         ],
         "anime": [
             {
                 "title": "Animes",
-                "href": "dashboard.showType"
+                "href": "dashboard.type"
             }
         ]
     },

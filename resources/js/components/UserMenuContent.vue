@@ -28,7 +28,7 @@ defineProps<Props>();
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
-            <Link class="block w-full" :href="route('favoriteLists.show')" prefetch as="button">
+            <Link class="block w-full" :href="route('favoriteLists.index')" prefetch as="button">
                 <BookMarked class="mr-2 size-4" />
                 {{ t('app-layout.userMenu.myLists') }}
             </Link>

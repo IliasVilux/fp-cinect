@@ -57,7 +57,7 @@ class FavoriteListService
      * @param  FavoriteList  $list  The favorite list to delete
      * @return void
      */
-    public function delete(FavoriteList $list)
+    public function destroy(FavoriteList $list)
     {
         if (Auth::id() !== $list->user_id) {
             abort(403, 'Unauthorized action.');

@@ -3,7 +3,7 @@
         "myLists": [
             {
                 "title": "Mis listas",
-                "href": "favoriteLists.show"
+                "href": "favoriteLists.index"
             }
         ],
         "communityLists": [

@@ -19,7 +19,7 @@ const { t } = useI18n();
             </div>
 
             <Link
-                :href="route($page.props.auth.user ? 'dashboard.show' : 'login')"
+                :href="route($page.props.auth.user ? 'dashboard.index' : 'login')"
                 class="inline-block rounded-full bg-neutral-50 px-5 py-1.5 leading-normal hover:bg-neutral-200"
             >
                 {{ t($page.props.auth.user ? 'welcome.header.dashboard' : 'welcome.header.login') }}

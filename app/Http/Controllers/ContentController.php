@@ -23,7 +23,7 @@ class ContentController extends Controller
      * @param  Request  $request  The request containing filters for content
      * @return \Inertia\Response
      */
-    public function showExplore(Request $request)
+    public function explore(Request $request)
     {
         $validated = $request->validate([
             'searchContent' => 'nullable|string|max:255',
@@ -47,7 +47,7 @@ class ContentController extends Controller
      * @param  int  $id  The content ID
      * @return \Inertia\Response
      */
-    public function showDetail(FavoriteListService $favoriteListService, int $id)
+    public function show(FavoriteListService $favoriteListService, int $id)
     {
         $content = $this->contentService->getById($id);
 

@@ -2,24 +2,24 @@
     "navItems": [
         {
             "title": "Inicio",
-            "href": "dashboard.show",
+            "href": "dashboard.index",
             "iconKey": "LayoutGrid"
         },
         {
             "title": "Series",
-            "href": "dashboard.showType",
+            "href": "dashboard.type",
             "type": "series",
             "iconKey": "Tv"
         },
         {
             "title": "Películas",
-            "href": "dashboard.showType",
+            "href": "dashboard.type",
             "type": "movie",
             "iconKey": "Film"
         },
         {
             "title": "Animes",
-            "href": "dashboard.showType",
+            "href": "dashboard.type",
             "type": "anime",
             "iconKey": "Fan"
         },

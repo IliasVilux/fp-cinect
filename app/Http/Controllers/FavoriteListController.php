@@ -21,7 +21,7 @@ class FavoriteListController extends Controller
      *
      * @return Response
      */
-    public function show()
+    public function index()
     {
         return Inertia::render('favorite-lists/myLists', [
             'lists' => Auth::user()->favoriteLists()->with(['contents'])->get(),
@@ -72,9 +72,9 @@ class FavoriteListController extends Controller
      * @param  FavoriteList  $favoriteList  The favorite list to delete
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(FavoriteList $list)
+    public function destroy(FavoriteList $list)
     {
-        $this->favoriteListService->delete($list);
+        $this->favoriteListService->destroy($list);
 
         return back();
     }

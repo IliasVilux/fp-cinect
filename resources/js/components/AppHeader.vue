@@ -60,7 +60,7 @@ function submitSearch() {
     const trimedInput = searchQuery.value.trim();
 
     if (trimedInput.length > 0) {
-        router.visit(route('content.explore'), {
+        router.visit(route('contents.explore'), {
             method: 'get',
             data: {
                 searchContent: trimedInput,

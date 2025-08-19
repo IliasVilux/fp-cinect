@@ -2,7 +2,7 @@
     "breadcrumbs": [
         {
             "title": "Home",
-            "href": "dashboard.show"
+            "href": "dashboard.index"
         }
     ],
     "head": {

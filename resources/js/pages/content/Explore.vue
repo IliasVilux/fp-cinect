@@ -31,7 +31,7 @@ const contentType = ref<string | null>(props.filters.contentType);
 const genreId = ref<number | null>(props.filters.genreId);
 const searchContent = ref<string>(props.filters.searchContent ?? '');
 watch([orderBy, contentType, genreId, searchContent], ([order, contentType, genre, search]) => {
-    router.visit(route('content.explore'), {
+    router.visit(route('contents.explore'), {
         method: 'get',
         data: {
             ...(order ? { orderBy: order } : {}),

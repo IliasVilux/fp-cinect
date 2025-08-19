@@ -6,21 +6,21 @@
         },
         {
             "title": "Inicio",
-            "href": "dashboard.show"
+            "href": "dashboard.index"
         },
         {
             "title": "Series",
-            "href": "dashboard.showType",
+            "href": "dashboard.type",
             "type": "series"
         },
         {
             "title": "Películas",
-            "href": "dashboard.showType",
+            "href": "dashboard.type",
             "type": "movie"
         },
         {
             "title": "Animes",
-            "href": "dashboard.showType",
+            "href": "dashboard.type",
             "type": "anime"
         },
         {

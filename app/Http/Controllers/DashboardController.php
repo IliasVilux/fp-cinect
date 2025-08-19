@@ -37,12 +37,19 @@ class DashboardController extends Controller
      */
     public function showType(string $type)
     {
+        $map = [
+            'movies' => 'movie',
+            'series' => 'series',
+            'animes' => 'anime',
+        ];
+        $dbType = $map[$type] ?? abort(404);
+
         return Inertia::render('dashboard/DashboardType', [
-            'featuredContent' => $this->contentService->getFeatured($type),
+            'featuredContent' => $this->contentService->getFeatured($dbType),
             'contentType' => $type,
-            'trendingContents' => $this->contentService->getTrending($type),
-            'contentsGroupedByGenre' => $this->contentService->getGroupedByGenre($type),
-            'topTen' => $this->contentService->getTopTen($type),
+            'trendingContents' => $this->contentService->getTrending($dbType),
+            'contentsGroupedByGenre' => $this->contentService->getGroupedByGenre($dbType),
+            'topTen' => $this->contentService->getTopTen($dbType),
         ]);
     }
 }

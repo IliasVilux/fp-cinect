@@ -45,7 +45,7 @@ defineProps<{
                     </div>
                     <div class="flex w-full items-start justify-between">
                         <p class="text-pretty">{{ review.review_text }}</p>
-                        <Link :href="route('review.delete', review.id)" method="delete" v-if="review.user.id === user.id">
+                        <Link :href="route('reviews.destroy', review.id)" method="delete" v-if="review.user.id === user.id">
                             <Trash2 class="aspect-square size-full cursor-pointer" />
                         </Link>
                     </div>

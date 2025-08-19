@@ -24,7 +24,7 @@ const onMouseLeave = () => {
         <Link
             v-for="item in items"
             :key="item.id"
-            :href="route('dashboard.showType', item.type)"
+            :href="route('dashboard.type', item.type)"
             class="border-sidebar-border/70 relative z-10 aspect-[9/16] cursor-pointer overflow-hidden rounded-xl border transition-colors duration-300 hover:border-indigo-600 hover:shadow-2xl lg:aspect-video"
             @mouseover="onMouseOver(item.cover_image || '/images/welcome/hero-background.webp')"
             @mouseleave="onMouseLeave"

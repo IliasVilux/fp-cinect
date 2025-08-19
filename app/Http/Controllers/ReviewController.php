@@ -18,9 +18,9 @@ class ReviewController extends Controller
      * @param  Review  $review  The review to delete
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(Review $review)
+    public function destroy(Review $review)
     {
-        $this->reviewService->delete($review, Auth::id());
+        $this->reviewService->destroy($review, Auth::id());
 
         return redirect()->back()->with('success', 'Review deleted successfully.');
     }

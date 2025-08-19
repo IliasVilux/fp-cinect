@@ -15,34 +15,36 @@ Route::middleware(['auth', 'verified'])
         ->prefix('dashboard')
         ->as('dashboard.')
         ->group(function () {
-            Route::get('/', 'show')->name('show');
-            Route::get('/{type}', 'showType')->name('showType');
+            Route::get('/', 'index')->name('index');
+            Route::get('/{type}', 'showType')
+                ->whereIn('type', ['movies', 'series', 'animes'])
+                ->name('type');
         });
 
         Route::controller(ContentController::class)
-            ->prefix('content')
-            ->as('content.')
+            ->prefix('contents')
+            ->as('contents.')
             ->group(function () {
-                Route::get('/explore', 'showExplore')->name('explore');
-                Route::get('/{id}', 'showDetail')->name('showDetail');
+                Route::get('/explore', 'explore')->name('explore');
+                Route::get('/{id}', 'show')->name('show');
                 Route::post('/{id}', 'storeReview')->name('storeReview');
             });
 
         Route::controller(ReviewController::class)
-            ->prefix('review')
-            ->as('review.')
+            ->prefix('reviews')
+            ->as('reviews.')
             ->group(function () {
-                Route::delete('/{review}', 'delete')->name('delete');
+                Route::delete('/{review}', 'destroy')->name('destroy');
             });
 
         Route::controller(FavoriteListController::class)
             ->prefix('favorite-lists')
             ->as('favoriteLists.')
             ->group(function () {
-                Route::get('my-lists', 'show')->name('show');
+                Route::get('my', 'index')->name('index');
                 Route::post('/', 'store')->name('store');
                 Route::put('/{list}', 'update')->name('update');
-                Route::delete('/{list}', 'delete')->name('delete');
+                Route::delete('/{list}', 'destroy')->name('destroy');
 
                 Route::post('/{list}/toggle-content/{content}', 'toggleContent')->name('toggleContent');
             });
