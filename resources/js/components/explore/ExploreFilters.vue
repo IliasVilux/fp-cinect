@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CustomSelect from '@/components/CustomSelect.vue';
-import SearchInput from '@/components/SearchInput.vue';
+import CustomSelect from '@/components/base/CustomSelect.vue';
+import SearchInput from '@/components/base/SearchInput.vue';
 import { SelectItem } from '@/types';
 import { useI18n } from 'vue-i18n';
 

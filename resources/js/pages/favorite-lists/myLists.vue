@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppFooter from '@/components/AppFooter.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
 import FavoriteListCard from '@/components/favoriteLists/favoriteListCard.vue';
 import FavoriteListDialog from '@/components/favoriteLists/favoriteListDialog.vue';
 import AppLayout from '@/layouts/AppLayout.vue';

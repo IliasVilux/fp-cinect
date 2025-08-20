@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { cn } from '@/lib/utils';
 import { SelectItem as SelectItemType } from '@/types';
 import { computed } from 'vue';
-import { WithClassAsProps } from './ui/carousel/interface';
+import { WithClassAsProps } from '../ui/carousel/interface';
 
 const props = defineProps<
     {

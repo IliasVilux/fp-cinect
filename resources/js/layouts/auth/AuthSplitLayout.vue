@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppLogoIcon from '@/components/AppLogoIcon.vue';
+import AppLogoIcon from '@/components/app/AppLogoIcon.vue';
 import { Content } from '@/types/models';
 import { Link, usePage } from '@inertiajs/vue3';
 

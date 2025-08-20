@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppFooter from '@/components/AppFooter.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
 import GenresSection from '@/components/welcome/GenresSection.vue';
 import FeaturesSection from '@/components/welcome/FeaturesSection.vue';
 import HeroSection from '@/components/welcome/HeroSection.vue';

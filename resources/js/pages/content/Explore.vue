@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AppFooter from '@/components/AppFooter.vue';
-import AppPagination from '@/components/AppPagination.vue';
-import ContentCard from '@/components/ContentCard.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
+import AppPagination from '@/components/app/AppPagination.vue';
+import ContentCard from '@/components/common/ContentCard.vue';
 import ExploreFilters from '@/components/explore/ExploreFilters.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem, SelectItem } from '@/types';

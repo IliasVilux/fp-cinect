@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AppFooter from '@/components/AppFooter.vue';
-import ContentCarousel from '@/components/ContentCarousel.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
+import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import FeaturedHero from '@/components/dashboard-type/FeaturedHero.vue';
-import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import PlaceholderPattern from '@/components/app/PlaceholderPattern.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem } from '@/types';
 import { Genre, Content } from '@/types/models';

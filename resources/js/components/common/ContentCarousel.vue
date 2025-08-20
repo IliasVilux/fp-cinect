@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ContentCard from '@/components/ContentCard.vue';
+import ContentCard from '@/components/common/ContentCard.vue';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 import type { Content } from '@/types/models';
 import { ref } from 'vue';
-import { WithClassAsProps } from './ui/carousel/interface';
+import { WithClassAsProps } from '../ui/carousel/interface';
 
 const props = defineProps<
     {

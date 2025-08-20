@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import AppLogo from '@/components/AppLogo.vue';
-import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import AppLogo from '@/components/app/AppLogo.vue';
+import Breadcrumbs from '@/components/app/Breadcrumbs.vue';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import UserMenuContent from '@/components/UserMenuContent.vue';
+import UserMenuContent from '@/components/app/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, router, usePage } from '@inertiajs/vue3';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AppFooter from '@/components/AppFooter.vue';
-import ContentCarousel from '@/components/ContentCarousel.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
+import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import EpisodeList from '@/components/detail/EpisodeList.vue';
 import RatingReviewDialog from '@/components/detail/RatingReviewDialog.vue';
 import ReviewList from '@/components/detail/ReviewList.vue';
