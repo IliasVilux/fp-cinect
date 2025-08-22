@@ -8,7 +8,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-    <header class="w-full bg-neutral-950 p-5 text-sm font-medium text-neutral-900">
+    <header class="absolute top-0 left-0 z-20 w-full bg-gradient-to-b from-black to-transparent p-8 font-medium text-neutral-50">
         <nav class="flex items-center justify-between gap-4">
             <div>
                 <!-- Logo reducido para mobile -->
@@ -20,7 +20,7 @@ const { t } = useI18n();
 
             <Link
                 :href="route($page.props.auth.user ? 'dashboard.index' : 'login')"
-                class="inline-block rounded-full bg-neutral-50 px-5 py-1.5 leading-normal hover:bg-neutral-200"
+                class="inline-block rounded-md bg-indigo-600 px-5 py-2 leading-none hover:bg-indigo-700 transition-colors duration-200"
             >
                 {{ t($page.props.auth.user ? 'welcome.header.dashboard' : 'welcome.header.login') }}
             </Link>
