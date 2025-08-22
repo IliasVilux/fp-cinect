@@ -24,12 +24,7 @@ const searchContent = defineModel<string>('searchContent');
             <SearchInput v-model="searchContent" :placeholder="t('explore.filters.search')" />
             <div class="flex w-full gap-2">
                 <CustomSelect v-model="contentType" :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" />
-                <CustomSelect
-                    v-model="genreId"
-                    :selectItems="genresItems"
-                    :placeholder="t('explore.filters.genreTitle')"
-                    class="w-full lg:w-48"
-                />
+                <CustomSelect v-model="genreId" :selectItems="genresItems" :placeholder="t('explore.filters.genreTitle')" class="w-full lg:w-48" />
             </div>
         </div>
 

@@ -2,8 +2,8 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 
 import DeleteUser from '@/components/app/DeleteUser.vue';
-import HeadingSmall from '@/components/common/HeadingSmall.vue';
 import InputError from '@/components/base/InputError.vue';
+import HeadingSmall from '@/components/common/HeadingSmall.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

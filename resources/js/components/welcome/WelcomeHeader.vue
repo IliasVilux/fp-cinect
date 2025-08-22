@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import AppLogo from '@/components/app/AppLogo.vue';
+import AppLogoIcon from '@/components/app/AppLogoIcon.vue';
 import { Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import AppLogo from './app/AppLogo.vue';
-import AppLogoIcon from './app/AppLogoIcon.vue';
 
 const { t } = useI18n();
 </script>

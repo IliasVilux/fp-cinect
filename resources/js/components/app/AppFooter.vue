@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { Separator } from '@/components/ui/separator';
+import CustomSelect from '@/components/base/CustomSelect.vue';
 import languages from '@/lang/languages.json';
 import { SelectItem, type NavItem } from '@/types';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import { Languages } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import CustomSelect from './CustomSelect.vue';
 
 const { t, locale, messages } = useI18n();
 const page = usePage();
@@ -33,9 +32,8 @@ watch(langValue, (langValue) => {
 </script>
 
 <template>
-    <footer class="text-center">
-        <Separator />
-        <div class="flex flex-col gap-6 px-2 py-4 lg:px-4 lg:py-8">
+    <footer class="border-border rounded-t-3xl border-t bg-neutral-900 px-20 py-10 text-center lg:px-0 lg:py-8">
+        <div class="flex items-center justify-between gap-6 text-neutral-300 lg:flex-col">
             <div class="flex flex-col items-start gap-2 lg:flex-row lg:items-center lg:justify-center lg:gap-x-4">
                 <Link
                     v-for="item in navItems"
@@ -46,12 +44,13 @@ watch(langValue, (langValue) => {
                     {{ item.title }}
                 </Link>
             </div>
+
             <CustomSelect :selectItems="langOptions" placeholder="Todos los tipos" v-model="langValue" class="lg:mx-auto">
                 <template v-slot:icon>
                     <Languages class="size-4" />
                 </template>
             </CustomSelect>
-            <p class="text-xs text-neutral-500">© {{ new Date().getFullYear() }} {{ t('footer.copyright') }}</p>
         </div>
+        <p class="mt-6 text-xs text-neutral-500">© {{ new Date().getFullYear() }} {{ t('footer.copyright') }}</p>
     </footer>
 </template>

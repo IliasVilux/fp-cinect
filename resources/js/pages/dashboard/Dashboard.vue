@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import AppFooter from '@/components/app/AppFooter.vue';
+import TextLink from '@/components/base/TextLink.vue';
 import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import TypeSelector from '@/components/dashboard/TypeSelector.vue';
-import TextLink from '@/components/base/TextLink.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Content } from '@/types/models';

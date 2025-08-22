@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import AppLogo from '@/components/app/AppLogo.vue';
 import Breadcrumbs from '@/components/app/Breadcrumbs.vue';
+import UserMenuContent from '@/components/app/UserMenuContent.vue';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import UserMenuContent from '@/components/app/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { Link, router, usePage } from '@inertiajs/vue3';
@@ -115,7 +115,10 @@ function submitSearch() {
                     <NavigationMenu class="ml-16 flex h-full">
                         <NavigationMenuList class="flex h-full space-x-8">
                             <NavigationMenuItem v-for="(item, index) in mainNavItems" :key="index" class="relative flex items-center">
-                                <Link :href="item.type ? route(item.href, { type: item.type }) : route(item.href)" class="transition-colors duration-75 hover:text-indigo-500">
+                                <Link
+                                    :href="item.type ? route(item.href, { type: item.type }) : route(item.href)"
+                                    class="transition-colors duration-75 hover:text-indigo-500"
+                                >
                                     {{ item.title }}
                                 </Link>
                                 <div

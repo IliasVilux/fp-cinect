@@ -6,7 +6,7 @@
 
         <style>
             html, body {
-                background-color: oklch(17.5% 0 0);
+                background-color: oklch(14.5% 0 0);
             }
         </style>
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppFooter from '@/components/app/AppFooter.vue';
+import PlaceholderPattern from '@/components/app/PlaceholderPattern.vue';
 import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import FeaturedHero from '@/components/dashboard-type/FeaturedHero.vue';
-import PlaceholderPattern from '@/components/app/PlaceholderPattern.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem } from '@/types';
-import { Genre, Content } from '@/types/models';
+import { Content, Genre } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';

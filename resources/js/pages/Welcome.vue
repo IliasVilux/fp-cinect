@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppFooter from '@/components/app/AppFooter.vue';
-import GenresSection from '@/components/welcome/GenresSection.vue';
 import FeaturesSection from '@/components/welcome/FeaturesSection.vue';
+import GenresSection from '@/components/welcome/GenresSection.vue';
 import HeroSection from '@/components/welcome/HeroSection.vue';
 import TrendingSection from '@/components/welcome/TrendingSection.vue';
-import WelcomeHeader from '@/components/WelcomeHeader.vue';
-import type { Genre, Content } from '@/types/models';
+import WelcomeHeader from '@/components/welcome/WelcomeHeader.vue';
+import type { Content, Genre } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 import { Bookmark, BookMarked, Star, Telescope } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
