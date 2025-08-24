@@ -2,6 +2,7 @@
 import AppFooter from '@/components/app/AppFooter.vue';
 import PlaceholderPattern from '@/components/app/PlaceholderPattern.vue';
 import ContentCarousel from '@/components/common/ContentCarousel.vue';
+import Heading from '@/components/common/Heading.vue';
 import FeaturedHero from '@/components/dashboard-type/FeaturedHero.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem } from '@/types';
@@ -40,8 +41,8 @@ const clearHoveredItem = () => {
         <FeaturedHero :featuredContent="featuredContent" />
 
         <!-- TRENDING -->
-        <section class="z-10 mb-6 lg:-mt-40">
-            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.trending') }}</h2>
+        <section class="z-10 mb-9 lg:-mt-40">
+            <Heading :title="t('dashboard-content.trending')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="trendingContents"
                 :hoveredItemId="hoveredItemId"
@@ -51,8 +52,8 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- TOP 10 -->
-        <section class="my-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.topTen') }}</h2>
+        <section class="mb-8">
+            <Heading :title="t('dashboard-content.topTen')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="topTen"
                 :hoveredItemId="hoveredItemId"
@@ -62,20 +63,23 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- FOR YOU -->
-        <section class="my-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard-content.forYou') }}</h2>
-            <div class="grid grid-cols-2 gap-2 px-2 md:grid-cols-4 lg:grid-cols-6 lg:px-4">
-                <div v-for="(item, index) in 6" :key="index" class="border-sidebar-border/70 relative aspect-[5/8] overflow-hidden rounded-xl border">
-                    <PlaceholderPattern />
-                </div>
-            </div>
+        <section class="mb-8">
+            <Heading :title="t('dashboard-content.forYou')" class="ml-5 lg:ml-11" />
+
+            <!-- ! TEMORAL ⚠️ -->
+            <ContentCarousel
+                :contents="topTen"
+                :hoveredItemId="hoveredItemId"
+                :setHoveredItem="setHoveredItem"
+                :clearHoveredItem="clearHoveredItem"
+            />
             <!-- <ContentCarousel :contents="trendingContents" :hoveredItemId="hoveredItemId" :setHoveredItem="setHoveredItem"
                     :clearHoveredItem="clearHoveredItem" /> -->
         </section>
 
         <!-- GENRE CAROUSEL -->
-        <section v-for="(group, index) in contentsGroupedByGenre" :key="index" class="my-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ group.genre.name }}</h2>
+        <section v-for="(group, index) in contentsGroupedByGenre" :key="index" :class="{ 'mb-8': index !== contentsGroupedByGenre.length - 1 }">
+            <Heading :title="group.genre.name" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="group.contents"
                 :hoveredItemId="hoveredItemId"

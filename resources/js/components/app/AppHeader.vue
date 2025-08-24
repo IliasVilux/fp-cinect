@@ -14,7 +14,7 @@ import { Compass, Fan, Film, LayoutGrid, Menu, Search, Tv } from 'lucide-vue-nex
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppLogoIcon from './AppLogoIcon.vue';
-import SearchInput from './SearchInput.vue';
+import SearchInput from '@/components/base/SearchInput.vue';
 
 const { t, locale, messages } = useI18n();
 

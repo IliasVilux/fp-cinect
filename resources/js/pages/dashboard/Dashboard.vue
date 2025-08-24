@@ -2,6 +2,7 @@
 import AppFooter from '@/components/app/AppFooter.vue';
 import TextLink from '@/components/base/TextLink.vue';
 import ContentCarousel from '@/components/common/ContentCarousel.vue';
+import Heading from '@/components/common/Heading.vue';
 import TypeSelector from '@/components/dashboard/TypeSelector.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -50,8 +51,8 @@ const clearHoveredItem = () => {
         />
 
         <!-- RECENT CONTENTS -->
-        <section class="mt-20 mb-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.addedRecently') }}</h2>
+        <section class="mt-20 mb-8">
+            <Heading :title="t('dashboard.sections.carousel.addedRecently')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="recentContents"
                 :hoveredItemId="hoveredItemId"
@@ -61,8 +62,8 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- TOP 10 GLOBAL -->
-        <section class="my-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.topTen') }}</h2>
+        <section class="mb-8">
+            <Heading :title="t('dashboard.sections.carousel.topTen')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="topTen"
                 :hoveredItemId="hoveredItemId"
@@ -72,9 +73,9 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- TV SHOWS -->
-        <section class="my-6">
-            <div class="flex items-baseline justify-between">
-                <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.tvShows') }}</h2>
+        <section class="mb-8">
+            <div class="flex items-baseline justify-between mx-5 lg:mx-11">
+                <Heading :title="t('dashboard.sections.carousel.tvShows')" />
                 <TextLink :href="route('dashboard.type', 'movie')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
@@ -86,9 +87,9 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- MOVIES -->
-        <section class="my-6">
-            <div class="flex items-baseline justify-between">
-                <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.movies') }}</h2>
+        <section class="mb-8">
+            <div class="flex items-baseline justify-between mx-5 lg:mx-11">
+                <Heading :title="t('dashboard.sections.carousel.movies')" />
                 <TextLink :href="route('dashboard.type', 'series')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
@@ -100,9 +101,9 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- ANIMES -->
-        <section class="my-6">
-            <div class="flex items-baseline justify-between">
-                <h2 class="text-xl font-semibold tracking-tight">{{ t('dashboard.sections.carousel.animes') }}</h2>
+        <section>
+            <div class="flex items-baseline justify-between mx-5 lg:mx-11">
+                <Heading :title="t('dashboard.sections.carousel.animes')" />
                 <TextLink :href="route('dashboard.type', 'anime')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
@@ -112,6 +113,7 @@ const clearHoveredItem = () => {
                 :clearHoveredItem="clearHoveredItem"
             />
         </section>
+
         <AppFooter />
     </AppLayout>
 </template>

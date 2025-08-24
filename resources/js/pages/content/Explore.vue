@@ -43,14 +43,6 @@ watch([orderBy, contentType, genreId, searchContent], ([order, contentType, genr
         preserveState: true,
     });
 });
-
-const hoveredItemId = ref<string | null>(null);
-const setHoveredItem = (id: string) => {
-    hoveredItemId.value = id;
-};
-const clearHoveredItem = () => {
-    hoveredItemId.value = null;
-};
 </script>
 
 <template>
@@ -67,14 +59,12 @@ const clearHoveredItem = () => {
         />
 
         <!-- CONTENT GRID -->
-        <section class="grid grid-cols-2 gap-2 lg:grid-cols-4 xl:grid-cols-6">
+        <section class="grid grid-cols-2 gap-2 lg:grid-cols-4 xl:grid-cols-6 mx-5 lg:mx-11 mb-4">
             <ContentCard
                 v-for="content in contents.data"
                 :key="content.id"
                 :content="content"
-                class="group relative aspect-[5/8] overflow-hidden rounded-lg transition duration-200 hover:-translate-y-1 hover:border-indigo-600 hover:bg-[#120e28]"
-                @mouseenter="setHoveredItem(String(content.id))"
-                @mouseleave="clearHoveredItem"
+                class="group relative aspect-[5/7] overflow-hidden rounded-md transition duration-200 hover:scale-102 hover:border-indigo-600 hover:bg-[#120e28]"
             />
         </section>
 

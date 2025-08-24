@@ -16,13 +16,13 @@ const { carouselRef, orientation } = useCarousel()
   <div
     ref="carouselRef"
     data-slot="carousel-content"
-    class="overflow-hidden pt-1"
+    class="overflow-hidden py-2"
   >
     <div
       :class="
         cn(
-          'flex',
-          orientation === 'horizontal' ? '-ml-2' : '-mt-4 flex-col',
+          'flex -ml-2',
+          orientation === 'horizontal' ? 'ml-4 lg:ml-10 mr-2' : '-mt-4 flex-col',
           props.class,
         )"
       v-bind="$attrs"

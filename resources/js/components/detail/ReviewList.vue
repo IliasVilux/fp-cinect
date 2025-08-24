@@ -10,6 +10,7 @@ import 'dayjs/locale/es';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Trash2 } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
+import Heading from '@/components/common/Heading.vue';
 
 const { t, locale } = useI18n();
 
@@ -26,7 +27,7 @@ defineProps<{
 
 <template>
     <section>
-        <h2 class="text-xl font-semibold tracking-tight">{{ t('detail.reviewCount', { count: reviews?.length }) }}</h2>
+        <Heading :title="t('detail.reviewCount', { count: reviews?.length })" />
 
         <div class="flex flex-col gap-y-0">
             <div v-for="review in reviews" :key="review.id" class="flex gap-x-0">

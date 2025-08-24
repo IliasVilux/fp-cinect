@@ -29,14 +29,6 @@ defineProps<{
 }>();
 
 const selectedSeason = ref<Season | null>(null);
-
-const hoveredItemId = ref<string | null>(null);
-const setHoveredItem = (id: string) => {
-    hoveredItemId.value = id;
-};
-const clearHoveredItem = () => {
-    hoveredItemId.value = null;
-};
 </script>
 
 <template>
@@ -104,17 +96,6 @@ const clearHoveredItem = () => {
         </section>
 
         <ReviewList :reviews="content.reviews ?? null" />
-
-        <!-- RELATED CONTENTS -->
-        <section v-if="relatedContents.length > 0" class="my-6">
-            <h2 class="text-xl font-semibold tracking-tight">{{ t('detail.moreLikeThis') }}</h2>
-            <ContentCarousel
-                :contents="relatedContents"
-                :hoveredItemId="hoveredItemId"
-                :setHoveredItem="setHoveredItem"
-                :clearHoveredItem="clearHoveredItem"
-            />
-        </section>
 
         <AppFooter />
     </AppLayout>

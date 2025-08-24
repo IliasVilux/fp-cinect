@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-    <section class="relative my-20 min-h-[400px] w-full items-end lg:flex lg:min-h-[600px]">
+    <section class="relative mb-20 min-h-[400px] w-full items-end lg:flex lg:min-h-[600px]">
         <img
             src="/images/welcome/hero-background.webp"
             :alt="trendingContents[0].title"

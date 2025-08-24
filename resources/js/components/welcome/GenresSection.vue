@@ -9,26 +9,15 @@ defineProps<{
 </script>
 
 <template>
-    <section class="my-20 w-full overflow-x-hidden">
+    <section class="mt-20 w-full overflow-x-hidden">
         <h2 class="mb-4 text-2xl font-medium lg:text-center lg:text-3xl lg:font-bold">
             {{ $t('welcome.sections.genres.title') }}
         </h2>
 
-        <Carousel class="relative w-full" :opts="{ align: 'start' }" v-slot="{ canScrollPrev, canScrollNext }">
-            <!-- Gradient overlays -->
-            <div
-                class="absolute left-0 z-10 hidden h-full w-32 bg-gradient-to-r from-[#101010] from-10% to-neutral-900/0 opacity-0 transition-opacity duration-300 md:flex"
-                :class="{ 'opacity-100': canScrollPrev }"
-            />
-            <div
-                class="absolute right-0 z-10 hidden h-full w-32 bg-gradient-to-l from-[#101010] from-10% to-neutral-900/0 opacity-0 transition-opacity duration-300 md:flex"
-                :class="{ 'opacity-100': canScrollNext }"
-            />
-
-            <!-- Carousel content -->
-            <CarouselContent>
-                <CarouselItem v-for="genre in genres" :key="genre.id" class="basis-1/2 md:basis-1/4 lg:basis-1/6">
-                    <Card class="relative aspect-[5/8] overflow-hidden rounded-lg">
+        <Carousel class="relative w-full group" :opts="{ align: 'start' }"    >
+            <CarouselContent class="ml-4">
+                <CarouselItem v-for="genre in genres" :key="genre.id" class="basis-[calc(100%/2.5)] md:basis-[calc(100%/4.5)] lg:basis-[calc(100%/6.5)]">
+                    <Card class="relative aspect-[5/7] overflow-hidden rounded-md">
                         <CardContent class="p-0">
                             <img
                                 src="/images/welcome/hero-background.webp"
@@ -44,9 +33,8 @@ defineProps<{
                 </CarouselItem>
             </CarouselContent>
 
-            <!-- Arrows -->
-            <CarouselPrevious class="z-20 h-16" />
-            <CarouselNext class="z-20 h-16" />
+            <CarouselPrevious />
+            <CarouselNext />
         </Carousel>
     </section>
 </template>
