@@ -28,24 +28,23 @@ defineProps<Props>();
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
-            <Link class="block w-full" :href="route('favoriteLists.index')" prefetch as="button">
+            <Link class="block w-full cursor-pointer" :href="route('favoriteLists.index')" prefetch as="button">
                 <BookMarked class="mr-2 size-4" />
                 {{ t('app-layout.userMenu.myLists') }}
             </Link>
         </DropdownMenuItem>
-    </DropdownMenuGroup>
-    <DropdownMenuGroup>
+
         <DropdownMenuItem :as-child="true">
-            <Link class="block w-full" :href="route('profile.edit')" prefetch as="button">
+            <Link class="block w-full cursor-pointer" :href="route('profile.edit')" prefetch as="button">
                 <Settings class="mr-2 size-4" />
                 {{ t('app-layout.userMenu.settings') }}
             </Link>
         </DropdownMenuItem>
     </DropdownMenuGroup>
     <DropdownMenuSeparator />
-    <DropdownMenuItem :as-child="true">
-        <Link class="block w-full" method="post" :href="route('logout')" @click="handleLogout" as="button">
-            <LogOut class="mr-2 size-4" />
+    <DropdownMenuItem class="group" :as-child="true">
+        <Link class="block w-full cursor-pointer" method="post" :href="route('logout')" @click="handleLogout" as="button">
+            <LogOut class="mr-2 size-4 group-hover:text-red-600 transition-colors duration-300" />
             {{ t('app-layout.userMenu.logOut') }}
         </Link>
     </DropdownMenuItem>
