@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-    <section class="w-full overflow-x-hidden">
+    <section class="w-full overflow-x-hidden flex flex-col gap-y-1">
         <Heading :title="$t('welcome.sections.genres.title')" class="ml-5 lg:ml-0 lg:text-center" />
 
         <Carousel class="relative w-full group" :opts="{ align: 'start' }"    >
