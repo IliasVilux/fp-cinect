@@ -4,7 +4,7 @@ import { type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     items: NavItem[];
 }>();
 
@@ -14,12 +14,11 @@ const currentPath = computed(() => new URL(page.url, window.location.origin).pat
 
 <template>
     <SidebarGroup class="px-2 py-0">
-        <SidebarGroupLabel>CINECT</SidebarGroupLabel>
         <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
                 <SidebarMenuButton as-child :is-active="item.href === currentPath" :tooltip="item.title">
-                    <Link :href="item.type ? route(item.href, { type: item.type }) : route(item.href)">
-                        <component :is="item.icon" />
+                    <Link :href="item.type ? route(item.href, { type: item.type }) : route(item.href)" class="py-5 group/link">
+                        <component :is="item.icon" class="group-hover/link:text-indigo-600 transition-colors duration-300" />
                         <span>{{ item.title }}</span>
                     </Link>
                 </SidebarMenuButton>

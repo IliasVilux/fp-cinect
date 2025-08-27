@@ -31,13 +31,13 @@ const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
 </script>
 
 <template>
-    <Sidebar collapsible="icon" variant="sidebar">
+    <Sidebar collapsible="icon" variant="inset">
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton size="lg" as-child>
+                    <SidebarMenuButton size="lg" as-child class="px-10 h-20" variant="cinect">
                         <Link :href="route('home')">
-                            <AppLogo class="px-10" />
+                            <AppLogo />
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
