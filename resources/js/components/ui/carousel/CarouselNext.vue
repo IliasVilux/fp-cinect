@@ -21,7 +21,7 @@ const { orientation, canScrollNext, scrollNext } = useCarousel()
   <Button
     data-slot="carousel-next"
     :class="cn(
-      'absolute w-32 h-full bg-gradient-to-l from-neutral-950/65 to-neutral-950/0 opacity-0 hover:opacity-100 flex items-center justify-end',
+      'absolute w-32 h-full bg-gradient-to-l from-neutral-950/65 to-neutral-950/0 opacity-0 hover:opacity-100 flex items-center justify-end rounded-none',
       orientation === 'horizontal'
         ? 'top-1/2 right-0 -translate-y-1/2'
         : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -33,7 +33,7 @@ const { orientation, canScrollNext, scrollNext } = useCarousel()
     @click="scrollNext"
   >
     <slot>
-      <ChevronRight class="size-14" />
+      <ChevronRight class="size-10 lg:size-14" />
       <span class="sr-only">Next Slide</span>
     </slot>
   </Button>

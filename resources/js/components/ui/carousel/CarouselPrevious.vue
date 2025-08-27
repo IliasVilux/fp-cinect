@@ -21,7 +21,7 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel()
   <Button
     data-slot="carousel-previous"
     :class="cn(
-      'absolute w-32 h-full bg-gradient-to-r from-neutral-950/65 to-neutral-950/0 opacity-0 hover:opacity-100 flex items-center justify-start',
+      'absolute w-32 h-full bg-gradient-to-r from-neutral-950/65 to-neutral-950/0 opacity-0 hover:opacity-100 flex items-center justify-start rounded-none',
       orientation === 'horizontal'
         ? 'top-1/2 left-0 -translate-y-1/2'
         : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -33,7 +33,7 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel()
     @click="scrollPrev"
   >
     <slot>
-      <ChevronLeft class="size-14" />
+      <ChevronLeft class="size-10 lg:size-14" />
       <span class="sr-only">Previous Slide</span>
     </slot>
   </Button>
