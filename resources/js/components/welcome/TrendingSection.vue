@@ -11,12 +11,12 @@ defineProps<{
         <img
             src="/images/welcome/hero-background.webp"
             :alt="trendingContents[0].title"
-            class="inset-0 z-0 size-full mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
+            class="inset-0 z-0 size-full min-h-96 mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
         />
 
-        <div class="relative z-10 mx-auto -mt-20 flex size-full max-w-4xl flex-col gap-y-8 lg:my-0">
-            <div class="relative">
-                <h1 class="text-center text-2xl font-black uppercase md:text-start">
+        <div class="relative z-10 -mt-36 flex max-w-4xl flex-col gap-y-8 mx-4 lg:mx-auto">
+            <div class="text-center md:text-start">
+                <h1 class="text-xl font-black uppercase">
                     {{ $t('welcome.sections.trending.title') }}
                 </h1>
                 <p class="max-w-2xl text-4xl font-extralight md:text-6xl lg:text-7xl">
@@ -30,7 +30,7 @@ defineProps<{
                     :key="content.id"
                     src="/images/welcome/hero-background.webp"
                     :alt="content.title"
-                    class="aspect-square size-full overflow-hidden rounded-xl object-cover"
+                    class="aspect-square size-full overflow-hidden rounded-md object-cover"
                 />
             </div>
         </div>
