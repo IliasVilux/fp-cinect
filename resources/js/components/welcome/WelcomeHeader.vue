@@ -20,7 +20,7 @@ const { t } = useI18n();
 
             <Link
                 :href="route($page.props.auth.user ? 'dashboard.index' : 'login')"
-                class="inline-block rounded-md bg-indigo-600 px-5 py-2 leading-none hover:bg-indigo-700 transition-colors duration-200"
+                class="rounded-full bg-indigo-600 px-7 py-3 leading-none hover:bg-indigo-700 transition-colors duration-200 font-semibold"
             >
                 {{ t($page.props.auth.user ? 'welcome.header.dashboard' : 'welcome.header.login') }}
             </Link>
