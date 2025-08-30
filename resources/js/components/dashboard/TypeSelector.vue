@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Heading from '@/components/common/Heading.vue';
 import { Content } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
 
@@ -20,12 +21,12 @@ const onMouseLeave = () => {
 </script>
 
 <template>
-    <div class="relative grid auto-rows-min grid-cols-3">
+    <div class="relative grid auto-rows-min grid-cols-3 gap-2 p-5 pb-0 lg:p-11 lg:pb-0">
         <Link
             v-for="item in items"
             :key="item.id"
             :href="route('dashboard.type', item.type)"
-            class="border-sidebar-border/70 relative z-10 aspect-[9/16] cursor-pointer overflow-hidden rounded-xl border transition-colors duration-300 hover:border-indigo-600 hover:shadow-2xl lg:aspect-video"
+            class="border-sidebar-border/70 relative z-10 aspect-[5/8] cursor-pointer overflow-hidden rounded-xl border transition-colors duration-300 hover:border-indigo-600 hover:shadow-2xl lg:aspect-video"
             @mouseover="onMouseOver(item.cover_image || '/images/welcome/hero-background.webp')"
             @mouseleave="onMouseLeave"
         >
@@ -40,7 +41,7 @@ const onMouseLeave = () => {
             />
 
             <!-- Title -->
-            <h3 class="absolute bottom-2 left-3 z-20 text-2xl font-medium capitalize lg:text-xl lg:font-bold">{{ item.type }}</h3>
+            <Heading :title="item.type" class="absolute bottom-2 left-3 z-20" />
         </Link>
 
         <!-- Hover background image -->

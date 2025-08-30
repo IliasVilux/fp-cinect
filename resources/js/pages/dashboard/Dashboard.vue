@@ -101,7 +101,7 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- ANIMES -->
-        <section>
+        <section class="mb-20">
             <div class="flex items-baseline justify-between mx-5 lg:mx-11">
                 <Heading :title="t('dashboard.sections.carousel.animes')" />
                 <TextLink :href="route('dashboard.type', 'anime')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
