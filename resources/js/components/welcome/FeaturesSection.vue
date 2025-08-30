@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Heading from '@/components/common/Heading.vue';
+import HeadingLarge from '@/components/common/HeadingLarge.vue';
 
 defineProps<{
     features: {
@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
     <section class="my-20 flex flex-col gap-y-3 mx-5 lg:mx-2">
-        <Heading :title="$t('welcome.sections.features.title')" class="lg:text-center" />
+        <HeadingLarge :title="$t('welcome.sections.features.title')" class="lg:text-center" />
 
         <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
             <div

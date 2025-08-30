@@ -2,7 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Genre } from '@/types/models';
-import Heading from '@/components/common/Heading.vue';
+import HeadingLarge from '@/components/common/HeadingLarge.vue';
 
 defineProps<{
     genres: Genre[];
@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
     <section class="w-full overflow-x-hidden flex flex-col gap-y-1">
-        <Heading :title="$t('welcome.sections.genres.title')" class="ml-5 lg:ml-0 lg:text-center" />
+        <HeadingLarge :title="$t('welcome.sections.genres.title')" class="ml-5 lg:ml-0 lg:text-center" />
 
         <Carousel class="relative w-full group" :opts="{ align: 'start' }"    >
             <CarouselContent class="ml-1 lg:ml-1">
