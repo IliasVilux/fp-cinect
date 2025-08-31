@@ -19,15 +19,10 @@ const searchContent = defineModel<string>('searchContent');
 </script>
 
 <template>
-    <section class="flex flex-col gap-2 xl:flex-row xl:items-end xl:justify-between">
-        <div class="flex w-full flex-col gap-2 xl:flex-row xl:items-end">
-            <SearchInput v-model="searchContent" :placeholder="t('explore.filters.search')" />
-            <div class="flex w-full gap-2">
-                <CustomSelect v-model="contentType" :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" />
-                <CustomSelect v-model="genreId" :selectItems="genresItems" :placeholder="t('explore.filters.genreTitle')" class="w-full lg:w-48" />
-            </div>
-        </div>
-
-        <CustomSelect :selectItems="orderItems" :placeholder="t('explore.filters.orderTitle')" v-model="orderBy" />
+    <section class="grid grid-cols-3 gap-2 md:grid-cols-6 items-center m-5 mb-11 lg:m-11 lg:mt-5">
+        <SearchInput v-model="searchContent" :placeholder="t('explore.filters.search')" class="w-full col-span-3 md:col-span-2" />
+        <CustomSelect v-model="contentType" :selectItems="contentTypesItems" :placeholder="t('explore.filters.contentTypeTitle')" class="w-full" />
+        <CustomSelect v-model="genreId" :selectItems="genresItems" :placeholder="t('explore.filters.genreTitle')" class="w-full" />
+        <CustomSelect :selectItems="orderItems" :placeholder="t('explore.filters.orderTitle')" v-model="orderBy" class="w-full md:col-start-6" />
     </section>
 </template>
