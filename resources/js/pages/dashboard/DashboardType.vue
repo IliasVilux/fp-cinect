@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AppFooter from '@/components/app/AppFooter.vue';
-import PlaceholderPattern from '@/components/app/PlaceholderPattern.vue';
 import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import Heading from '@/components/common/Heading.vue';
 import FeaturedHero from '@/components/dashboard-type/FeaturedHero.vue';
@@ -41,7 +40,7 @@ const clearHoveredItem = () => {
         <FeaturedHero :featuredContent="featuredContent" />
 
         <!-- TRENDING -->
-        <section class="z-10 mb-9 lg:-mt-40">
+        <section class="z-10 mb-9 -mt-12 lg:-mt-8">
             <Heading :title="t('dashboard-content.trending')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="trendingContents"
@@ -78,7 +77,7 @@ const clearHoveredItem = () => {
         </section>
 
         <!-- GENRE CAROUSEL -->
-        <section v-for="(group, index) in contentsGroupedByGenre" :key="index" :class="{ 'mb-8': index !== contentsGroupedByGenre.length - 1 }">
+        <section v-for="(group, index) in contentsGroupedByGenre" :key="index" :class="index !== contentsGroupedByGenre.length - 1 ? 'mb-8' : 'mb-20'">
             <Heading :title="group.genre.name" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="group.contents"
