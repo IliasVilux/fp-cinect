@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import AppFooter from '@/components/app/AppFooter.vue';
-import ContentCarousel from '@/components/common/ContentCarousel.vue';
-import EpisodeList from '@/components/detail/EpisodeList.vue';
+import HeadingLarge from '@/components/common/HeadingLarge.vue';
 import RatingReviewDialog from '@/components/detail/RatingReviewDialog.vue';
 import ReviewList from '@/components/detail/ReviewList.vue';
-import SeasonCarousel from '@/components/detail/SeasonCarousel.vue';
 import FavoriteListSelect from '@/components/favoriteLists/favoriteListSelect.vue';
-import { Separator } from '@/components/ui/separator';
+import Separator from '@/components/ui/separator/Separator.vue';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Content, FavoriteList, Review, Season } from '@/types/models';
+import { Content, FavoriteList, Review } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
-
-import { ref } from 'vue';
+import { useMediaQuery } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
+import EpisodeList from '@/components/detail/EpisodeList.vue';
 
 const { t } = useI18n();
 
@@ -28,37 +27,22 @@ defineProps<{
     favoriteLists: (FavoriteList & { has_content: boolean })[];
 }>();
 
-const selectedSeason = ref<Season | null>(null);
+const isMobile = useMediaQuery('(max-width: 768px)');
 </script>
 
 <template>
     <Head :title="content.title" />
     <AppLayout layout="header">
-        <!-- CONTENT INFORMATION -->
-        <section class="flex flex-col gap-0 md:flex-row md:gap-0">
-            <!-- Poster image -->
-            <div class="aspect-[6/8] w-full md:max-w-96">
-                <img
-                    src="/images/welcome/hero-background.webp"
-                    :alt="content.title"
-                    class="size-full mask-b-from-80% mask-b-to-100% object-cover md:rounded-lg md:mask-none"
-                />
-            </div>
+        <img src="/images/welcome/hero-background.webp" alt="Cinect" class="absolute inset-0 z-0 h-[500px] w-full mask-b-from-25% object-cover" />
 
-            <!-- Tabs -->
-            <div class="z-10 -mt-12 w-full md:mt-0">
-                <div>
-                    <!-- Title and Rating -->
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-xl font-bold uppercase md:text-3xl">{{ content.title }}</h2>
-                        <div class="flex items-center space-x-2">
-                            <FavoriteListSelect :lists="favoriteLists" :contentId="content.id" />
-                            <RatingReviewDialog :content="content" />
-                        </div>
-                    </div>
+        <div class="mx-5">
+            <section
+                class="border-border relative z-10 w-full max-w-6xl rounded-lg border bg-gradient-to-bl from-black to-neutral-950/10 p-5 backdrop-blur-lg lg:mx-auto lg:bg-gradient-to-br lg:p-11"
+            >
+                <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-5">
+                    <HeadingLarge :title="content.title" />
 
-                    <!-- Details -->
-                    <div class="flex h-5 items-center space-x-2 text-sm text-neutral-400">
+                    <div class="mb-3 flex h-4 items-center justify-center space-x-2 text-sm text-neutral-300 md:hidden">
                         <p v-if="content.release_year">{{ content.release_year }}</p>
                         <Separator v-if="content.release_year" orientation="vertical" />
                         <p v-if="content.type == 'movie'">{{ content.duration }}</p>
@@ -66,10 +50,26 @@ const selectedSeason = ref<Season | null>(null);
                         <Separator orientation="vertical" />
                         <p>{{ content.genre.name }}</p>
                     </div>
+
+                    <div class="mb-3 flex space-x-2 self-end lg:mb-0 lg:self-center">
+                        <FavoriteListSelect :lists="favoriteLists" :contentId="content.id" />
+                        <RatingReviewDialog :content="content" />
+                    </div>
                 </div>
 
-                <Tabs class="w-full" defaultValue="overview" as="section">
-                    <TabsList>
+                <div class="mt-2 mb-5 hidden h-4 items-center justify-start space-x-2 text-sm text-neutral-300 md:flex">
+                    <p v-if="content.release_year">{{ content.release_year }}</p>
+                    <Separator v-if="content.release_year" orientation="vertical" />
+                    <p v-if="content.type == 'movie'">{{ content.duration }}</p>
+                    <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons', content.seasons.length) }}</p>
+                    <Separator orientation="vertical" />
+                    <p>{{ content.genre.name }}</p>
+                </div>
+
+                <Separator orientation="horizontal" class="mb-0 bg-border flex lg:hidden" />
+
+                <Tabs default-value="overview" class="w-full flex flex-col mt-4" :orientation="isMobile ? 'vertical' : 'horizontal'" as="section">
+                    <TabsList :class="isMobile ? 'grid w-full grid-cols-1 gap-2' : ''">
                         <TabsTrigger value="overview">{{ t('detail.overview') }}</TabsTrigger>
                         <TabsTrigger v-if="content.type != 'movie' && content.seasons.length > 0" value="seasons">{{
                             t('detail.seasons')
@@ -77,25 +77,32 @@ const selectedSeason = ref<Season | null>(null);
                         <TabsTrigger value="trailer">{{ t('detail.trailer') }}</TabsTrigger>
                     </TabsList>
 
-                    <Separator orientation="horizontal" class="mb-0" />
+                    <Separator orientation="horizontal" class="mb-0 bg-border hidden lg:flex" />
 
                     <TabsContent value="overview">
                         <p>{{ content.description }}</p>
                     </TabsContent>
 
                     <TabsContent value="seasons">
-                        <SeasonCarousel :content="content" v-model:selectedSeason="selectedSeason" />
-
-                        <EpisodeList :selectedSeason="selectedSeason" />
+                        <Accordion type="single" class="w-full" collapsible default-value="1">
+                            <AccordionItem v-for="(season, index) in content.seasons" :key="season.id" :value="season.id.toString()">
+                            <AccordionTrigger :class="index == 0 ? 'mb-2' : 'my-2'">Season {{ index }}</AccordionTrigger>
+                            <AccordionContent>
+                                <EpisodeList :selectedSeason="season" />
+                            </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
                     </TabsContent>
+
+
                     <TabsContent value="trailer">
                         <p>Trailer</p>
                     </TabsContent>
                 </Tabs>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <ReviewList :reviews="content.reviews ?? null" />
+        <ReviewList :reviews="content.reviews ?? null" class="mx-auto my-20 max-w-6xl" />
 
         <AppFooter />
     </AppLayout>

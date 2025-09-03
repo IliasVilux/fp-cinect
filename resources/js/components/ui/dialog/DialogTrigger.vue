@@ -8,6 +8,7 @@ const props = defineProps<DialogTriggerProps>()
   <DialogTrigger
     data-slot="dialog-trigger"
     v-bind="props"
+    class="cursor-pointer"
   >
     <slot />
   </DialogTrigger>

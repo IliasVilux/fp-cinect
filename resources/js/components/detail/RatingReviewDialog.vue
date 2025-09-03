@@ -61,7 +61,7 @@ const submit = () => {
     <Dialog :open="dialogOpen" @update:open="handleDialogOpenChange">
         <DialogTrigger as-child>
             <Button variant="outline">
-                <h3 class="text-lg">
+                <h3 class="text-lg font-semibold">
                     {{ content.ratings_avg_rating ? Number(content.ratings_avg_rating).toFixed(1) : '—' }}
                 </h3>
                 <component :is="Star" class="size-4 fill-yellow-300 text-yellow-300" />
