@@ -40,8 +40,8 @@ defineProps<{
                 </Avatar>
 
                 <div class="flex w-full flex-col gap-y-1">
-                    <div class="flex items-baseline gap-x-2">
-                        <p class="text-sm font-semibold">@{{ review.user.name }}</p>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline gap-y-1 sm:gap-y-0 sm:gap-x-2">
+                        <p class="text-sm font-semibold truncate">@{{ review.user.name }}</p>
                         <p class="text-muted-foreground text-xs">{{ dayjs(review.created_at).fromNow() }}</p>
                     </div>
                     <div class="flex w-full items-start justify-between">
