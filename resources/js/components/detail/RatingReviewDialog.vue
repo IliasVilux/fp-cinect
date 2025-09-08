@@ -34,7 +34,7 @@ watch(
 const dialogOpen = ref(false);
 const handleDialogOpenChange = (open: boolean) => {
     dialogOpen.value = open;
-    if (!open) {
+    if (open) {
         form.reset();
     }
 };
@@ -77,7 +77,7 @@ const submit = () => {
             </DialogHeader>
 
             <form id="form" @submit.prevent="submit">
-                <div class="flex w-full space-x-0 md:space-x-0">
+                <div class="flex w-full space-x-3 md:px-10">
                     <Star
                         v-for="n in 5"
                         :key="n"
@@ -86,11 +86,11 @@ const submit = () => {
                         @click="handleRating(n)"
                     />
                 </div>
-                <p v-show="form.rating !== 0" class="text-muted-foreground text-center text-xs">
+                <p v-show="form.rating !== 0" class="text-muted-foreground text-center text-xs mt-2 mb-6">
                     {{ t('detail.review.ratingHint') }}
                 </p>
 
-                <div class="grid gap-0">
+                <div class="grid gap-2">
                     <Label for="review">{{ t('detail.review.reviewLabel') }}</Label>
                     <Textarea id="review" v-model="form.review" :placeholder="t('detail.review.reviewPlaceholder')" />
                     <p class="text-muted-foreground text-xs" v-show="form.review != ''">
@@ -99,7 +99,7 @@ const submit = () => {
                     <InputError :message="form.errors.review" />
                 </div>
 
-                <DialogFooter>
+                <DialogFooter class="mt-6 md:mt-2">
                     <Button type="submit" class="sm:justify-start" :disabled="form.processing">
                         <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                         {{ t('detail.review.submit') }}
