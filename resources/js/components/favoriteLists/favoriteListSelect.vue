@@ -37,10 +37,10 @@ defineProps<{
 
             <section>
                 <div v-for="(list, i) in lists" :key="list.id">
-                    <div class="flex items-center justify-between">
-                        <p>{{ list.name }}</p>
+                    <div class="flex border-border rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 p-4 transition-colors duration-300 hover:border-indigo-600 hover:bg-neutral-800 flex-row items-center justify-between">
+                        <p class="truncate">{{ list.name }}</p>
                         <Link :href="route('favoriteLists.toggleContent', { list: list.id, content: contentId })" method="post">
-                            <Button variant="secondary">
+                            <Button :variant="list.has_content ? 'destructive' : 'secondary'" class="cursor-pointer">
                                 {{ list.has_content ? 'Remove' : 'Add' }}
                             </Button>
                         </Link>
@@ -52,7 +52,7 @@ defineProps<{
 
             <DialogFooter>
                 <DialogClose as-child>
-                    <Button type="button" variant="secondary"> Close </Button>
+                    <Button type="button" variant="secondary" class="cursor-pointer"> Close </Button>
                 </DialogClose>
             </DialogFooter>
         </DialogContent>
