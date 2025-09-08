@@ -13,6 +13,8 @@ import { Head } from '@inertiajs/vue3';
 import { useMediaQuery } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 import EpisodeList from '@/components/detail/EpisodeList.vue';
+import ContentCarousel from '@/components/common/ContentCarousel.vue';
+import { ref } from 'vue';
 
 const { t } = useI18n();
 
@@ -28,6 +30,14 @@ defineProps<{
 }>();
 
 const isMobile = useMediaQuery('(max-width: 768px)');
+
+const hoveredItemId = ref<string | null>(null);
+const setHoveredItem = (id: string) => {
+    hoveredItemId.value = id;
+};
+const clearHoveredItem = () => {
+    hoveredItemId.value = null;
+};
 </script>
 
 <template>
@@ -75,6 +85,7 @@ const isMobile = useMediaQuery('(max-width: 768px)');
                             t('detail.seasons')
                         }}</TabsTrigger>
                         <TabsTrigger value="trailer">{{ t('detail.trailer') }}</TabsTrigger>
+                        <TabsTrigger value="related">Relacionado / Related</TabsTrigger>
                     </TabsList>
 
                     <Separator orientation="horizontal" class="mb-0 bg-border hidden lg:flex" />
@@ -96,7 +107,23 @@ const isMobile = useMediaQuery('(max-width: 768px)');
 
 
                     <TabsContent value="trailer">
-                        <p>Trailer</p>
+                        <iframe
+                            class="size-full aspect-video rounded-lg mt-2"
+                            :src="`https://www.youtube.com/embed/RYI-WG_HFV8`"
+                            title="Trailer de {{ content.title }}"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        ></iframe>
+                    </TabsContent>
+
+                    <TabsContent value="related">
+                        <ContentCarousel
+                            :contents="relatedContents"
+                            :hoveredItemId="hoveredItemId"
+                            :setHoveredItem="setHoveredItem"
+                            :clearHoveredItem="clearHoveredItem"
+                        />
                     </TabsContent>
                 </Tabs>
             </section>
