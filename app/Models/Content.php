@@ -83,7 +83,8 @@ class Content extends Model
      */
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->orderByRaw("user_id = ? DESC", [Auth::id()])
+                ->orderBy('created_at', 'desc');
     }
 
     /**
