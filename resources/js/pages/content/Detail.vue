@@ -45,7 +45,7 @@ const clearHoveredItem = () => {
     <AppLayout layout="header">
         <img src="/images/welcome/hero-background.webp" alt="Cinect" class="absolute inset-0 z-0 h-[500px] w-full mask-b-from-25% object-cover" />
 
-        <div class="mx-5">
+        <div class="mx-5 mt-36 lg:mt-56">
             <section
                 class="border-border relative z-10 w-full max-w-6xl rounded-lg border bg-gradient-to-bl from-black to-neutral-950/10 p-5 backdrop-blur-lg lg:mx-auto lg:bg-gradient-to-br lg:p-11"
             >
