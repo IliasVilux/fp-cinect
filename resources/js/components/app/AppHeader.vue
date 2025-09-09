@@ -125,7 +125,7 @@ function submitSearch() {
 
             <div class="ml-auto flex items-center space-x-2">
                 <div>
-                    <Button v-if="!isSearching" @click="isSearching = true" variant="ghost" size="icon" class="group h-9 w-9 cursor-pointer">
+                    <Button v-if="!isSearching" @click="isSearching = true" variant="ghost" size="icon" class="group size-9">
                         <Search class="size-5 opacity-80 group-hover:opacity-100" />
                     </Button>
 
@@ -141,7 +141,7 @@ function submitSearch() {
 
                 <DropdownMenu>
                     <DropdownMenuTrigger :as-child="true">
-                        <Button variant="cinect" size="icon" class="cursor-pointer">
+                        <Button variant="cinect" size="icon">
                             <Avatar class="size-8 overflow-hidden">
                                 <AvatarImage v-if="auth.user.avatar" :src="auth.user.avatar" :alt="auth.user.name" />
                                 <AvatarFallback class="font-semibold">
