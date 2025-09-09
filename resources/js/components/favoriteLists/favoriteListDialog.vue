@@ -86,24 +86,27 @@ const deleteList = () => {
                 </DialogHeader>
 
                 <form id="form" @submit.prevent="submit">
-                    <div>
+                    <div class="grid gap-2">
                         <Label for="title">title</Label>
                         <Input id="title" type="text" required v-model="form.name" placeholder="List Name" />
                     </div>
 
-                    <div>
+                    <div class="grid gap-2 mt-6">
                         <Label for="description">description</Label>
                         <Textarea id="description" v-model="form.description" placeholder="asd" />
                     </div>
 
-                    <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />
+                    <DialogFooter class="mt-6">
+                        <div class="flex items-center space-x-2">
+                            <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />
+                            <Label for="is_public" class="cursor-pointer select-none">Lista pública</Label>
+                        </div>
 
-                    <DialogFooter>
-                        <Button v-if="list" variant="destructive" class="sm:justify-start" :disabled="form.processing" @click="deleteList">
+                        <Button v-if="list" variant="destructive" :disabled="form.processing" @click="deleteList">
                             <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                             delete
                         </Button>
-                        <Button type="submit" class="sm:justify-start" :disabled="form.processing">
+                        <Button type="submit" :disabled="form.processing">
                             <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                             submit
                         </Button>
