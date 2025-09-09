@@ -96,20 +96,22 @@ const deleteList = () => {
                         <Textarea id="description" v-model="form.description" placeholder="asd" />
                     </div>
 
-                    <DialogFooter class="mt-6">
+                    <DialogFooter class="mt-6 sm:justify-between">
                         <div class="flex items-center space-x-2">
                             <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />
                             <Label for="is_public" class="cursor-pointer select-none">Lista pública</Label>
                         </div>
 
-                        <Button v-if="list" variant="destructive" :disabled="form.processing" @click="deleteList">
-                            <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
-                            delete
-                        </Button>
-                        <Button type="submit" :disabled="form.processing">
-                            <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
-                            submit
-                        </Button>
+                        <div class="flex gap-2">
+                            <Button v-if="list" variant="destructive" :disabled="form.processing" @click="deleteList">
+                                <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
+                                delete
+                            </Button>
+                            <Button type="submit" :disabled="form.processing">
+                                <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
+                                submit
+                            </Button>
+                        </div>
                     </DialogFooter>
                 </form>
             </DialogContent>
