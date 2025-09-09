@@ -86,7 +86,5 @@ const clearHoveredItem = () => {
                 :clearHoveredItem="clearHoveredItem"
             />
         </section>
-
-        <AppFooter />
     </AppLayout>
 </template>

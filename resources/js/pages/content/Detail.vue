@@ -130,7 +130,5 @@ const clearHoveredItem = () => {
         </div>
 
         <ReviewList :reviews="content.reviews ?? null" class="mx-auto my-20 max-w-6xl" />
-
-        <AppFooter />
     </AppLayout>
 </template>
