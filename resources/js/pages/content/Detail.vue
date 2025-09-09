@@ -43,7 +43,7 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="content.title" />
     <AppLayout layout="header">
-        <img src="/images/welcome/hero-background.webp" alt="Cinect" class="absolute inset-0 z-0 h-[500px] w-full mask-b-from-25% object-cover" />
+        <img src="/images/welcome/hero-background.webp" alt="Cinect" class="absolute inset-0 z-0 h-[600px] w-full mask-b-from-25% object-cover" />
 
         <div class="mx-5 mt-36 lg:mt-56">
             <section
