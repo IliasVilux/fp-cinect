@@ -55,7 +55,7 @@ const submit = () => {
 };
 const deleteList = () => {
     if (props.list) {
-        form.delete(route('favoriteLists.delete', props.list.id), {
+        form.delete(route('favoriteLists.destroy', props.list.id), {
             onFinish: () => {
                 dialogOpen.value = false;
             },
