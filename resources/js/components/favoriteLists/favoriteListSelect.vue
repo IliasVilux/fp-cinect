@@ -37,7 +37,7 @@ defineProps<{
 
             <section>
                 <div v-for="(list, i) in lists" :key="list.id">
-                    <div class="flex border-border rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 p-4 transition-colors duration-300 hover:border-indigo-600 hover:bg-neutral-800 flex-row items-center justify-between">
+                    <div class="flex border-border rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 p-4 my-2 transition-colors duration-300 hover:border-indigo-600 hover:bg-neutral-800 flex-row items-center justify-between">
                         <p class="truncate">{{ list.name }}</p>
                         <Link :href="route('favoriteLists.toggleContent', { list: list.id, content: contentId })" method="post">
                             <Button :variant="list.has_content ? 'destructive' : 'secondary'">
@@ -45,8 +45,6 @@ defineProps<{
                             </Button>
                         </Link>
                     </div>
-
-                    <Separator v-if="i < lists.length - 1" orientation="horizontal" />
                 </div>
             </section>
 
