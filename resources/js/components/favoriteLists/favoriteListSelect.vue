@@ -10,7 +10,6 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Separator } from '@/components/ui/separator';
 import type { FavoriteList } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
 import { BookMarked } from 'lucide-vue-next';

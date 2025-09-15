@@ -10,6 +10,7 @@ import { useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { Link } from '@inertiajs/vue3';
 
 const { t } = useI18n();
 
@@ -94,6 +95,18 @@ const deleteList = () => {
                     <div class="grid gap-2 mt-6">
                         <Label for="description">description</Label>
                         <Textarea id="description" v-model="form.description" placeholder="asd" />
+                    </div>
+
+                    <div v-if="list && list.contents && list.contents.length > 0" class="grid gap-2 mt-6">
+                        <Label>Contents</Label>
+                        <div>
+                            <div v-for="content in list.contents" :key="content.id" class="flex gap-x-2 border-border rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 p-2 my-1 transition-colors duration-300 hover:bg-neutral-800 flex-row items-center justify-between">
+                            <p class="max-w-56 lg:max-w-72 truncate text-sm">{{ content.title }}</p>
+                            <Link :href="route('favoriteLists.toggleContent', { list: list.id, content: content.id })" method="post" class="text-destructive text-xs cursor-pointer">
+                                Remove
+                            </Link>
+                        </div>
+                        </div>
                     </div>
 
                     <DialogFooter class="mt-6 sm:justify-between">
