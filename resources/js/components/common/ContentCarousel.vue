@@ -6,14 +6,20 @@ import type { Content } from '@/types/models';
 import { ref } from 'vue';
 import { WithClassAsProps } from '../ui/carousel/interface';
 
-const props = defineProps<
+const props = withDefaults(
+    defineProps<
+        {
+            contents: Content[];
+            hoveredItemId?: string | null;
+            setHoveredItem?: (id: string) => void;
+            clearHoveredItem?: () => void;
+            basis?: string;
+        } & WithClassAsProps
+    >(),
     {
-        contents: Content[];
-        hoveredItemId: string | null;
-        setHoveredItem: (id: string) => void;
-        clearHoveredItem: () => void;
-    } & WithClassAsProps
->();
+        basis: 'basis-[calc(100%/2.5)] md:basis-[calc(100%/4.5)] lg:basis-[calc(100%/6.5)]',
+    }
+);
 const isHovering = ref(false);
 </script>
 
@@ -30,11 +36,12 @@ const isHovering = ref(false);
                 :key="content.id"
                 :class="
                     cn(
-                        'group basis-[calc(100%/2.5)] md:basis-[calc(100%/4.5)] lg:basis-[calc(100%/6.5)] transition duration-1000',
+                        'group transition duration-1000',
                         hoveredItemId && hoveredItemId !== String(content.id) && 'brightness-75',
+                        basis
                     )
                 "
-                @mouseenter="setHoveredItem(String(content.id))"
+                @mouseenter="setHoveredItem && setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem"
             >
                 <ContentCard

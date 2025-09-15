@@ -20,13 +20,14 @@ const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['favoriteList
 <template>
     <Head :title="t('favoriteLists.head.myListsTitle')" />
     <AppLayout :breadcrumbs="breadcrumbs">
-        <FavoriteListDialog />
+        <div class="m-5 lg:mx-11 mb-20 flex flex-col gap-5">
+            <FavoriteListDialog />
 
-        <section>
-            <div v-for="list in lists" :key="list.id">
-                <FavoriteListCard :list="list" />
-            </div>
-        </section>
-        <AppFooter />
+            <section class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+                <div v-for="list in lists" :key="list.id">
+                    <FavoriteListCard :list="list" />
+                </div>
+            </section>
+        </div>
     </AppLayout>
 </template>
