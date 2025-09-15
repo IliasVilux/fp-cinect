@@ -44,7 +44,7 @@ defineProps<Props>();
     <DropdownMenuSeparator />
     <DropdownMenuItem class="group" :as-child="true">
         <Link class="block w-full cursor-pointer" method="post" :href="route('logout')" @click="handleLogout" as="button">
-            <LogOut class="mr-2 size-4 group-hover:text-red-600 transition-colors duration-300" />
+            <LogOut class="mr-2 size-4 transition-colors duration-300 group-hover:text-red-600" />
             {{ t('app-layout.userMenu.logOut') }}
         </Link>
     </DropdownMenuItem>

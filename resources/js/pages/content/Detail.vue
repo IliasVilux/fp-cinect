@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import AppFooter from '@/components/app/AppFooter.vue';
+import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import HeadingLarge from '@/components/common/HeadingLarge.vue';
+import EpisodeList from '@/components/detail/EpisodeList.vue';
 import RatingReviewDialog from '@/components/detail/RatingReviewDialog.vue';
 import ReviewList from '@/components/detail/ReviewList.vue';
 import FavoriteListSelect from '@/components/favoriteLists/favoriteListSelect.vue';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Separator from '@/components/ui/separator/Separator.vue';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Content, FavoriteList, Review } from '@/types/models';
 import { Head } from '@inertiajs/vue3';
 import { useMediaQuery } from '@vueuse/core';
-import { useI18n } from 'vue-i18n';
-import EpisodeList from '@/components/detail/EpisodeList.vue';
-import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
@@ -76,9 +75,9 @@ const clearHoveredItem = () => {
                     <p>{{ content.genre.name }}</p>
                 </div>
 
-                <Separator orientation="horizontal" class="mb-0 bg-border flex lg:hidden" />
+                <Separator orientation="horizontal" class="bg-border mb-0 flex lg:hidden" />
 
-                <Tabs default-value="overview" class="w-full flex flex-col mt-4" :orientation="isMobile ? 'vertical' : 'horizontal'" as="section">
+                <Tabs default-value="overview" class="mt-4 flex w-full flex-col" :orientation="isMobile ? 'vertical' : 'horizontal'" as="section">
                     <TabsList :class="isMobile ? 'grid w-full grid-cols-1 gap-2' : ''">
                         <TabsTrigger value="overview">{{ t('detail.overview') }}</TabsTrigger>
                         <TabsTrigger v-if="content.type != 'movie' && content.seasons.length > 0" value="seasons">{{
@@ -88,7 +87,7 @@ const clearHoveredItem = () => {
                         <TabsTrigger value="related">Relacionado / Related</TabsTrigger>
                     </TabsList>
 
-                    <Separator orientation="horizontal" class="mb-0 bg-border hidden lg:flex" />
+                    <Separator orientation="horizontal" class="bg-border mb-0 hidden lg:flex" />
 
                     <TabsContent value="overview">
                         <p>{{ content.description }}</p>
@@ -97,18 +96,17 @@ const clearHoveredItem = () => {
                     <TabsContent value="seasons">
                         <Accordion type="single" class="w-full" collapsible default-value="1">
                             <AccordionItem v-for="(season, index) in content.seasons" :key="season.id" :value="season.id.toString()">
-                            <AccordionTrigger :class="index == 0 ? 'mb-2' : 'my-2'">Season {{ index }}</AccordionTrigger>
-                            <AccordionContent>
-                                <EpisodeList :selectedSeason="season" />
-                            </AccordionContent>
+                                <AccordionTrigger :class="index == 0 ? 'mb-2' : 'my-2'">Season {{ index }}</AccordionTrigger>
+                                <AccordionContent>
+                                    <EpisodeList :selectedSeason="season" />
+                                </AccordionContent>
                             </AccordionItem>
                         </Accordion>
                     </TabsContent>
 
-
                     <TabsContent value="trailer">
                         <iframe
-                            class="size-full aspect-video rounded-lg mt-2"
+                            class="mt-2 aspect-video size-full rounded-lg"
                             :src="`https://www.youtube.com/embed/RYI-WG_HFV8`"
                             title="Trailer de {{ content.title }}"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

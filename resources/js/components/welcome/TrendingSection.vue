@@ -14,7 +14,7 @@ defineProps<{
             class="inset-0 z-0 size-full min-h-96 mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
         />
 
-        <div class="relative z-10 -mt-36 flex max-w-4xl flex-col gap-y-8 mx-4 lg:mx-auto">
+        <div class="relative z-10 mx-4 -mt-36 flex max-w-4xl flex-col gap-y-8 lg:mx-auto">
             <div class="text-center md:text-start">
                 <h1 class="text-xl font-black uppercase">
                     {{ $t('welcome.sections.trending.title') }}

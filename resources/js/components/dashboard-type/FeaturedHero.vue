@@ -20,17 +20,21 @@ defineProps<{
         />
 
         <!-- Content -->
-        <div class="absolute inset-0 z-10 flex flex-col justify-end mx-5 lg:mx-11 mb-32 lg:mb-28">
+        <div class="absolute inset-0 z-10 mx-5 mb-32 flex flex-col justify-end lg:mx-11 lg:mb-28">
             <h1 class="max-w-xl text-4xl font-bold lg:text-5xl">{{ featuredContent.title }}</h1>
             <p class="my-3 max-w-xl text-lg font-light lg:mt-7 lg:mb-5">{{ featuredContent.description }}</p>
-            <Link :href="route('login')" class="w-fit rounded-full bg-neutral-50 text-neutral-900 px-7 py-3 leading-none hover:bg-neutral-300 transition-colors duration-200 font-semibold">
+            <Link
+                :href="route('login')"
+                class="w-fit rounded-full bg-neutral-50 px-7 py-3 leading-none font-semibold text-neutral-900 transition-colors duration-200 hover:bg-neutral-300"
+            >
                 {{ t('dashboard-content.watchMore') }}
             </Link>
         </div>
 
         <!-- Genre Tag -->
-        <span class="absolute top-20 right-0 z-10 border-l-4 border-indigo-600 bg-gradient-to-r from-neutral-950/75 to-neutral-950/40 px-6 py-2 text-xs font-bold uppercase">{{
-            featuredContent.genre.name
-        }}</span>
+        <span
+            class="absolute top-20 right-0 z-10 border-l-4 border-indigo-600 bg-gradient-to-r from-neutral-950/75 to-neutral-950/40 px-6 py-2 text-xs font-bold uppercase"
+            >{{ featuredContent.genre.name }}</span
+        >
     </section>
 </template>

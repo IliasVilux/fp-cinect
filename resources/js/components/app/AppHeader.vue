@@ -61,8 +61,8 @@ function submitSearch() {
 </script>
 
 <template>
-    <header class="relative z-10 w-full font-medium text-neutral-50 bg-neutral-950">
-        <div class="flex items-center px-4 py-6 w-full max-w-6xl mx-auto">
+    <header class="relative z-10 w-full bg-neutral-950 font-medium text-neutral-50">
+        <div class="mx-auto flex w-full max-w-6xl items-center px-4 py-6">
             <!-- Mobile Menu -->
             <div class="lg:hidden">
                 <Sheet>

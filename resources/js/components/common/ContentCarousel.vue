@@ -18,29 +18,18 @@ const props = withDefaults(
     >(),
     {
         basis: 'basis-[calc(100%/2.5)] md:basis-[calc(100%/4.5)] lg:basis-[calc(100%/6.5)]',
-    }
+    },
 );
 const isHovering = ref(false);
 </script>
 
 <template>
-    <Carousel
-        :class="cn('relative w-full', props.class)"
-        :opts="{ align: 'start' }"
-        @mouseenter="isHovering = true"
-        @mouseleave="isHovering = false"
-    >
+    <Carousel :class="cn('relative w-full', props.class)" :opts="{ align: 'start' }" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
         <CarouselContent>
             <CarouselItem
                 v-for="content in contents"
                 :key="content.id"
-                :class="
-                    cn(
-                        'group transition duration-1000',
-                        hoveredItemId && hoveredItemId !== String(content.id) && 'brightness-75',
-                        basis
-                    )
-                "
+                :class="cn('group transition duration-1000', hoveredItemId && hoveredItemId !== String(content.id) && 'brightness-75', basis)"
                 @mouseenter="setHoveredItem && setHoveredItem(String(content.id))"
                 @mouseleave="clearHoveredItem"
             >

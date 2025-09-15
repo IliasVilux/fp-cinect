@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppFooter from '@/components/app/AppFooter.vue';
 import AppPagination from '@/components/app/AppPagination.vue';
 import ContentCard from '@/components/common/ContentCard.vue';
 import ExploreFilters from '@/components/explore/ExploreFilters.vue';
@@ -59,7 +58,7 @@ watch([orderBy, contentType, genreId, searchContent], ([order, contentType, genr
         />
 
         <!-- CONTENT GRID -->
-        <section class="grid grid-cols-2 gap-2 lg:grid-cols-4 xl:grid-cols-6 mx-5 lg:mx-11 mb-4">
+        <section class="mx-5 mb-4 grid grid-cols-2 gap-2 lg:mx-11 lg:grid-cols-4 xl:grid-cols-6">
             <ContentCard
                 v-for="content in contents.data"
                 :key="content.id"

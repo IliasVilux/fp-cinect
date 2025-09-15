@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppFooter from '@/components/app/AppFooter.vue';
 import FavoriteListCard from '@/components/favoriteLists/favoriteListCard.vue';
 import FavoriteListDialog from '@/components/favoriteLists/favoriteListDialog.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -20,7 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['favoriteList
 <template>
     <Head :title="t('favoriteLists.head.myListsTitle')" />
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="m-5 lg:mx-11 mb-20 flex flex-col gap-5">
+        <div class="m-5 mb-20 flex flex-col gap-5 lg:mx-11">
             <FavoriteListDialog />
 
             <section class="grid grid-cols-1 gap-2 lg:grid-cols-2">

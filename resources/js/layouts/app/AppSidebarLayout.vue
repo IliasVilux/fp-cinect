@@ -21,7 +21,7 @@ withDefaults(defineProps<Props>(), {
         <AppContent variant="sidebar">
             <AppSidebarHeader :breadcrumbs="breadcrumbs" />
 
-            <div class="flex-1 flex flex-col w-full">
+            <div class="flex w-full flex-1 flex-col">
                 <slot />
             </div>
 

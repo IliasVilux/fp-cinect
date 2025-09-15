@@ -35,7 +35,7 @@ const mainNavItems: NavItem[] = rawItems.map(({ iconKey, ...item }) => ({
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton size="lg" as-child class="px-10 h-20" variant="cinect">
+                    <SidebarMenuButton size="lg" as-child class="h-20 px-10" variant="cinect">
                         <Link :href="route('home')">
                             <AppLogo />
                         </Link>

@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
     <AppShell class="flex-col">
         <AppHeader :breadcrumbs="breadcrumbs" />
 
-        <AppContent class="flex-1 flex flex-col">
+        <AppContent class="flex flex-1 flex-col">
             <div class="w-full">
                 <slot />
             </div>

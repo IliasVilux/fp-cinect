@@ -28,7 +28,7 @@ function handleBlur() {
     }
 }
 
-const inputRef = ref<HTMLInputElement>()
+const inputRef = ref<HTMLInputElement>();
 onMounted(() => {
     nextTick(() => {
         const el = inputRef.value?.$el as HTMLInputElement | undefined;

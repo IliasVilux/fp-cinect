@@ -86,7 +86,7 @@ const submit = () => {
                         @click="handleRating(n)"
                     />
                 </div>
-                <p v-show="form.rating !== 0" class="text-muted-foreground text-center text-xs mt-2 mb-6">
+                <p v-show="form.rating !== 0" class="text-muted-foreground mt-2 mb-6 text-center text-xs">
                     {{ t('detail.review.ratingHint') }}
                 </p>
 

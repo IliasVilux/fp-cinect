@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppFooter from '@/components/app/AppFooter.vue';
 import TextLink from '@/components/base/TextLink.vue';
 import ContentCarousel from '@/components/common/ContentCarousel.vue';
 import Heading from '@/components/common/Heading.vue';
@@ -74,7 +73,7 @@ const clearHoveredItem = () => {
 
         <!-- TV SHOWS -->
         <section class="mb-8">
-            <div class="flex items-baseline justify-between mx-5 lg:mx-11">
+            <div class="mx-5 flex items-baseline justify-between lg:mx-11">
                 <Heading :title="t('dashboard.sections.carousel.tvShows')" />
                 <TextLink :href="route('dashboard.type', 'movie')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
@@ -88,7 +87,7 @@ const clearHoveredItem = () => {
 
         <!-- MOVIES -->
         <section class="mb-8">
-            <div class="flex items-baseline justify-between mx-5 lg:mx-11">
+            <div class="mx-5 flex items-baseline justify-between lg:mx-11">
                 <Heading :title="t('dashboard.sections.carousel.movies')" />
                 <TextLink :href="route('dashboard.type', 'series')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
@@ -102,7 +101,7 @@ const clearHoveredItem = () => {
 
         <!-- ANIMES -->
         <section class="mb-20">
-            <div class="flex items-baseline justify-between mx-5 lg:mx-11">
+            <div class="mx-5 flex items-baseline justify-between lg:mx-11">
                 <Heading :title="t('dashboard.sections.carousel.animes')" />
                 <TextLink :href="route('dashboard.type', 'anime')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>

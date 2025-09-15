@@ -8,6 +8,6 @@ defineProps<Props>();
 
 <template>
     <div class="mb-1 space-y-0.5">
-        <h1 class="text-2xl lg:text-3xl font-bold tracking-normal capitalize">{{ title }}</h1>
+        <h1 class="text-2xl font-bold tracking-normal capitalize lg:text-3xl">{{ title }}</h1>
     </div>
 </template>
