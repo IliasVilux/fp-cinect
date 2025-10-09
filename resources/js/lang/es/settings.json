@@ -12,10 +12,6 @@
             {
                 "title": "Contraseña",
                 "href": "/settings/password"
-            },
-            {
-                "title": "Apariencia",
-                "href": "/settings/appearance"
             }
         ]
     },
@@ -100,37 +96,5 @@
             "submit": "Guardar cambios",
             "submitted": "Guardado."
         }
-    },
-    "appearance": {
-        "breadcrumbs": [
-            {
-                "title": "Configuración de apariencia",
-                "href": "/settings/appearance"
-            }
-        ],
-        "base": {
-            "titleShort": "Configuración de Apariencia"
-        },
-        "baseSmall": {
-            "title": "Configuración de apariencia",
-            "description": "Actualiza las preferencias de apariencia de tu cuenta"
-        },
-        "tabs": [
-            {
-                "value": "light",
-                "iconKey": "Sun",
-                "label": "Claro"
-            },
-            {
-                "value": "dark",
-                "iconKey": "Moon",
-                "label": "Oscuro"
-            },
-            {
-                "value": "system",
-                "iconKey": "Monitor",
-                "label": "Sistema"
-            }
-        ]
     }
 }

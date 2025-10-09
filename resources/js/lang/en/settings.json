@@ -12,10 +12,6 @@
             {
                 "title": "Password",
                 "href": "/settings/password"
-            },
-            {
-                "title": "Appearance",
-                "href": "/settings/appearance"
             }
         ]
     },
@@ -100,37 +96,5 @@
             "submit": "Save changes",
             "submitted": "Saved."
         }
-    },
-    "appearance": {
-        "breadcrumbs": [
-            {
-                "title": "Appearance settings",
-                "href": "/settings/appearance"
-            }
-        ],
-        "base": {
-            "titleShort": "Appearance Settings"
-        },
-        "baseSmall": {
-            "title": "Appearance settings",
-            "description": "Update your account's appearance settings"
-        },
-        "tabs": [
-            {
-                "value": "light",
-                "iconKey": "Sun",
-                "label": "Light"
-            },
-            {
-                "value": "dark",
-                "iconKey": "Moon",
-                "label": "Dark"
-            },
-            {
-                "value": "system",
-                "iconKey": "Monitor",
-                "label": "System"
-            }
-        ]
     }
 }
