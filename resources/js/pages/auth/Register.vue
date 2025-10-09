@@ -52,7 +52,7 @@ const submit = () => {
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="email">{{ t('auth.register.form.email.label') }}</Label>
+                    <Label for="email">{{ t('auth.form.email.email.label') }}</Label>
                     <Input
                         id="email"
                         type="email"
@@ -100,8 +100,8 @@ const submit = () => {
             </div>
 
             <div class="text-muted-foreground text-center text-sm">
-                {{ t('auth.register.logIn.title') }}
-                <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">{{ t('auth.register.logIn.link') }}</TextLink>
+                {{ t('auth.register.login.title') }}
+                <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">{{ t('auth.register.login.link') }}</TextLink>
             </div>
         </form>
     </AuthBase>

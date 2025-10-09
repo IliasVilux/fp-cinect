@@ -39,7 +39,7 @@ defineProps<{
                     </AvatarFallback>
                 </Avatar>
 
-                <div class="flex w-full flex-col gap-y-1">
+                <div class="flex w-full flex-col gap-y-1 lg:gap-y-0">
                     <div class="flex flex-col gap-y-1 sm:flex-row sm:items-baseline sm:gap-x-2 sm:gap-y-0">
                         <p class="truncate text-sm font-semibold">@{{ review.user.name }}</p>
                         <p class="text-muted-foreground text-xs">{{ dayjs(review.created_at).fromNow() }}</p>

@@ -101,7 +101,7 @@ const submit = () => {
                             leave-active-class="transition ease-in-out"
                             leave-to-class="opacity-0"
                         >
-                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ t('settings.profile.form.submited') }}</p>
+                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ t('settings.profile.form.submitted') }}</p>
                         </Transition>
                     </div>
                 </form>

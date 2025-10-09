@@ -27,7 +27,7 @@
             }
         ],
         "base": {
-            "titleShort": "Configuración del perfil"
+            "titleShort": "Configuración del Perfil"
         },
         "baseSmall": {
             "title": "Información del perfil",
@@ -46,7 +46,7 @@
                 "verificationLinkSent": "Se ha enviado un nuevo enlace de verificación a tu correo electrónico."
             },
             "submit": "Guardar cambios",
-            "submited": "Guardado."
+            "submitted": "Guardado."
         },
         "deleteUser": {
             "base": {
@@ -78,7 +78,7 @@
             }
         ],
         "base": {
-            "titleShort": "Configuración de contraseña"
+            "titleShort": "Configuración de Contraseña"
         },
         "baseSmall": {
             "title": "Actualizar contraseña",
@@ -98,7 +98,7 @@
                 "placeholder": "Confirma tu nueva contraseña"
             },
             "submit": "Guardar cambios",
-            "submited": "Guardado."
+            "submitted": "Guardado."
         }
     },
     "appearance": {
@@ -109,7 +109,7 @@
             }
         ],
         "base": {
-            "titleShort": "Configuración de apariencia"
+            "titleShort": "Configuración de Apariencia"
         },
         "baseSmall": {
             "title": "Configuración de apariencia",

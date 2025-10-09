@@ -87,13 +87,13 @@ const deleteList = () => {
 
                 <form id="form" @submit.prevent="submit">
                     <div class="grid gap-2">
-                        <Label for="title">title</Label>
-                        <Input id="title" type="text" required v-model="form.name" placeholder="List Name" />
+                        <Label for="title">{{ t('favoriteLists.dialog.form.name.label') }}</Label>
+                        <Input id="title" type="text" required v-model="form.name" :placeholder="t('favoriteLists.dialog.form.name.placeholder')" />
                     </div>
 
                     <div class="mt-6 grid gap-2">
-                        <Label for="description">description</Label>
-                        <Textarea id="description" v-model="form.description" placeholder="asd" />
+                        <Label for="description">{{ t('favoriteLists.dialog.form.description.label') }}</Label>
+                        <Textarea id="description" v-model="form.description" :placeholder="t('favoriteLists.dialog.form.description.placeholder')" />
                     </div>
 
                     <div v-if="list && list.contents && list.contents.length > 0" class="mt-6 grid gap-2">
@@ -102,15 +102,15 @@ const deleteList = () => {
                             <div
                                 v-for="content in list.contents"
                                 :key="content.id"
-                                class="border-border my-1 flex flex-row items-center justify-between gap-x-2 rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 p-2 transition-colors duration-300 hover:bg-neutral-800"
+                                class="border-border my-2 flex flex-row items-center justify-between gap-x-2 rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 p-2 transition-colors duration-300 hover:bg-neutral-800"
                             >
                                 <p class="max-w-56 truncate text-sm lg:max-w-72">{{ content.title }}</p>
                                 <Link
                                     :href="route('favoriteLists.toggleContent', { list: list.id, content: content.id })"
                                     method="post"
-                                    class="text-destructive cursor-pointer text-xs"
+                                    class="text-destructive cursor-pointer text-xs px-2"
                                 >
-                                    Remove
+                                    {{ t('favoriteLists.dialog.form.contents.remove') }}
                                 </Link>
                             </div>
                         </div>
@@ -119,17 +119,17 @@ const deleteList = () => {
                     <DialogFooter class="mt-6 sm:justify-between">
                         <div class="flex items-center space-x-2">
                             <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />
-                            <Label for="is_public" class="cursor-pointer select-none">Lista pública</Label>
+                            <Label for="is_public" class="cursor-pointer select-none"><Label for="is_public">{{ t('favoriteLists.dialog.form.isPublic.label') }}</Label></Label>
                         </div>
 
-                        <div class="flex gap-2">
+                        <div class="flex gap-2 justify-end">
                             <Button v-if="list" variant="destructive" :disabled="form.processing" @click="deleteList">
                                 <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
-                                delete
+                                {{ t('favoriteLists.btn.deleteList') }}
                             </Button>
                             <Button type="submit" :disabled="form.processing">
                                 <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
-                                submit
+                                {{ t('favoriteLists.btn.submit') }}
                             </Button>
                         </div>
                     </DialogFooter>

@@ -29,6 +29,7 @@
             "iconKey": "Compass"
         }
     ],
+    "searchPlaceholder": "Buscar películas, series, animes...",
     "userMenu": {
         "myLists": "Mis listas",
         "settings": "Configuración",

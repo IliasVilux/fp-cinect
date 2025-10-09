@@ -18,7 +18,10 @@
     },
     "btn": {
         "addList": "Añadir lista",
-        "editList": "Editar lista"
+        "editList": "Editar lista",
+        "deleteList": "Eliminar lista",
+        "submit": "Guardar",
+        "remove": "Quitar"
     },
     "dialog": {
         "title": {
@@ -26,8 +29,41 @@
             "editList": "Editar lista"
         },
         "description": {
-            "addList": "Crea una nueva lista de favoritos.",
-            "editList": "Edita tu lista de favoritos."
+            "addList": "Crea una nueva lista de tus contenidos favoritos.",
+            "editList": "Edita el nombre, descripción o visibilidad de tu lista."
+        },
+        "form": {
+            "name": {
+                "label": "Título",
+                "placeholder": "Nombre de la lista"
+            },
+            "description": {
+                "label": "Descripción",
+                "placeholder": "Describe brevemente el contenido de esta lista (opcional)"
+            },
+            "isPublic": {
+                "label": "Lista pública"
+            },
+            "contents": {
+                "label": "Contenidos"
+            }
+        }
+    },
+    "card": {
+        "badge": {
+            "public": "Pública",
+            "private": "Privada"
+        }
+    },
+    "addToListDialog": {
+        "dialog": {
+            "title": "Añadir a una lista",
+            "description": "Selecciona una o más listas a las que quieras añadir este contenido.",
+            "close": "Cerrar"
+        },
+        "btn": {
+            "add": "Añadir",
+            "remove": "Quitar"
         }
     }
 }

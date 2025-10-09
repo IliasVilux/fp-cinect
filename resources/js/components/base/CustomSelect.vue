@@ -5,12 +5,16 @@ import { SelectItem as SelectItemType } from '@/types';
 import { computed } from 'vue';
 import { WithClassAsProps } from '../ui/carousel/interface';
 
-const props = defineProps<
-    {
+const props = withDefaults(
+    defineProps<{
         selectItems: SelectItemType[];
         placeholder: string;
-    } & WithClassAsProps
->();
+        allowDeselect?: boolean;
+    } & WithClassAsProps>(),
+    {
+        allowDeselect: true
+    },
+);
 
 const modelValue = defineModel<string | number | null>({ default: null });
 
@@ -20,7 +24,7 @@ const selectPlaceholder = computed(() => {
 });
 
 function handleSelect(value: any) {
-    if (modelValue.value === value) {
+    if (props.allowDeselect && modelValue.value === value) {
         modelValue.value = null;
     } else {
         modelValue.value = value;

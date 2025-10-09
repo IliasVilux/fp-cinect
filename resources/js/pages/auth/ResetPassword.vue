@@ -42,13 +42,13 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="email">{{ t('auth.resetPassword.form.email.label') }}</Label>
+                    <Label for="email">{{ t('auth.common.fields.email.label') }}</Label>
                     <Input id="email" type="email" name="email" autocomplete="email" v-model="form.email" class="mt-1 block w-full" readonly />
                     <InputError :message="form.errors.email" class="mt-2" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password">{{ t('auth.resetPassword.form.password.label') }}</Label>
+                    <Label for="password">{{ t('auth.common.fields.password.label') }}</Label>
                     <Input
                         id="password"
                         type="password"
@@ -57,13 +57,13 @@ const submit = () => {
                         v-model="form.password"
                         class="mt-1 block w-full"
                         autofocus
-                        :placeholder="t('auth.resetPassword.form.password.placeholder')"
+                        :placeholder="t('auth.common.fields.password.placeholder')"
                     />
                     <InputError :message="form.errors.password" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password_confirmation">{{ t('auth.resetPassword.form.confirmPassword.label') }}</Label>
+                    <Label for="password_confirmation">{{ t('auth.common.fields.confirmPassword.label') }}</Label>
                     <Input
                         id="password_confirmation"
                         type="password"
@@ -71,7 +71,7 @@ const submit = () => {
                         autocomplete="new-password"
                         v-model="form.password_confirmation"
                         class="mt-1 block w-full"
-                        :placeholder="t('auth.resetPassword.form.confirmPassword.placeholder')"
+                        :placeholder="t('auth.common.fields.confirmPassword.placeholder')"
                     />
                     <InputError :message="form.errors.password_confirmation" />
                 </div>

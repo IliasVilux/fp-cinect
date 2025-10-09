@@ -37,7 +37,7 @@ const submit = () => {
         <div class="space-y-6">
             <form @submit.prevent="submit">
                 <div class="grid gap-2">
-                    <Label for="email">{{ t('auth.forgotPassword.form.email.label') }}</Label>
+                    <Label for="email">{{ t('auth.common.fields.email.label') }}</Label>
                     <Input
                         id="email"
                         type="email"
@@ -45,7 +45,7 @@ const submit = () => {
                         autocomplete="off"
                         v-model="form.email"
                         autofocus
-                        :placeholder="t('auth.forgotPassword.form.email.placeholder')"
+                        :placeholder="t('auth.common.fields.email.placeholder')"
                     />
                     <InputError :message="form.errors.email" />
                 </div>
@@ -59,8 +59,8 @@ const submit = () => {
             </form>
 
             <div class="text-muted-foreground space-x-1 text-center text-sm">
-                <span>{{ t('auth.forgotPassword.logIn.title') }}</span>
-                <TextLink :href="route('login')">{{ t('auth.forgotPassword.logIn.link') }}</TextLink>
+                <span>{{ t('auth.forgotPassword.login.title') }}</span>
+                <TextLink :href="route('login')">{{ t('auth.forgotPassword.login.link') }}</TextLink>
             </div>
         </div>
     </AuthLayout>

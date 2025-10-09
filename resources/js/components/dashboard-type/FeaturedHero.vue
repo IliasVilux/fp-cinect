@@ -27,7 +27,7 @@ defineProps<{
                 :href="route('login')"
                 class="w-fit rounded-full bg-neutral-50 px-7 py-3 leading-none font-semibold text-neutral-900 transition-colors duration-200 hover:bg-neutral-300"
             >
-                {{ t('dashboard-content.watchMore') }}
+                {{ t('dashboard-type.watchMore') }}
             </Link>
         </div>
 

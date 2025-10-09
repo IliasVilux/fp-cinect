@@ -22,7 +22,7 @@ const props = defineProps<{
     topTen: Content[];
 }>();
 
-const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['dashboard-content'].breadcrumbs[props.contentType] as BreadcrumbItem[];
+const breadcrumbs: BreadcrumbItem[] = messages.value[locale.value]['dashboard-type'].breadcrumbs[props.contentType] as BreadcrumbItem[];
 
 const hoveredItemId = ref<string | null>(null);
 const setHoveredItem = (id: string) => {
@@ -40,7 +40,7 @@ const clearHoveredItem = () => {
 
         <!-- TRENDING -->
         <section class="z-10 -mt-12 mb-9 lg:-mt-8">
-            <Heading :title="t('dashboard-content.trending')" class="ml-5 lg:ml-11" />
+            <Heading :title="t('dashboard-type.trending')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="trendingContents"
                 :hoveredItemId="hoveredItemId"
@@ -51,7 +51,7 @@ const clearHoveredItem = () => {
 
         <!-- TOP 10 -->
         <section class="mb-8">
-            <Heading :title="t('dashboard-content.topTen')" class="ml-5 lg:ml-11" />
+            <Heading :title="t('dashboard-type.topTen')" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="topTen"
                 :hoveredItemId="hoveredItemId"
@@ -62,7 +62,7 @@ const clearHoveredItem = () => {
 
         <!-- FOR YOU -->
         <section class="mb-8">
-            <Heading :title="t('dashboard-content.forYou')" class="ml-5 lg:ml-11" />
+            <Heading :title="t('dashboard-type.forYou')" class="ml-5 lg:ml-11" />
 
             <!-- ! TEMORAL ⚠️ -->
             <ContentCarousel

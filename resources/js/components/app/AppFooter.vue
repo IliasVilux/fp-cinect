@@ -45,7 +45,7 @@ watch(langValue, (langValue) => {
                 </Link>
             </div>
 
-            <CustomSelect :selectItems="langOptions" placeholder="Todos los tipos" v-model="langValue" class="lg:mx-auto">
+            <CustomSelect :selectItems="langOptions" :allowDeselect="false" placeholder="Todos los tipos" v-model="langValue" class="lg:mx-auto">
                 <template v-slot:icon>
                     <Languages class="size-4" />
                 </template>

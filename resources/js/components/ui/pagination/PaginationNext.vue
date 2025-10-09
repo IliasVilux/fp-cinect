@@ -28,7 +28,7 @@ const forwarded = useForwardProps(delegatedProps)
     v-bind="forwarded"
   >
     <slot>
-      <span class="hidden sm:block">{{ t('explore.pagination.next') }}</span>
+      <span class="hidden sm:block">{{ t('common.pagination.next') }}</span>
       <ChevronRightIcon />
     </slot>
   </PaginationNext>

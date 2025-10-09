@@ -43,7 +43,7 @@ const submit = () => {
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="email">{{ t('auth.login.form.email.label') }}</Label>
+                    <Label for="email">{{ t('auth.common.fields.email.label') }}</Label>
                     <Input
                         id="email"
                         type="email"
@@ -52,16 +52,16 @@ const submit = () => {
                         :tabindex="1"
                         autocomplete="email"
                         v-model="form.email"
-                        :placeholder="t('auth.login.form.email.placeholder')"
+                        :placeholder="t('auth.common.fields.email.placeholder')"
                     />
                     <InputError :message="form.errors.email" />
                 </div>
 
                 <div class="grid gap-2">
                     <div class="flex items-center justify-between">
-                        <Label for="password">{{ t('auth.login.form.password.label') }}</Label>
+                        <Label for="password">{{ t('auth.common.fields.password.label') }}</Label>
                         <TextLink v-if="canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5">
-                            {{ t('auth.login.form.password.forgot') }}
+                            {{ t('auth.common.fields.password.forgot') }}
                         </TextLink>
                     </div>
                     <Input
@@ -71,7 +71,7 @@ const submit = () => {
                         :tabindex="2"
                         autocomplete="current-password"
                         v-model="form.password"
-                        :placeholder="t('auth.login.form.password.placeholder')"
+                        :placeholder="t('auth.common.fields.password.placeholder')"
                     />
                     <InputError :message="form.errors.password" />
                 </div>

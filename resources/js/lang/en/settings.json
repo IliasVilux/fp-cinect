@@ -46,7 +46,7 @@
                 "verificationLinkSent": "A new verification link has been sent to your email address."
             },
             "submit": "Save changes",
-            "submited": "Saved."
+            "submitted": "Saved."
         },
         "deleteUser": {
             "base": {
@@ -78,7 +78,7 @@
             }
         ],
         "base": {
-            "titleShort": "Password settings"
+            "titleShort": "Password Settings"
         },
         "baseSmall": {
             "title": "Update password",
@@ -98,7 +98,7 @@
                 "placeholder": "Confirm your new password"
             },
             "submit": "Save changes",
-            "submited": "Saved."
+            "submitted": "Saved."
         }
     },
     "appearance": {
@@ -109,7 +109,7 @@
             }
         ],
         "base": {
-            "titleShort": "Appearance settings"
+            "titleShort": "Appearance Settings"
         },
         "baseSmall": {
             "title": "Appearance settings",

@@ -35,7 +35,7 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div class="space-y-6">
                 <div class="grid gap-2">
-                    <Label htmlFor="password">{{ t('auth.confirmPassword.form.password.label') }}</Label>
+                    <Label htmlFor="password">{{ t('auth.common.fields.password.label') }}</Label>
                     <Input
                         id="password"
                         type="password"

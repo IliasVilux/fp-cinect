@@ -41,9 +41,5 @@
         ],
         "genreTitle": "All Genres",
         "search": "Search..."
-    },
-    "pagination": {
-        "previous": "Anterior",
-        "next": "Siguiente"
     }
 }

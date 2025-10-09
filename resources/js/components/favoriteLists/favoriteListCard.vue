@@ -6,6 +6,9 @@ import { FavoriteList } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
 import { Plus } from 'lucide-vue-next';
 import ContentCarousel from '../common/ContentCarousel.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 defineProps<{
     list: FavoriteList;
@@ -17,8 +20,8 @@ defineProps<{
         <div class="flex-1">
             <div class="flex items-center justify-between gap-2 px-4 pt-4">
                 <Heading :title="list.name" />
-                <Badge v-if="list.is_public" variant="cinect">Pública</Badge>
-                <Badge v-else variant="outline">Privada</Badge>
+                <Badge v-if="list.is_public" variant="cinect">{{ t('favoriteLists.card.badge.public') }}</Badge>
+                <Badge v-else variant="outline">{{ t('favoriteLists.card.badge.private') }}</Badge>
             </div>
 
             <p class="px-4 text-pretty">{{ list.description }}</p>
