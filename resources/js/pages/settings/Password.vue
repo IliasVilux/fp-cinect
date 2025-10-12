@@ -56,7 +56,7 @@ const updatePassword = () => {
             <div class="space-y-6">
                 <HeadingSmall :title="t('settings.password.baseSmall.title')" :description="t('settings.password.baseSmall.description')" />
 
-                <form @submit.prevent="updatePassword" class="space-y-6">
+                <form @submit.prevent="updatePassword" class="space-y-4">
                     <div class="grid gap-2">
                         <Label for="current_password">{{ t('settings.password.form.currentPassword.label') }}</Label>
                         <Input

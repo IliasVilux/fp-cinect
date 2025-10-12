@@ -46,12 +46,12 @@ const closeModal = () => {
 </script>
 
 <template>
-    <div class="space-y-6">
-        <HeadingSmall :title="t('settings.profile.deleteUser.base.title')" :description="t('settings.profile.deleteUser.base.description')" />
-        <div class="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
-            <div class="relative space-y-0.5 text-red-600 dark:text-red-100">
+    <div class="space-y-2">
+        <HeadingSmall :title="t('settings.profile.deleteUser.base.title')" />
+        <div class="space-y-4 rounded-lg border border-border bg-gradient-to-br from-red-950 to-neutral-950 p-4">
+            <div class="relative space-y-0.5">
                 <p class="font-medium">{{ t('settings.profile.deleteUser.warning.title') }}</p>
-                <p class="text-sm">{{ t('settings.profile.deleteUser.warning.description') }}</p>
+                <p class="text-sm text-red-200">{{ t('settings.profile.deleteUser.warning.description') }}</p>
             </div>
             <Dialog>
                 <DialogTrigger as-child>

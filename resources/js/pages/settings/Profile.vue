@@ -46,7 +46,7 @@ const submit = () => {
             <div class="flex flex-col space-y-6">
                 <HeadingSmall :title="t('settings.profile.baseSmall.title')" :description="t('settings.profile.baseSmall.description')" />
 
-                <form @submit.prevent="submit" class="space-y-6">
+                <form @submit.prevent="submit" class="space-y-4">
                     <div class="grid gap-2">
                         <Label for="name">{{ t('settings.profile.form.name.label') }}</Label>
                         <Input
@@ -92,9 +92,7 @@ const submit = () => {
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-4">
-                        <Button :disabled="form.processing">{{ t('settings.profile.form.submit') }}</Button>
-
+                    <div class="flex items-center justify-end gap-4">
                         <Transition
                             enter-active-class="transition ease-in-out"
                             enter-from-class="opacity-0"
@@ -103,6 +101,8 @@ const submit = () => {
                         >
                             <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ t('settings.profile.form.submitted') }}</p>
                         </Transition>
+
+                        <Button :disabled="form.processing">{{ t('settings.profile.form.submit') }}</Button>
                     </div>
                 </form>
             </div>
