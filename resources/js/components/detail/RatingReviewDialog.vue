@@ -67,7 +67,7 @@ const submit = () => {
                 <h3 class="text-lg font-semibold">
                     {{ content.ratings_avg_rating ? Number(content.ratings_avg_rating).toFixed(1) : '—' }}
                 </h3>
-                <component :is="Star" class="size-4 fill-yellow-300 text-yellow-300" />
+                <component :is="Star" class="size-4 text-yellow-300" :class="{ 'fill-yellow-300': content.user_rating != null }" />
             </Button>
         </DialogTrigger>
 
