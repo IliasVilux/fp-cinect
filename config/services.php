@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'tmdb' => [
+        'key' => env('TMDB_API_KEY'),
+        'base_url' => 'https://api.themoviedb.org/3',
+    ],
+
+    'jikan' => [
+        'base_url' => 'https://api.jikan.moe/v4',
+    ],
+
 ];
