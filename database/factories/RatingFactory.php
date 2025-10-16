@@ -19,7 +19,7 @@ class RatingFactory extends Factory
     public function definition(): array
     {
         return [
-            'rating' => fake()->numberBetween(1, 10),
+            'score' => fake()->numberBetween(1, 5),
             'user_id' => User::factory(),
             'content_id' => Content::factory(),
         ];

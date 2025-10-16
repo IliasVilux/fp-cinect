@@ -55,8 +55,8 @@ class ContentService
             $query->where('type', $type);
         }
 
-        return $query->withAvg('ratings', 'rating')
-            ->orderBy('ratings_avg_rating', 'desc')
+        return $query->withAvg('ratings', 'score')
+            ->orderBy('ratings_avg_score', 'desc')
             ->take(10)
             ->get();
     }
@@ -155,7 +155,7 @@ class ContentService
                 'reviews.user',
             ]
         )
-            ->withAvg('ratings', 'rating')
+            ->withAvg('ratings', 'score')
             ->findOrFail($id);
     }
 
@@ -204,8 +204,8 @@ class ContentService
             'name_asc' => ['title', 'asc'],
             'name_desc' => ['title', 'desc'],
             'recent' => ['created_at', 'desc'],
-            'top_rated' => ['rating', 'desc'],  // TODO
-            'low_rated' => ['rating', 'asc'],   // TODO
+            'top_rated' => ['score', 'desc'],  // TODO
+            'low_rated' => ['score', 'asc'],   // TODO
         ];
 
         $orderBy = $filters['orderBy'] ?? null;

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('rating');
+            $table->unsignedTinyInteger('score');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('content_id')->constrained()->cascadeOnDelete();
             $table->unique(['user_id', 'content_id']);

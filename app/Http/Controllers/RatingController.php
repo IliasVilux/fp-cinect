@@ -22,10 +22,10 @@ class RatingController extends Controller
     public function upsert(Request $request, Content $content)
     {
         $validated = $request->validate([
-            'rating' => 'nullable|integer|min:0|max:5',
+            'score' => 'nullable|integer|min:0|max:5',
         ]);
 
-        $this->ratingService->upsert($content, $validated['rating']);
+        $this->ratingService->upsert($content, $validated['score']);
 
         return back();
     }

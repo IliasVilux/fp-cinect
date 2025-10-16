@@ -70,10 +70,10 @@ class ContentController extends Controller
      */
     public function storeRatingAndReview(Request $request, Content $content)
     {
-        $validated = $request->validate([ 'rating' => 'integer|min:0|max:5', 'review' => 'nullable|string|max:1000', ]);
+        $validated = $request->validate([ 'score' => 'integer|min:0|max:5', 'review' => 'nullable|string|max:1000', ]);
 
-        $this->ratingService->upsert($content, $validated['rating']);
-        if ($validated['rating'] > 0) {
+        $this->ratingService->upsert($content, $validated['score']);
+        if ($validated['score'] > 0) {
             $this->reviewService->upsert($content, $validated['review']);
         }
 

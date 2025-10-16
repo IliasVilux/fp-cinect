@@ -17,11 +17,11 @@ class RatingService
      * @param  Content  $content  The content to rate
      * @param  array{rating:int, review:string}  $data
      */
-    public function upsert(Content $content, int $rating): void
+    public function upsert(Content $content, int $score): void
     {
         $userId = Auth::id();
 
-        if ($rating === 0) {
+        if ($score === 0) {
             Rating::where('user_id', $userId)
                 ->where('content_id', $content->getKey())
                 ->delete();
@@ -35,7 +35,7 @@ class RatingService
 
         Rating::updateOrCreate(
             ['user_id' => $userId, 'content_id' => $content->getKey()],
-            ['rating' => $rating]
+            ['score' => $score]
         );
     }
 }

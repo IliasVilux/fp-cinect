@@ -15,7 +15,7 @@ class Rating extends Model
      *
      * @var list<string>
      */
-    protected $fillable = ['rating', 'user_id', 'content_id'];
+    protected $fillable = ['score', 'user_id', 'content_id'];
 
     /**
      * Get the user that owns the rating.
