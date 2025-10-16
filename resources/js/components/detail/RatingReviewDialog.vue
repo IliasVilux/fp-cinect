@@ -14,21 +14,21 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const props = defineProps<{
     content: Content & {
-        ratings_avg_rating?: string;
+        ratings_avg_score?: string;
         user_rating?: { rating: number };
         user_review?: { review_text: string };
     };
 }>();
 
 const form = useForm({
-    rating: props.content.user_rating?.rating || 0,
+    score: props.content.user_rating?.score || 0,
     review: props.content.user_review?.review_text || '',
 });
 watch(
     () => props.content.user_review?.review_text,
     (newReview) => {
         form.review = newReview || '';
-        form.rating = props.content.user_rating?.rating || 0;
+        form.score = props.content.user_rating?.score || 0;
     },
 );
 const dialogOpen = ref(false);
@@ -36,18 +36,18 @@ const handleDialogOpenChange = (open: boolean) => {
     dialogOpen.value = open;
     if (open) {
     form.review = props.content.user_review?.review_text || '';
-    form.rating = props.content.user_rating?.rating || 0;
+    form.score = props.content.user_rating?.score || 0;
   } else {
     form.reset();
   }
 };
-const handleRating = (rating: number) => {
-    if (form.rating === rating) {
-        form.rating = 0;
+const handleRating = (score: number) => {
+    if (form.score === score) {
+        form.score = 0;
         return;
     }
 
-    form.rating = rating;
+    form.score = score;
 };
 const submit = () => {
     form.post(route('contents.storeRatingAndReview', props.content.id), {
@@ -65,7 +65,7 @@ const submit = () => {
         <DialogTrigger as-child>
             <Button variant="outline">
                 <h3 class="text-lg font-semibold">
-                    {{ content.ratings_avg_rating ? Number(content.ratings_avg_rating).toFixed(1) : '—' }}
+                    {{ content.ratings_avg_score ? Number(content.ratings_avg_score).toFixed(1) : '—' }}
                 </h3>
                 <component :is="Star" class="size-4 text-yellow-300" :class="{ 'fill-yellow-300': content.user_rating != null }" />
             </Button>
@@ -85,11 +85,11 @@ const submit = () => {
                         v-for="n in 5"
                         :key="n"
                         class="aspect-square size-full cursor-pointer"
-                        :class="cn(n <= form.rating ? 'fill-yellow-300 text-yellow-300' : 'fill-neutral-700 text-neutral-700')"
+                        :class="cn(n <= form.score ? 'fill-yellow-300 text-yellow-300' : 'fill-neutral-700 text-neutral-700')"
                         @click="handleRating(n)"
                     />
                 </div>
-                <p v-show="form.rating !== 0" class="text-muted-foreground mt-2 mb-6 text-center text-xs">
+                <p v-show="form.score !== 0" class="text-muted-foreground mt-2 mb-6 text-center text-xs">
                     {{ t('detail.review.ratingHint') }}
                 </p>
 
