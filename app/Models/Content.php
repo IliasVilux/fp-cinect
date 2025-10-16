@@ -39,14 +39,6 @@ class Content extends Model
     }
 
     /**
-     * the platforms that belongs to the content.
-     */
-    public function platforms(): BelongsToMany
-    {
-        return $this->belongsToMany(Platform::class);
-    }
-
-    /**
      * the list that belongs to the content.
      */
     public function favoriteLists(): BelongsToMany
