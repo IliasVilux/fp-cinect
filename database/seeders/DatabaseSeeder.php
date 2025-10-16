@@ -6,13 +6,13 @@ use App\Models\Genre;
 use App\Models\Content;
 use App\Models\Episode;
 use App\Models\FavoriteList;
-use App\Models\Platform;
 use App\Models\Rating;
 use App\Models\Review;
 use App\Models\Season;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,52 +21,51 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Genre::factory(10)->create();
-        $platforms = Platform::factory(5)->create();
+        Artisan::call('migrate:fresh');
+        dump("VAMOSSS!");
 
-        $movies = Content::factory(8)->create(['type' => 'movie']);
-        $series = Content::factory(8)->create(['type' => 'series']);
-        $animes = Content::factory(8)->create(['type' => 'anime']);
+        $this->call(ContentSeeder::class);
 
-        $allContents = $movies->concat($series)->concat($animes);
+        User::factory(10)->create()->each(function ($user) {
+            dump("Creando usuario: " . $user->name);
 
-        $series->concat($animes)->each(function ($content) {
-            $seasons = Season::factory(rand(1, 5))->create(['content_id' => $content->id]);
+            FavoriteList::factory(rand(1, 4))->create(['user_id' => $user->id])->each(function ($list) use ($user) {
+                dump("  - Creando lista: " . $list->name);
 
-            $seasons->each(function ($season) {
-                Episode::factory(rand(1, 10))->create(['season_id' => $season->id]);
+                $contents = Content::inRandomOrder()->take(rand(3, 15))->get();
+                $list->contents()->attach($contents->pluck('id'));
+
+                dump("    - Agregando " . count($contents) . " contenidos a la lista");
+
+                $contents->each(function ($content) use ($user) {
+                    if (fake()->boolean(40)) {
+                        Rating::firstOrCreate(
+                            [
+                                'user_id' => $user->id,
+                                'content_id' => $content->id,
+                            ],
+                            [
+                                'score' => rand(1, 5),
+                            ]
+                        );
+                        dump("      - Rating agregado a: " . $content->title);
+
+                        if (fake()->boolean(45)) {
+                            Review::firstOrCreate(
+                                [
+                                    'user_id' => $user->id,
+                                    'content_id' => $content->id,
+                                ],
+                                [
+                                    'review_text' => fake()->paragraph(),
+                                ]
+                            );
+
+                            dump("      - Review agregado a: " . $content->title);
+                        }
+                    }
+                });
             });
         });
-
-        $users = User::factory(10)->create();
-
-        foreach ($users as $user) {
-            $lists = FavoriteList::factory(rand(1, 3))->create(['user_id' => $user->id]);
-
-            foreach ($lists as $list) {
-                $randomContents = $allContents->random(rand(3, 6));
-                $list->contents()->attach($randomContents->pluck('id'));
-            }
-
-            foreach ($allContents as $content) {
-                $randomPlatforms = $platforms->random(rand(2, 5));
-                $content->platforms()->syncWithoutDetaching($randomPlatforms->pluck('id'));
-            }
-
-            $ratedContents = $allContents->random(rand(5, 15));
-            foreach ($ratedContents as $content) {
-                Rating::factory()->create([
-                    'user_id' => $user->id,
-                    'content_id' => $content->id,
-                ]);
-
-                if (rand(0, 1)) {
-                    Review::factory()->create([
-                        'user_id' => $user->id,
-                        'content_id' => $content->id,
-                    ]);
-                }
-            }
-        }
     }
 }
