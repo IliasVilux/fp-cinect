@@ -14,6 +14,7 @@ import { Head } from '@inertiajs/vue3';
 import { useMediaQuery } from '@vueuse/core';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { getImage } from '@/composables/getImage';
 
 const { t } = useI18n();
 
@@ -42,7 +43,7 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="content.title" />
     <AppLayout layout="header">
-        <img src="/images/welcome/hero-background.webp" alt="Cinect" class="absolute inset-0 z-0 h-[600px] w-full mask-b-from-25% object-cover" />
+        <img :src="getImage(content.backdrop_image, 'backdrop', content.type)" :alt="content.title" class="absolute inset-0 z-0 h-[600px] w-full mask-b-from-25% object-cover" />
 
         <div class="mx-5 mt-36 lg:mt-56">
             <section
@@ -54,7 +55,7 @@ const clearHoveredItem = () => {
                     <div class="mb-3 flex h-4 items-center justify-center space-x-2 text-sm text-neutral-300 md:hidden">
                         <p v-if="content.release_year">{{ content.release_year }}</p>
                         <Separator v-if="content.release_year" orientation="vertical" />
-                        <p v-if="content.type == 'movie'">{{ content.duration }}</p>
+                        <p v-if="content.type == 'movie'">{{ content.duration }} mins</p>
                         <p v-else>{{ content.seasons.length > 0 ? content.seasons.length : 0 }} {{ t('detail.seasons', content.seasons.length) }}</p>
                         <Separator orientation="vertical" />
                         <p>{{ content.genre.name }}</p>
