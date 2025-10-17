@@ -8,10 +8,14 @@ const DEFAULT_SIZES: Record<ImageType, ImageSize> = {
     backdrop: 'w1920',
 };
 
-export function getTMDBImage(path?: string | null, type: ImageType = 'poster', size?: ImageSize): string {
-    if (!path) {
-        return '/images/welcome/hero-background.webp';
-    }
+export function getImage(
+    path?: string | null,
+    type: ImageType = 'poster',
+    typeContent?: string,
+    size?: ImageSize
+): string {
+    if (!path) return '/images/welcome/hero-background.webp';
+    if (typeContent === 'anime') return path;
 
     const finalSize = size ?? DEFAULT_SIZES[type];
     const normalizedPath = path.startsWith('/') ? path : `/${path}`;
@@ -19,6 +23,6 @@ export function getTMDBImage(path?: string | null, type: ImageType = 'poster', s
     return `${TMDB_BASE_URL}${finalSize}${normalizedPath}`;
 }
 
-export function useTMDBImage() {
-    return { getTMDBImage };
+export function useImage() {
+    return { getImage };
 }
