@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        $content = Content::whereNotNull('cover_image')->inRandomOrder()->first();
+        $content = Content::whereNotNull('backdrop_image')->inRandomOrder()->first();
 
         return Inertia::render('auth/Register', [
             'content' => $content,

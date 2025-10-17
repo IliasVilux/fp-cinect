@@ -2,6 +2,7 @@
 import AppLogoIcon from '@/components/app/AppLogoIcon.vue';
 import { Content } from '@/types/models';
 import { Link, usePage } from '@inertiajs/vue3';
+import { getTMDBImage } from '@/composables/getImageTmdb';
 
 const page = usePage();
 const name = page.props.name;
@@ -18,8 +19,8 @@ defineProps<{
         <div class="relative hidden h-full flex-col bg-neutral-950 p-10 text-white lg:flex dark:border-r">
             <!-- Background Image -->
             <img
-                :src="content.cover_image"
-                alt="Interestellar background image"
+                :src="getTMDBImage(content.backdrop_image, 'backdrop', 'original')"
+                :alt="content.title"
                 class="absolute inset-0 size-full mask-t-from-50% object-cover brightness-[.8]"
             />
 
