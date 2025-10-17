@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppLogoIcon from '@/components/app/AppLogoIcon.vue';
-import { getTMDBImage } from '@/composables/getImageTmdb';
+import { getImage } from '@/composables/getImage';
 import { Content } from '@/types/models';
 import { Link, usePage } from '@inertiajs/vue3';
 
@@ -19,7 +19,7 @@ defineProps<{
         <div class="relative hidden h-full flex-col bg-neutral-950 p-10 text-white lg:flex dark:border-r">
             <!-- Background Image -->
             <img
-                :src="getTMDBImage(content.backdrop_image, 'backdrop', 'original')"
+                :src="getImage(content.backdrop_image, 'backdrop', 'original')"
                 :alt="content.title"
                 class="absolute inset-0 size-full mask-t-from-50% object-cover brightness-[.8]"
             />

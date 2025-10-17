@@ -52,7 +52,7 @@ const submit = () => {
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="email">{{ t('auth.form.email.email.label') }}</Label>
+                    <Label for="email">{{ t('auth.common.fields.email.label') }}</Label>
                     <Input
                         id="email"
                         type="email"
@@ -60,13 +60,13 @@ const submit = () => {
                         :tabindex="2"
                         autocomplete="email"
                         v-model="form.email"
-                        :placeholder="t('auth.register.form.email.placeholder')"
+                        :placeholder="t('auth.common.fields.email.placeholder')"
                     />
                     <InputError :message="form.errors.email" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password">{{ t('auth.register.form.password.label') }}</Label>
+                    <Label for="password">{{ t('auth.common.fields.password.label') }}</Label>
                     <Input
                         id="password"
                         type="password"
@@ -74,13 +74,13 @@ const submit = () => {
                         :tabindex="3"
                         autocomplete="new-password"
                         v-model="form.password"
-                        :placeholder="t('auth.register.form.password.placeholder')"
+                        :placeholder="t('auth.common.fields.password.placeholder')"
                     />
                     <InputError :message="form.errors.password" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password_confirmation">{{ t('auth.register.form.confirmPassword.label') }}</Label>
+                    <Label for="password_confirmation">{{ t('auth.common.fields.confirmPassword.label') }}</Label>
                     <Input
                         id="password_confirmation"
                         type="password"
@@ -88,7 +88,7 @@ const submit = () => {
                         :tabindex="4"
                         autocomplete="new-password"
                         v-model="form.password_confirmation"
-                        :placeholder="t('auth.register.form.confirmPassword.placeholder')"
+                        :placeholder="t('auth.common.fields.confirmPassword.placeholder')"
                     />
                     <InputError :message="form.errors.password_confirmation" />
                 </div>
