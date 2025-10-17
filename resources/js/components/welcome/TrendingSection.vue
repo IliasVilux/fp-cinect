@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getTMDBImage } from '@/composables/getImageTmdb';
+import { getImage } from '@/composables/getImage';
 import { Content } from '@/types/models';
 
 defineProps<{
@@ -10,7 +10,7 @@ defineProps<{
 <template>
     <section class="relative mb-20 min-h-[400px] w-full items-end lg:flex lg:min-h-[600px]">
         <img
-            :src="getTMDBImage(trendingContents[0].backdrop_image, 'backdrop')"
+            :src="getImage(trendingContents[0].backdrop_image, 'backdrop', trendingContents[0].type)"
             :alt="trendingContents[0].title"
             class="inset-0 z-0 size-full min-h-96 mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
         />
@@ -29,7 +29,7 @@ defineProps<{
                 <img
                     v-for="content in trendingContents.slice(1)"
                     :key="content.id"
-                    :src="getTMDBImage(content.backdrop_image, 'backdrop')"
+                    :src="getImage(content.backdrop_image, 'backdrop', content.type)"
                     :alt="content.title"
                     class="border-border aspect-square size-full overflow-hidden rounded-md border object-cover"
                 />

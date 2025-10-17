@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppLogo from '@/components/app/AppLogo.vue';
-import { getTMDBImage } from '@/composables/getImageTmdb';
+import { getImage } from '@/composables/getImage';
 import { Content } from '@/types/models';
 
 defineProps<{
@@ -11,7 +11,7 @@ defineProps<{
 <template>
     <section class="relative w-full">
         <img
-            :src="getTMDBImage(content.backdrop_image, 'backdrop')"
+            :src="getImage(content.backdrop_image, 'backdrop', content.type)"
             :alt="content.title"
             class="absolute inset-0 z-0 size-full mask-b-from-25% object-cover brightness-[.7]"
         />

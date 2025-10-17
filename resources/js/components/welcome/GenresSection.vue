@@ -2,7 +2,7 @@
 import HeadingLarge from '@/components/common/HeadingLarge.vue';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { getTMDBImage } from '@/composables/getImageTmdb';
+import { getImage } from '@/composables/getImage';
 import { Genre } from '@/types/models';
 
 defineProps<{
@@ -24,7 +24,7 @@ defineProps<{
                     <Card class="relative aspect-[5/7] overflow-hidden rounded-md">
                         <CardContent class="p-0">
                             <img
-                                :src="getTMDBImage(genre?.content?.poster_image, 'poster')"
+                                :src="getImage(genre?.content?.poster_image, 'poster', genre?.content?.type)"
                                 :alt="genre?.content?.title"
                                 class="absolute inset-0 z-0 size-full mask-b-from-70% mask-b-to-95% object-cover"
                             />
