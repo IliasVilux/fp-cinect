@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Artisan::call('migrate:fresh');
-        dump('VAMOSSS!');
 
         $this->call(ContentSeeder::class);
 

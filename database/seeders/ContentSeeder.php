@@ -201,58 +201,65 @@ class ContentSeeder extends Seeder
 
     public function seedAnimeFromJikan()
     {
-        $discoverResponse = Http::accept('application/json')->get("$this->baseUrlJikan/anime", [
-            'limit' => 35,
-        ]);
+        $page = 1;
+        do {
+            $discoverResponse = Http::accept('application/json')->get("$this->baseUrlJikan/anime", [
+                'limit' => 25,
+                'page' => $page,
+            ]);
+            $page++;
 
-        if ($discoverResponse->successful()) {
-            foreach ($discoverResponse->json()['data'] as $anime) {
-                $genre = null;
-                if (! empty($anime['genres'])) {
-                    $randomGenre = collect($anime['genres'])->random();
-                    $genre = Genre::firstOrCreate(['name' => $randomGenre['name']]);
-                }
+            dump('Respuesta Jikan:', $discoverResponse->status(), $discoverResponse->json());
 
-                $duration = intval($anime['duration']) ?? null;
+            if ($discoverResponse->successful()) {
+                foreach ($discoverResponse->json()['data'] as $anime) {
+                    $genre = null;
+                    if (! empty($anime['genres'])) {
+                        $randomGenre = collect($anime['genres'])->random();
+                        $genre = Genre::firstOrCreate(['name' => $randomGenre['name']]);
+                    }
 
-                $content = Content::create([
-                    'title' => $anime['title'],
-                    'description' => $anime['synopsis'] ?? null,
-                    'type' => 'anime',
-                    'release_year' => $anime['year'] ?? null,
-                    'duration' => $duration ?? null,
-                    'genre_id' => $genre->id ?? null,
-                    'poster_image' => $anime['images']['webp']['large_image_url'] ?? null,
-                    'backdrop_image' => $anime['images']['jpg']['maximum_image_url'] ?? null,
-                ]);
+                    $duration = intval($anime['duration']) ?? null;
 
-                dump('Agregando anime: '.$content->title);
+                    $content = Content::create([
+                        'title' => $anime['title'],
+                        'description' => $anime['synopsis'] ?? null,
+                        'type' => 'anime',
+                        'release_year' => $anime['year'] ?? null,
+                        'duration' => $duration ?? null,
+                        'genre_id' => $genre->id ?? null,
+                        'poster_image' => $anime['images']['webp']['large_image_url'] ?? null,
+                        'backdrop_image' => $anime['images']['jpg']['maximum_image_url'] ?? null,
+                    ]);
 
-                if (! $anime['episodes'] || $anime['episodes'] === 0) {
-                    continue;
-                }
+                    dump('Agregando anime: '.$content->title);
 
-                $episodesResponse = Http::accept('application/json')->get("$this->baseUrlJikan/anime/{$anime['mal_id']}/episodes");
+                    if (! $anime['episodes'] || $anime['episodes'] === 0) {
+                        continue;
+                    }
 
-                $season = $content->seasons()->create([
-                    'title' => 'Season 1',
-                    'season_number' => 1,
-                ]);
+                    $episodesResponse = Http::accept('application/json')->get("$this->baseUrlJikan/anime/{$anime['mal_id']}/episodes");
 
-                $episodesData = array_map(function ($episode, $index) use ($duration) {
-                    return [
-                        'title' => $episode['title'] ?? null,
-                        'episode_number' => $index + 1,
-                        'duration' => $duration,
-                    ];
-                }, $episodesResponse->json()['data'] ?? [], array_keys($episodesResponse->json()['data'] ?? []));
+                    $season = $content->seasons()->create([
+                        'title' => 'Season 1',
+                        'season_number' => 1,
+                    ]);
 
-                if (! empty($episodesData)) {
-                    $season->episodes()->createMany($episodesData);
+                    $episodesData = array_map(function ($episode, $index) use ($duration) {
+                        return [
+                            'title' => $episode['title'] ?? null,
+                            'episode_number' => $index + 1,
+                            'duration' => $duration,
+                        ];
+                    }, $episodesResponse->json()['data'] ?? [], array_keys($episodesResponse->json()['data'] ?? []));
 
-                    dump('    - '.count($episodesData).' episodios insertados en '.$season->title);
+                    if (! empty($episodesData)) {
+                        $season->episodes()->createMany($episodesData);
+
+                        dump('    - '.count($episodesData).' episodios insertados en '.$season->title);
+                    }
                 }
             }
-        }
+        } while ($page <= 2);
     }
 }
