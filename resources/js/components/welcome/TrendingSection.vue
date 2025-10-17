@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Content } from '@/types/models';
+import { getTMDBImage } from '@/composables/getImageTmdb';
 
 defineProps<{
     trendingContents: Content[];
@@ -9,7 +10,7 @@ defineProps<{
 <template>
     <section class="relative mb-20 min-h-[400px] w-full items-end lg:flex lg:min-h-[600px]">
         <img
-            src="/images/welcome/hero-background.webp"
+            :src="getTMDBImage(trendingContents[0].backdrop_image, 'backdrop')"
             :alt="trendingContents[0].title"
             class="inset-0 z-0 size-full min-h-96 mask-b-from-20% object-cover lg:absolute lg:mask-x-from-65% lg:mask-b-from-70% lg:mask-b-to-95%"
         />
@@ -28,9 +29,9 @@ defineProps<{
                 <img
                     v-for="content in trendingContents.slice(1)"
                     :key="content.id"
-                    src="/images/welcome/hero-background.webp"
+                    :src="getTMDBImage(content.backdrop_image, 'backdrop')"
                     :alt="content.title"
-                    class="aspect-square size-full overflow-hidden rounded-md object-cover"
+                    class="aspect-square size-full overflow-hidden rounded-md object-cover border border-border"
                 />
             </div>
         </div>

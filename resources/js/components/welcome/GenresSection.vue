@@ -3,6 +3,7 @@ import HeadingLarge from '@/components/common/HeadingLarge.vue';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Genre } from '@/types/models';
+import { getTMDBImage } from '@/composables/getImageTmdb';
 
 defineProps<{
     genres: Genre[];
@@ -23,13 +24,13 @@ defineProps<{
                     <Card class="relative aspect-[5/7] overflow-hidden rounded-md">
                         <CardContent class="p-0">
                             <img
-                                src="/images/welcome/hero-background.webp"
-                                :alt="genre.content.title"
+                                :src="getTMDBImage(genre?.content?.poster_image, 'poster')"
+                                :alt="genre?.content?.title"
                                 class="absolute inset-0 z-0 size-full mask-b-from-70% mask-b-to-95% object-cover"
                             />
                             <div class="absolute bottom-0 z-10 mb-4 w-full text-center">
                                 <p class="text-lg font-bold capitalize">{{ genre.name }}</p>
-                                <p class="text-[10px] font-medium">{{ genre.content.title }}</p>
+                                <p class="text-[10px] font-medium">{{ genre?.content?.title }}</p>
                             </div>
                         </CardContent>
                     </Card>
