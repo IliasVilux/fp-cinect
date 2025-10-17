@@ -92,7 +92,7 @@ class ContentSeeder extends Seeder
                     'release_year' => substr($movieDetailResponse->json()['release_date'], 0, 4) ?? null,
                     'duration' => $movieDetailResponse->json()['runtime'] ?? null,
                     'genre_id' => $genre->id ?? null,
-                    'cover_image' => $movieDetailResponse->json()['poster_path'] ?? null,
+                    'poster_image' => $movieDetailResponse->json()['poster_path'] ?? null,
                 ];
 
                 dump("Agregando película: " . $movieDetailResponse->json()['title']);
@@ -134,7 +134,7 @@ class ContentSeeder extends Seeder
                     'release_year' => substr($tvShowDetailResponse->json()['first_air_date'], 0, 4) ?? null,
                     'duration' => null,
                     'genre_id' => $genre->id ?? null,
-                    'cover_image' => $tvShowDetailResponse->json()['poster_path'] ?? null,
+                    'poster_image' => $tvShowDetailResponse->json()['poster_path'] ?? null,
                 ]);
                 dump("Agregando serie: " . $content->title);
 
@@ -200,7 +200,7 @@ class ContentSeeder extends Seeder
                     'release_year' => $anime['year'] ?? null,
                     'duration' => $duration ?? null,
                     'genre_id' => $genre->id ?? null,
-                    'cover_image' => $anime['images']['webp']['large_image_url'] ?? null,
+                    'poster_image' => $anime['images']['webp']['large_image_url'] ?? null,
                 ]);
 
                 dump("Agregando anime: " . $content->title);

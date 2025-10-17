@@ -6,7 +6,8 @@ export interface Content {
     release_year: number | null;
     duration: number | null;
     genre_id: number;
-    cover_image: string | null;
+    poster_image: string | null;
+    backdrop_image: string | null;
     created_at: string;
     updated_at: string;
     seasons?: Season[];

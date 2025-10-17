@@ -19,7 +19,8 @@ return new class extends Migration
             $table->unsignedSmallInteger('release_year')->nullable();
             $table->unsignedSmallInteger('duration')->nullable();
             $table->foreignId('genre_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('cover_image')->nullable();
+            $table->string('poster_image')->nullable();
+            $table->string('backdrop_image')->nullable();
             $table->timestamps();
         });
     }

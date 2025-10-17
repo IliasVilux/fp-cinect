@@ -14,7 +14,7 @@ defineProps<{
     <section class="relative aspect-[5/7] w-full lg:aspect-video">
         <!-- Background image -->
         <img
-            :src="featuredContent.cover_image || '/images/welcome/hero-background.webp'"
+            :src="featuredContent.poster_image || '/images/welcome/hero-background.webp'"
             alt="Hero Image"
             class="absolute inset-0 z-0 size-full mask-b-from-15% mask-b-to-95% object-cover lg:mask-b-from-55% lg:mask-b-to-100% lg:mask-l-from-30% lg:mask-l-to-95%"
         />

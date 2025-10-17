@@ -27,7 +27,7 @@ const onMouseLeave = () => {
             :key="item.id"
             :href="route('dashboard.type', item.type)"
             class="border-sidebar-border/70 relative z-10 aspect-[5/8] cursor-pointer overflow-hidden rounded-xl border transition-colors duration-300 hover:border-indigo-600 hover:shadow-2xl lg:aspect-video"
-            @mouseover="onMouseOver(item.cover_image || '/images/welcome/hero-background.webp')"
+            @mouseover="onMouseOver(item.poster_image || '/images/welcome/hero-background.webp')"
             @mouseleave="onMouseLeave"
         >
             <!-- Gradient -->
@@ -35,7 +35,7 @@ const onMouseLeave = () => {
 
             <!-- Cover image -->
             <img
-                :src="item.cover_image || '/images/welcome/hero-background.webp'"
+                :src="item.poster_image || '/images/welcome/hero-background.webp'"
                 alt="Interestellar"
                 class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
             />

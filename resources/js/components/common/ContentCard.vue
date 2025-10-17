@@ -16,7 +16,7 @@ const props = defineProps<{
         <Card :class="cn(props.class)">
             <CardContent>
                 <img
-                    :src="content.cover_image || '/images/welcome/hero-background.webp'"
+                    :src="content.poster_image || '/images/welcome/hero-background.webp'"
                     :alt="`${content.title} cover image`"
                     class="absolute inset-0 size-full object-cover"
                 />

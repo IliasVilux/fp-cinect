@@ -27,7 +27,8 @@ class Content extends Model
         'release_year',
         'duration',
         'genre_id',
-        'cover_image',
+        'poster_image',
+        'backdrop_image',
     ];
 
     /**
