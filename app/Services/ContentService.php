@@ -133,9 +133,9 @@ class ContentService
     public function getRandomCards()
     {
         return [
-            Content::where('type', 'series')->inRandomOrder()->first(),
-            Content::where('type', 'movie')->inRandomOrder()->first(),
-            Content::where('type', 'anime')->inRandomOrder()->first(),
+            Content::where('type', 'series')->whereNotNull('poster_image')->whereNotNull('backdrop_image')->inRandomOrder()->first(),
+            Content::where('type', 'movie')->whereNotNull('poster_image')->whereNotNull('backdrop_image')->inRandomOrder()->first(),
+            Content::where('type', 'anime')->whereNotNull('poster_image')->inRandomOrder()->first(),
         ];
     }
 

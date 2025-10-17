@@ -2,6 +2,7 @@
 import Heading from '@/components/common/Heading.vue';
 import { Content } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
+import { getImage } from '@/composables/getImage';
 
 defineProps<{
     items: Content[];
@@ -27,7 +28,7 @@ const onMouseLeave = () => {
             :key="item.id"
             :href="route('dashboard.type', item.type)"
             class="border-sidebar-border/70 relative z-10 aspect-[5/8] cursor-pointer overflow-hidden rounded-xl border transition-colors duration-300 hover:border-indigo-600 hover:shadow-2xl lg:aspect-video"
-            @mouseover="onMouseOver(item.poster_image || '/images/welcome/hero-background.webp')"
+            @mouseover="onMouseOver(getImage(item.backdrop_image ?? '', 'backdrop', item.type, 'original'))"
             @mouseleave="onMouseLeave"
         >
             <!-- Gradient -->
@@ -35,7 +36,7 @@ const onMouseLeave = () => {
 
             <!-- Cover image -->
             <img
-                :src="item.poster_image || '/images/welcome/hero-background.webp'"
+                :src="getImage(item.poster_image, 'poster', item.type)"
                 alt="Interestellar"
                 class="absolute inset-0 z-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
             />
@@ -46,9 +47,8 @@ const onMouseLeave = () => {
 
         <!-- Hover background image -->
         <img
-            :src="hoveredImage || '/images/welcome/hero-background.webp'"
-            alt="Background"
-            class="absolute inset-0 w-full mask-b-from-0% mask-b-to-100% object-cover opacity-0 transition-opacity duration-1000 lg:mask-b-to-50%"
+            :src="hoveredImage || ''"
+            class="absolute inset-0 w-full h-auto mask-b-from-0% mask-b-to-100% object-cover opacity-0 transition-opacity duration-1000 lg:mask-b-to-50%"
             :class="{ 'opacity-50': hoveredImage }"
         />
     </div>
