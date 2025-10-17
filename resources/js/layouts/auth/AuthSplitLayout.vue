@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import AppLogoIcon from '@/components/app/AppLogoIcon.vue';
+import { getTMDBImage } from '@/composables/getImageTmdb';
 import { Content } from '@/types/models';
 import { Link, usePage } from '@inertiajs/vue3';
-import { getTMDBImage } from '@/composables/getImageTmdb';
 
 const page = usePage();
 const name = page.props.name;

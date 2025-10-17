@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Content } from '@/types/models';
 import { getTMDBImage } from '@/composables/getImageTmdb';
+import { Content } from '@/types/models';
 
 defineProps<{
     trendingContents: Content[];
@@ -31,7 +31,7 @@ defineProps<{
                     :key="content.id"
                     :src="getTMDBImage(content.backdrop_image, 'backdrop')"
                     :alt="content.title"
-                    class="aspect-square size-full overflow-hidden rounded-md object-cover border border-border"
+                    class="border-border aspect-square size-full overflow-hidden rounded-md border object-cover"
                 />
             </div>
         </div>

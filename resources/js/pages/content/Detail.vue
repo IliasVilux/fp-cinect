@@ -116,7 +116,8 @@ const clearHoveredItem = () => {
                     </TabsContent>
 
                     <TabsContent value="related">
-                        <ContentCarousel v-if="relatedContents.length > 0"
+                        <ContentCarousel
+                            v-if="relatedContents.length > 0"
                             :contents="relatedContents"
                             :hoveredItemId="hoveredItemId"
                             :setHoveredItem="setHoveredItem"

@@ -35,11 +35,11 @@ const dialogOpen = ref(false);
 const handleDialogOpenChange = (open: boolean) => {
     dialogOpen.value = open;
     if (open) {
-    form.review = props.content.user_review?.review_text || '';
-    form.score = props.content.user_rating?.score || 0;
-  } else {
-    form.reset();
-  }
+        form.review = props.content.user_review?.review_text || '';
+        form.score = props.content.user_rating?.score || 0;
+    } else {
+        form.reset();
+    }
 };
 const handleRating = (score: number) => {
     if (form.score === score) {

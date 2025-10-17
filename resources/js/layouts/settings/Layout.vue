@@ -16,7 +16,7 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
 </script>
 
 <template>
-    <div class="px-5 lg:px-11 mt-5 lg:mt-11 mb-20">
+    <div class="mt-5 mb-20 px-5 lg:mt-11 lg:px-11">
         <HeadingLarge class="mb-4 md:mb-8" :title="t('settings.layout.base.title')" />
 
         <div class="flex flex-col lg:flex-row lg:space-y-0 lg:space-x-12">
@@ -36,7 +36,7 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
                 </nav>
             </aside>
 
-            <Separator orientation="horizontal" class="bg-border mb-6 mt-2 flex md:hidden" />
+            <Separator orientation="horizontal" class="bg-border mt-2 mb-6 flex md:hidden" />
 
             <div class="flex-1 md:max-w-2xl">
                 <section class="max-w-xl space-y-12">

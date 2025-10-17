@@ -6,13 +6,15 @@ import { computed } from 'vue';
 import { WithClassAsProps } from '../ui/carousel/interface';
 
 const props = withDefaults(
-    defineProps<{
-        selectItems: SelectItemType[];
-        placeholder: string;
-        allowDeselect?: boolean;
-    } & WithClassAsProps>(),
+    defineProps<
+        {
+            selectItems: SelectItemType[];
+            placeholder: string;
+            allowDeselect?: boolean;
+        } & WithClassAsProps
+    >(),
     {
-        allowDeselect: true
+        allowDeselect: true,
     },
 );
 

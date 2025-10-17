@@ -2,8 +2,8 @@
 import HeadingLarge from '@/components/common/HeadingLarge.vue';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Genre } from '@/types/models';
 import { getTMDBImage } from '@/composables/getImageTmdb';
+import { Genre } from '@/types/models';
 
 defineProps<{
     genres: Genre[];

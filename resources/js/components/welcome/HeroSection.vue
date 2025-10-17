@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLogo from '@/components/app/AppLogo.vue';
-import { Content } from '@/types/models';
 import { getTMDBImage } from '@/composables/getImageTmdb';
+import { Content } from '@/types/models';
 
 defineProps<{
     content: Content;

@@ -48,7 +48,7 @@ const closeModal = () => {
 <template>
     <div class="space-y-2">
         <HeadingSmall :title="t('settings.profile.deleteUser.base.title')" />
-        <div class="space-y-4 rounded-lg border border-border bg-gradient-to-br from-red-950 to-neutral-950 p-4">
+        <div class="border-border space-y-4 rounded-lg border bg-gradient-to-br from-red-950 to-neutral-950 p-4">
             <div class="relative space-y-0.5">
                 <p class="font-medium">{{ t('settings.profile.deleteUser.warning.title') }}</p>
                 <p class="text-sm text-red-200">{{ t('settings.profile.deleteUser.warning.description') }}</p>

@@ -38,7 +38,7 @@ defineProps<{
             </DialogHeader>
 
             <section>
-                <div v-for="(list, i) in lists" :key="list.id">
+                <div v-for="(list) in lists" :key="list.id">
                     <div
                         class="border-border my-2 flex flex-row items-center justify-between rounded-md border bg-gradient-to-l from-neutral-950/80 to-neutral-950/0 px-4 py-2 transition-colors duration-300 hover:border-indigo-600 hover:bg-neutral-800"
                     >

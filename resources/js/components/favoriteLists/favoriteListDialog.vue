@@ -108,7 +108,7 @@ const deleteList = () => {
                                 <Link
                                     :href="route('favoriteLists.toggleContent', { list: list.id, content: content.id })"
                                     method="post"
-                                    class="text-destructive cursor-pointer text-xs px-2"
+                                    class="text-destructive cursor-pointer px-2 text-xs"
                                 >
                                     {{ t('favoriteLists.dialog.form.contents.remove') }}
                                 </Link>
@@ -119,10 +119,12 @@ const deleteList = () => {
                     <DialogFooter class="mt-6 sm:justify-between">
                         <div class="flex items-center space-x-2">
                             <Switch :model-value="form.is_public" @update:model-value="changeListVisibility" />
-                            <Label for="is_public" class="cursor-pointer select-none"><Label for="is_public">{{ t('favoriteLists.dialog.form.isPublic.label') }}</Label></Label>
+                            <Label for="is_public" class="cursor-pointer select-none"
+                                ><Label for="is_public">{{ t('favoriteLists.dialog.form.isPublic.label') }}</Label></Label
+                            >
                         </div>
 
-                        <div class="flex gap-2 justify-end">
+                        <div class="flex justify-end gap-2">
                             <Button v-if="list" variant="destructive" :disabled="form.processing" @click="deleteList">
                                 <LoaderCircle v-if="form.processing" class="size-4 animate-spin" />
                                 {{ t('favoriteLists.btn.deleteList') }}

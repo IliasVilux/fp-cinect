@@ -5,8 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { FavoriteList } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
 import { Plus } from 'lucide-vue-next';
-import ContentCarousel from '../common/ContentCarousel.vue';
 import { useI18n } from 'vue-i18n';
+import ContentCarousel from '../common/ContentCarousel.vue';
 
 const { t } = useI18n();
 
