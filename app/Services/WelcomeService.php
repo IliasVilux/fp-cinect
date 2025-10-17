@@ -33,7 +33,6 @@ class WelcomeService
 
     /**
      * Retrieve one random content.
-     *
      */
     public function getRandomContent()
     {

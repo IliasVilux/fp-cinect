@@ -2,13 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Genre;
 use App\Models\Content;
-use App\Models\Episode;
 use App\Models\FavoriteList;
 use App\Models\Rating;
 use App\Models\Review;
-use App\Models\Season;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,20 +19,20 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Artisan::call('migrate:fresh');
-        dump("VAMOSSS!");
+        dump('VAMOSSS!');
 
         $this->call(ContentSeeder::class);
 
         User::factory(10)->create()->each(function ($user) {
-            dump("Creando usuario: " . $user->name);
+            dump('Creando usuario: '.$user->name);
 
             FavoriteList::factory(rand(1, 4))->create(['user_id' => $user->id])->each(function ($list) use ($user) {
-                dump("  - Creando lista: " . $list->name);
+                dump('  - Creando lista: '.$list->name);
 
                 $contents = Content::inRandomOrder()->take(rand(3, 15))->get();
                 $list->contents()->attach($contents->pluck('id'));
 
-                dump("    - Agregando " . count($contents) . " contenidos a la lista");
+                dump('    - Agregando '.count($contents).' contenidos a la lista');
 
                 $contents->each(function ($content) use ($user) {
                     if (fake()->boolean(40)) {
@@ -48,7 +45,7 @@ class DatabaseSeeder extends Seeder
                                 'score' => rand(1, 5),
                             ]
                         );
-                        dump("      - Rating agregado a: " . $content->title);
+                        dump('      - Rating agregado a: '.$content->title);
 
                         if (fake()->boolean(45)) {
                             Review::firstOrCreate(
@@ -61,7 +58,7 @@ class DatabaseSeeder extends Seeder
                                 ]
                             );
 
-                            dump("      - Review agregado a: " . $content->title);
+                            dump('      - Review agregado a: '.$content->title);
                         }
                     }
                 });

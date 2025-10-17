@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class Content extends Model
@@ -76,8 +75,8 @@ class Content extends Model
      */
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class)->orderByRaw("user_id = ? DESC", [Auth::id()])
-                ->orderBy('created_at', 'desc');
+        return $this->hasMany(Review::class)->orderByRaw('user_id = ? DESC', [Auth::id()])
+            ->orderBy('created_at', 'desc');
     }
 
     /**

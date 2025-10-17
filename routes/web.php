@@ -13,14 +13,14 @@ Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::controller(DashboardController::class)
-        ->prefix('dashboard')
-        ->as('dashboard.')
-        ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/{type}', 'indexType')
-                ->whereIn('type', ['movie', 'series', 'anime'])
-                ->name('type');
-        });
+            ->prefix('dashboard')
+            ->as('dashboard.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{type}', 'indexType')
+                    ->whereIn('type', ['movie', 'series', 'anime'])
+                    ->name('type');
+            });
 
         Route::controller(ContentController::class)
             ->prefix('contents')

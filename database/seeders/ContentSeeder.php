@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Http;
 
 class ContentSeeder extends Seeder
 {
-    private $apiKey, $baseUrlTMDB, $baseUrlJikan;
+    private $apiKey;
+
+    private $baseUrlTMDB;
+
+    private $baseUrlJikan;
 
     public function __construct()
     {
@@ -52,15 +56,15 @@ class ContentSeeder extends Seeder
         if ($responseTvShows->successful()) {
             $tvGenres = collect($responseTvShows->json()['genres'])
                 ->pluck('name')
-                ->reject(fn($name) => $genres->contains($name))
+                ->reject(fn ($name) => $genres->contains($name))
                 ->values();
 
             $genres = $genres->merge($tvGenres);
         }
 
-        $genres->each(callback: fn($genre) => Genre::Create(['name' => $genre]));
+        $genres->each(callback: fn ($genre) => Genre::Create(['name' => $genre]));
 
-        dump("Generos creados correctamente!");
+        dump('Generos creados correctamente!');
     }
 
     public function seedMoviesFromTMDB()
@@ -70,17 +74,23 @@ class ContentSeeder extends Seeder
             $discoverResponse = Http::withToken($this->apiKey)->accept('application/json')->get("$this->baseUrlTMDB/discover/movie?page=$page");
             $page++;
 
-            if (!$discoverResponse->successful()) continue;
+            if (! $discoverResponse->successful()) {
+                continue;
+            }
 
             $moviesData = [];
             foreach ($discoverResponse->json()['results'] as $movie) {
                 $movieDetailResponse = Http::withToken($this->apiKey)->accept('application/json')->get("{$this->baseUrlTMDB}/movie/{$movie['id']}");
 
-                if (!$movieDetailResponse->successful() || !isset($movieDetailResponse->json()['id'])) continue;
-                if (Content::where('title', $movieDetailResponse->json()['title'])->exists()) continue;
+                if (! $movieDetailResponse->successful() || ! isset($movieDetailResponse->json()['id'])) {
+                    continue;
+                }
+                if (Content::where('title', $movieDetailResponse->json()['title'])->exists()) {
+                    continue;
+                }
 
                 $genre = null;
-                if (!empty($movieDetailResponse->json()['genres'])) {
+                if (! empty($movieDetailResponse->json()['genres'])) {
                     $randomGenre = collect($movieDetailResponse->json()['genres'])->random();
                     $genre = Genre::where('name', explode(' ', $randomGenre['name'])[0])->first();
                 }
@@ -96,13 +106,13 @@ class ContentSeeder extends Seeder
                     'backdrop_image' => $movieDetailResponse->json()['backdrop_path'] ?? null,
                 ];
 
-                dump("Agregando película: " . $movieDetailResponse->json()['title']);
+                dump('Agregando película: '.$movieDetailResponse->json()['title']);
             }
 
-            if (!empty($moviesData)) {
+            if (! empty($moviesData)) {
                 Content::insert($moviesData);
 
-                dump(count($moviesData) . " películas insertadas en la base de datos.");
+                dump(count($moviesData).' películas insertadas en la base de datos.');
             }
         } while ($page <= 2);
     }
@@ -114,16 +124,22 @@ class ContentSeeder extends Seeder
             $discoverResponse = Http::withToken($this->apiKey)->accept('application/json')->get("$this->baseUrlTMDB/discover/tv?page=$page");
             $page++;
 
-            if (!$discoverResponse->successful()) continue;
+            if (! $discoverResponse->successful()) {
+                continue;
+            }
 
             foreach ($discoverResponse->json()['results'] as $tvShow) {
                 $tvShowDetailResponse = Http::withToken($this->apiKey)->accept('application/json')->get("{$this->baseUrlTMDB}/tv/{$tvShow['id']}");
 
-                if (!$tvShowDetailResponse->successful() || !isset($tvShowDetailResponse->json()['id'])) continue;
-                if (Content::where('title', $tvShowDetailResponse->json()['name'])->exists()) continue;
+                if (! $tvShowDetailResponse->successful() || ! isset($tvShowDetailResponse->json()['id'])) {
+                    continue;
+                }
+                if (Content::where('title', $tvShowDetailResponse->json()['name'])->exists()) {
+                    continue;
+                }
 
                 $genre = null;
-                if (!empty($tvShowDetailResponse->json()['genres'])) {
+                if (! empty($tvShowDetailResponse->json()['genres'])) {
                     $randomGenre = collect($tvShowDetailResponse->json()['genres'])->random();
                     $genre = Genre::where('name', explode(' ', $randomGenre['name'])[0])->first();
                 }
@@ -138,12 +154,14 @@ class ContentSeeder extends Seeder
                     'poster_image' => $tvShowDetailResponse->json()['poster_path'] ?? null,
                     'backdrop_image' => $tvShowDetailResponse->json()['backdrop_path'] ?? null,
                 ]);
-                dump("Agregando serie: " . $content->title);
+                dump('Agregando serie: '.$content->title);
 
                 if (isset($tvShowDetailResponse->json()['seasons']) && is_array($tvShowDetailResponse->json()['seasons'])) {
                     $limitedSeasons = array_slice($tvShowDetailResponse->json()['seasons'], 0, 5);
                     foreach ($limitedSeasons as $seasonData) {
-                        if (!isset($seasonData['season_number']) || $seasonData['season_number'] === 0) continue;
+                        if (! isset($seasonData['season_number']) || $seasonData['season_number'] === 0) {
+                            continue;
+                        }
 
                         $season = Season::create([
                             'title' => $seasonData['name'],
@@ -151,15 +169,17 @@ class ContentSeeder extends Seeder
                             'content_id' => $content->id,
                         ]);
 
-                        dump("  - Creando temporada: " . $season->title);
+                        dump('  - Creando temporada: '.$season->title);
 
                         $seasonResponse = Http::withToken($this->apiKey)
                             ->accept('application/json')
                             ->get("{$this->baseUrlTMDB}/tv/{$tvShow['id']}/season/{$seasonData['season_number']}");
 
-                        if (!$seasonResponse->successful()) continue;
+                        if (! $seasonResponse->successful()) {
+                            continue;
+                        }
 
-                        $episodesData = array_map(function($episode) use ($season) {
+                        $episodesData = array_map(function ($episode) use ($season) {
                             return [
                                 'title' => $episode['name'],
                                 'episode_number' => $episode['episode_number'],
@@ -168,10 +188,10 @@ class ContentSeeder extends Seeder
                             ];
                         }, $seasonResponse->json()['episodes'] ?? []);
 
-                        if (!empty($episodesData)) {
+                        if (! empty($episodesData)) {
                             $season->episodes()->createMany($episodesData);
 
-                            dump("    - " . count($episodesData) . " episodios insertados en " . $season->title);
+                            dump('    - '.count($episodesData).' episodios insertados en '.$season->title);
                         }
                     }
                 }
@@ -188,7 +208,7 @@ class ContentSeeder extends Seeder
         if ($discoverResponse->successful()) {
             foreach ($discoverResponse->json()['data'] as $anime) {
                 $genre = null;
-                if (!empty($anime['genres'])) {
+                if (! empty($anime['genres'])) {
                     $randomGenre = collect($anime['genres'])->random();
                     $genre = Genre::firstOrCreate(['name' => $randomGenre['name']]);
                 }
@@ -206,9 +226,11 @@ class ContentSeeder extends Seeder
                     'backdrop_image' => $anime['images']['jpg']['maximum_image_url'] ?? null,
                 ]);
 
-                dump("Agregando anime: " . $content->title);
+                dump('Agregando anime: '.$content->title);
 
-                if (!$anime['episodes'] || $anime['episodes'] === 0) continue;
+                if (! $anime['episodes'] || $anime['episodes'] === 0) {
+                    continue;
+                }
 
                 $episodesResponse = Http::accept('application/json')->get("$this->baseUrlJikan/anime/{$anime['mal_id']}/episodes");
 
@@ -217,7 +239,7 @@ class ContentSeeder extends Seeder
                     'season_number' => 1,
                 ]);
 
-                $episodesData = array_map(function($episode, $index) use ($duration) {
+                $episodesData = array_map(function ($episode, $index) use ($duration) {
                     return [
                         'title' => $episode['title'] ?? null,
                         'episode_number' => $index + 1,
@@ -225,10 +247,10 @@ class ContentSeeder extends Seeder
                     ];
                 }, $episodesResponse->json()['data'] ?? [], array_keys($episodesResponse->json()['data'] ?? []));
 
-                if (!empty($episodesData)) {
+                if (! empty($episodesData)) {
                     $season->episodes()->createMany($episodesData);
 
-                    dump("    - " . count($episodesData) . " episodios insertados en " . $season->title);
+                    dump('    - '.count($episodesData).' episodios insertados en '.$season->title);
                 }
             }
         }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
 use App\Models\Content;
+use App\Models\Genre;
 use App\Services\ContentService;
 use App\Services\FavoriteListService;
 use App\Services\RatingService;
@@ -46,7 +46,6 @@ class ContentController extends Controller
     /**
      * Show detail page for specific content.
      *
-     * @param  FavoriteListService  $favoriteListService
      * @param  int  $id  The content ID
      * @return \Inertia\Response
      */
@@ -70,7 +69,7 @@ class ContentController extends Controller
      */
     public function storeRatingAndReview(Request $request, Content $content)
     {
-        $validated = $request->validate([ 'score' => 'integer|min:0|max:5', 'review' => 'nullable|string|max:1000', ]);
+        $validated = $request->validate(['score' => 'integer|min:0|max:5', 'review' => 'nullable|string|max:1000']);
 
         $this->ratingService->upsert($content, $validated['score']);
         if ($validated['score'] > 0) {

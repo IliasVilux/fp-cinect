@@ -20,7 +20,7 @@ class ReviewService
     {
         $userId = Auth::id();
 
-        if (!empty($review)) {
+        if (! empty($review)) {
             Review::updateOrCreate(
                 ['user_id' => $userId, 'content_id' => $content->getKey()],
                 ['review_text' => $review]
@@ -31,9 +31,7 @@ class ReviewService
                 ->delete();
         }
 
-        return;
     }
-
 
     /**
      * Delete a review.
