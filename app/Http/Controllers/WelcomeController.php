@@ -21,6 +21,7 @@ class WelcomeController extends Controller
     public function index()
     {
         return Inertia::render('Welcome', [
+            'randomContent' => $this->welcomeService->getRandomContent(),
             'genres' => $this->welcomeService->getGenres(),
             'trendingContents' => $this->contentService->getTrending(),
         ]);

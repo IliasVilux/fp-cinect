@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Content;
 use App\Models\Genre;
 use Illuminate\Support\Collection;
 
@@ -18,7 +19,7 @@ class WelcomeService
     {
         $genres = Genre::with([
             'contents' => function ($query) {
-                $query->latest()->limit(1);
+                $query->whereNotNull('poster_image')->latest()->limit(1);
             },
         ])->get();
 
@@ -28,5 +29,14 @@ class WelcomeService
 
             return $genre;
         });
+    }
+
+    /**
+     * Retrieve one random content.
+     *
+     */
+    public function getRandomContent()
+    {
+        return Content::whereNotNull('backdrop_image')->inRandomOrder()->first();
     }
 }

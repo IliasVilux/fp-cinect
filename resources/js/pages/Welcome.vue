@@ -13,6 +13,7 @@ import { useI18n } from 'vue-i18n';
 const { t, locale, messages } = useI18n();
 
 defineProps<{
+    randomContent: Content;
     genres: Genre[];
     trendingContents: Content[];
 }>();
@@ -43,7 +44,7 @@ const features = rawItems.map(({ iconKey, ...item }) => ({
 
     <WelcomeHeader />
 
-    <HeroSection />
+    <HeroSection :content="randomContent" />
     <GenresSection :genres="genres" />
     <TrendingSection :trendingContents="trendingContents" />
     <FeaturesSection :features="features" />

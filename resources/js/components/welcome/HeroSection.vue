@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import AppLogo from '@/components/app/AppLogo.vue';
+import { Content } from '@/types/models';
+import { getTMDBImage } from '@/composables/getImageTmdb';
+
+defineProps<{
+    content: Content;
+}>();
 </script>
 
 <template>
     <section class="relative w-full">
         <img
-            src="/images/welcome/hero-background.webp"
-            alt="Cinect"
+            :src="getTMDBImage(content.backdrop_image, 'backdrop')"
+            :alt="content.title"
             class="absolute inset-0 z-0 size-full mask-b-from-25% object-cover brightness-[.7]"
         />
         <div class="relative z-10 mx-auto flex min-h-[750px] max-w-4xl flex-col items-center justify-center p-8 text-center">
