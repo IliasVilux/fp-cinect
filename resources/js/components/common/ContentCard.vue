@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Content } from '@/types/models';
 import { Link } from '@inertiajs/vue3';
 import type { HTMLAttributes } from 'vue';
+import { getImage } from '@/composables/getImage';
 
 const props = defineProps<{
     content: Content;
@@ -16,7 +17,7 @@ const props = defineProps<{
         <Card :class="cn(props.class)">
             <CardContent>
                 <img
-                    :src="content.poster_image || '/images/welcome/hero-background.webp'"
+                    :src="getImage(content.poster_image, 'poster', content.type)"
                     :alt="`${content.title} cover image`"
                     class="absolute inset-0 size-full object-cover"
                 />
