@@ -67,6 +67,6 @@ watch([orderBy, contentType, genreId, searchContent], ([order, contentType, genr
             />
         </section>
 
-        <AppPagination v-if="contents.total > 0" :contents="contents" class="mb-20" />
+        <AppPagination v-if="contents.total > 0" :contents="contents" class="mb-20" :filters="filters" />
     </AppLayout>
 </template>
