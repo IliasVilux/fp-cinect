@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-    <section class="relative aspect-[5/7] w-full lg:aspect-video">
+    <section class="relative aspect-[5/7] w-full lg:aspect-video xl:aspect-[2.39/1]">
         <!-- Background image -->
         <img
             :src="getImage(featuredContent.backdrop_image, 'backdrop', featuredContent.type)"

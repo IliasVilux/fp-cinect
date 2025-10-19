@@ -81,7 +81,7 @@ const clearHoveredItem = () => {
             :key="index"
             :class="index !== contentsGroupedByGenre.length - 1 ? 'mb-8' : 'mb-20'"
         >
-            <Heading :title="group.genre.name" class="ml-5 lg:ml-11" />
+            <Heading :title="group.name" class="ml-5 lg:ml-11" />
             <ContentCarousel
                 :contents="group.contents"
                 :hoveredItemId="hoveredItemId"

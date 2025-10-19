@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Content;
+use App\Models\Genre;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -101,15 +102,11 @@ class ContentService
      */
     public function getGroupedByGenre(string $type)
     {
-        return Content::where('type', $type)
-            ->with('genre')
-            ->get()
-            ->groupBy('cgenre_id')
-            ->map(fn ($contents) => [
-                'genre' => $contents->first()->genre,
-                'contents' => $contents->values(),
-            ])
-            ->values();
+        return Genre::whereHas('contents', function ($query) use ($type) {
+            $query->where('type', $type);
+        })->with(['contents' => function ($query) use ($type) {
+            $query->where('type', $type);
+        }])->get();
     }
 
     /**
