@@ -25,7 +25,7 @@ defineProps<{
             <h1 class="max-w-xl text-4xl font-bold lg:text-5xl">{{ featuredContent.title }}</h1>
             <p class="my-3 max-w-xl text-lg font-light lg:mt-7 lg:mb-5 line-clamp-4">{{ featuredContent.description }}</p>
             <Link
-                :href="route('login')"
+                :href="route('contents.show', featuredContent.id)"
                 class="w-fit rounded-full bg-neutral-50 px-7 py-3 leading-none font-semibold text-neutral-900 transition-colors duration-200 hover:bg-neutral-300"
             >
                 {{ t('dashboard-type.watchMore') }}
