@@ -95,6 +95,14 @@ class ContentSeeder extends Seeder
                     $genre = Genre::where('name', explode(' ', $randomGenre['name'])[0])->first();
                 }
 
+                $movieTrailerResponse = Http::withToken($this->apiKey)->accept('application/json')->get("{$this->baseUrlTMDB}/movie/{$movie['id']}/videos");
+                if (! $movieTrailerResponse->successful() || ! isset($movieTrailerResponse->json()['id'])) {
+                    continue;
+                }
+
+                $trailerItems = collect($movieTrailerResponse->json('results') ?? []);
+                $trailer = $trailerItems->first(fn($item) => $item['type'] === 'Trailer' && $item['site'] === 'YouTube');
+
                 $moviesData[] = [
                     'title' => $movieDetailResponse->json()['title'],
                     'description' => $movieDetailResponse->json()['overview'] ?? null,
@@ -104,6 +112,7 @@ class ContentSeeder extends Seeder
                     'genre_id' => $genre->id ?? null,
                     'poster_image' => $movieDetailResponse->json()['poster_path'] ?? null,
                     'backdrop_image' => $movieDetailResponse->json()['backdrop_path'] ?? null,
+                    'trailer_url' => $trailer['key'] ?? null,
                 ];
 
                 dump('Agregando película: '.$movieDetailResponse->json()['title']);
@@ -144,6 +153,14 @@ class ContentSeeder extends Seeder
                     $genre = Genre::where('name', explode(' ', $randomGenre['name'])[0])->first();
                 }
 
+                $tvShowTrailerResponse = Http::withToken($this->apiKey)->accept('application/json')->get("{$this->baseUrlTMDB}/tv/{$tvShow['id']}/videos");
+                if (! $tvShowTrailerResponse->successful() || ! isset($tvShowTrailerResponse->json()['id'])) {
+                    continue;
+                }
+
+                $trailerItems = collect($tvShowTrailerResponse->json('results') ?? []);
+                $trailer = $trailerItems->first(fn($item) => $item['type'] === 'Trailer' && $item['site'] === 'YouTube');
+
                 $content = Content::create([
                     'title' => $tvShowDetailResponse->json()['name'],
                     'description' => $tvShowDetailResponse->json()['overview'] ?? null,
@@ -153,6 +170,7 @@ class ContentSeeder extends Seeder
                     'genre_id' => $genre->id ?? null,
                     'poster_image' => $tvShowDetailResponse->json()['poster_path'] ?? null,
                     'backdrop_image' => $tvShowDetailResponse->json()['backdrop_path'] ?? null,
+                    'trailer_url' => $trailer['key'] ?? null,
                 ]);
                 dump('Agregando serie: '.$content->title);
 
@@ -230,6 +248,7 @@ class ContentSeeder extends Seeder
                         'genre_id' => $genre->id ?? null,
                         'poster_image' => $anime['images']['webp']['large_image_url'] ?? null,
                         'backdrop_image' => $anime['images']['jpg']['maximum_image_url'] ?? null,
+                        'trailer_url' => $anime['trailer']['embed_url'] ?? null,
                     ]);
 
                     dump('Agregando anime: '.$content->title);

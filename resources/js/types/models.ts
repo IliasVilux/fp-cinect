@@ -8,6 +8,7 @@ export interface Content {
     genre_id: number;
     poster_image: string | null;
     backdrop_image: string | null;
+    trailer_url: string | null
     created_at: string;
     updated_at: string;
     seasons?: Season[];

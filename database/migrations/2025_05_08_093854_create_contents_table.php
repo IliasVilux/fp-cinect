@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('genre_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('poster_image')->nullable();
             $table->string('backdrop_image')->nullable();
+            $table->string('trailer_url')->nullable();
             $table->timestamps();
         });
     }

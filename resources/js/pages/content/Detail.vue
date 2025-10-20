@@ -43,7 +43,7 @@ const clearHoveredItem = () => {
 <template>
     <Head :title="content.title" />
     <AppLayout layout="header">
-        <img :src="getImage(content.backdrop_image, 'backdrop', content.type)" :alt="content.title" class="absolute inset-0 z-0 h-[600px] w-full mask-b-from-25% object-cover" />
+        <img :src="getImage(content.type !== 'anime' ? content.backdrop_image : content.poster_image, 'backdrop', content.type)" :alt="content.title" class="absolute inset-0 z-0 h-[600px] w-full mask-b-from-25% object-cover" />
 
         <div class="mx-5 mt-36 lg:mt-56">
             <section
@@ -97,7 +97,7 @@ const clearHoveredItem = () => {
                     <TabsContent value="seasons">
                         <Accordion type="single" class="w-full" collapsible default-value="1">
                             <AccordionItem v-for="(season, index) in content.seasons" :key="season.id" :value="season.id.toString()">
-                                <AccordionTrigger :class="index == 0 ? 'mb-2' : 'my-2'">Season {{ index }}</AccordionTrigger>
+                                <AccordionTrigger :class="index == 0 ? 'mb-2' : 'my-2'">{{ season.title }}</AccordionTrigger>
                                 <AccordionContent>
                                     <EpisodeList :selectedSeason="season" />
                                 </AccordionContent>
@@ -107,8 +107,9 @@ const clearHoveredItem = () => {
 
                     <TabsContent value="trailer">
                         <iframe
+                            v-if="content.trailer_url"
                             class="mt-2 aspect-video size-full rounded-lg"
-                            :src="`https://www.youtube.com/embed/RYI-WG_HFV8`"
+                            :src="content.type !== 'anime' ? `https://www.youtube.com/embed/${content.trailer_url}` : content.trailer_url"
                             title="Trailer de {{ content.title }}"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
