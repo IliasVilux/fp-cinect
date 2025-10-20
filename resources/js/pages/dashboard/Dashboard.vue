@@ -75,7 +75,7 @@ const clearHoveredItem = () => {
         <section class="mb-8">
             <div class="mx-5 flex items-baseline justify-between lg:mx-11">
                 <Heading :title="t('dashboard.sections.carousel.tvShows')" />
-                <TextLink :href="route('dashboard.type', 'movie')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
+                <TextLink :href="route('dashboard.type', 'series')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
                 :contents="series"
@@ -89,7 +89,7 @@ const clearHoveredItem = () => {
         <section class="mb-8">
             <div class="mx-5 flex items-baseline justify-between lg:mx-11">
                 <Heading :title="t('dashboard.sections.carousel.movies')" />
-                <TextLink :href="route('dashboard.type', 'series')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
+                <TextLink :href="route('dashboard.type', 'movie')">{{ t('dashboard.sections.carousel.watchMore') }}</TextLink>
             </div>
             <ContentCarousel
                 :contents="movies"
