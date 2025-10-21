@@ -28,7 +28,7 @@ class Content extends Model
         'genre_id',
         'poster_image',
         'backdrop_image',
-        'trailer_url'
+        'trailer_url',
     ];
 
     /**

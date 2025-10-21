@@ -101,7 +101,7 @@ class ContentSeeder extends Seeder
                 }
 
                 $trailerItems = collect($movieTrailerResponse->json('results') ?? []);
-                $trailer = $trailerItems->first(fn($item) => $item['type'] === 'Trailer' && $item['site'] === 'YouTube');
+                $trailer = $trailerItems->first(fn ($item) => $item['type'] === 'Trailer' && $item['site'] === 'YouTube');
 
                 $moviesData[] = [
                     'title' => $movieDetailResponse->json()['title'],
@@ -159,7 +159,7 @@ class ContentSeeder extends Seeder
                 }
 
                 $trailerItems = collect($tvShowTrailerResponse->json('results') ?? []);
-                $trailer = $trailerItems->first(fn($item) => $item['type'] === 'Trailer' && $item['site'] === 'YouTube');
+                $trailer = $trailerItems->first(fn ($item) => $item['type'] === 'Trailer' && $item['site'] === 'YouTube');
 
                 $content = Content::create([
                     'title' => $tvShowDetailResponse->json()['name'],
