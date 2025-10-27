@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -14,7 +15,7 @@ test('register screen can be rendered', function () {
 
 
 test('users can register with valid data', function () {
-    $response = $this->post('/register', [
+    $response = $this->followingRedirects()->post('/register', [
         'name' => 'John Doe',
         'email' => 'john@example.com',
         'password' => 'password',
@@ -22,8 +23,14 @@ test('users can register with valid data', function () {
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard.index', absolute: false));
-
+    $response->assertInertia(fn (Assert $page) =>
+        $page->component('dashboard/Dashboard')
+            ->has('auth.user', fn ($user) =>
+                $user->where('name', 'John Doe')
+                     ->where('email', 'john@example.com')
+                     ->etc()
+            )
+    );
     assertDatabaseHas('users', ['email' => 'john@example.com']);
 });
 
@@ -91,4 +98,12 @@ test('users can logout', function () {
 
     $this->assertGuest();
     $response->assertRedirect('/');
+});
+
+test('authenticated user is redirected away from login and register pages', function () {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    $this->get('/login')->assertRedirect(route('home', absolute: false));
+    $this->get('/register')->assertRedirect(route('home', absolute: false));
 });
