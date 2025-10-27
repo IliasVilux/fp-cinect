@@ -25,6 +25,8 @@ class ContentFactory extends Factory
             'duration' => fake()->optional()->numberBetween(1, 220),
             'genre_id' => Genre::inRandomOrder()->first()->id,
             'poster_image' => fake()->optional()->imageUrl(640, 480, 'movies', true),
+            'backdrop_image' => fake()->optional()->imageUrl(1280, 720, 'movies', true),
+            'trailer_url' => fake()->url(),
         ];
     }
 }

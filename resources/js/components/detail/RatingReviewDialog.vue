@@ -15,7 +15,7 @@ const { t } = useI18n();
 const props = defineProps<{
     content: Content & {
         ratings_avg_score?: string;
-        user_rating?: { rating: number };
+        user_rating?: { score: number };
         user_review?: { review_text: string };
     };
 }>();
