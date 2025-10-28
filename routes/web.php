@@ -32,20 +32,20 @@ Route::middleware(['auth', 'verified'])
                     ->name('storeRatingAndReview');
             });
 
-        // Route::controller(RatingController::class)
-        //     ->prefix('ratings')
-        //     ->as('ratings.')
-        //     ->group(function () {
-        //         Route::post('/{content}', 'upsert')->name('upsert');
-        //     });
+        Route::controller(RatingController::class)
+            ->prefix('ratings')
+            ->as('ratings.')
+            ->group(function () {
+                Route::post('/{content}', 'upsert')->name('upsert');
+            });
 
-        // Route::controller(ReviewController::class)
-        //     ->prefix('reviews')
-        //     ->as('reviews.')
-        //     ->group(function () {
-        //         Route::post('/{content}', 'upsert')->name('upsert');
-        //         Route::delete('/{review}', 'destroy')->name('destroy');
-        //     });
+        Route::controller(ReviewController::class)
+            ->prefix('reviews')
+            ->as('reviews.')
+            ->group(function () {
+                Route::post('/{content}', 'upsert')->name('upsert');
+                Route::delete('/{review}', 'destroy')->name('destroy');
+            });
 
         Route::controller(FavoriteListController::class)
             ->prefix('favorite-lists')
