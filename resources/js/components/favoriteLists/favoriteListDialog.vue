@@ -97,7 +97,7 @@ const deleteList = () => {
                     </div>
 
                     <div v-if="list && list.contents && list.contents.length > 0" class="mt-6 grid gap-2">
-                        <Label>Contents</Label>
+                        <Label>{{ t('favoriteLists.dialog.form.contents.label') }}</Label>
                         <div>
                             <div
                                 v-for="content in list.contents"

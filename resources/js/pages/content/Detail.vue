@@ -85,7 +85,7 @@ const clearHoveredItem = () => {
                             t('detail.seasons')
                         }}</TabsTrigger>
                         <TabsTrigger value="trailer">{{ t('detail.trailer') }}</TabsTrigger>
-                        <TabsTrigger value="related">Relacionado / Related</TabsTrigger>
+                        <TabsTrigger value="related">{{ t('detail.moreLikeThis') }}</TabsTrigger>
                     </TabsList>
 
                     <Separator orientation="horizontal" class="bg-border mb-0 hidden lg:flex" />
@@ -97,7 +97,7 @@ const clearHoveredItem = () => {
                     <TabsContent value="seasons">
                         <Accordion type="single" class="w-full" collapsible default-value="1">
                             <AccordionItem v-for="(season, index) in content.seasons" :key="season.id" :value="season.id.toString()">
-                                <AccordionTrigger :class="index == 0 ? 'mb-2' : 'my-2'">{{ season.title }}</AccordionTrigger>
+                                <AccordionTrigger class="capitalize" :class="index == 0 ? 'mb-2' : 'my-2'">{{ t('detail.seasons') + ' ' + index + 1}}</AccordionTrigger>
                                 <AccordionContent>
                                     <EpisodeList :selectedSeason="season" />
                                 </AccordionContent>

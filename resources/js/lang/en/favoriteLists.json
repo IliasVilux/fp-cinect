@@ -45,7 +45,8 @@
                 "label": "Public list"
             },
             "contents": {
-                "label": "Contents"
+                "label": "Contents",
+                "remove": "Remove from list"
             }
         }
     },

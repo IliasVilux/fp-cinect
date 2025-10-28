@@ -34,6 +34,7 @@ defineProps<{
 
         <!-- Genre Tag -->
         <span
+            v-if="featuredContent.genre"
             class="absolute top-20 right-0 z-10 border-l-4 border-indigo-600 bg-gradient-to-r from-neutral-950/75 to-neutral-950/40 px-6 py-2 text-xs font-bold uppercase"
             >{{ featuredContent.genre.name }}</span>
     </section>

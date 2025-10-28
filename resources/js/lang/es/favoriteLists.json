@@ -45,7 +45,8 @@
                 "label": "Lista pública"
             },
             "contents": {
-                "label": "Contenidos"
+                "label": "Contenidos",
+                "remove": "Quitar de la lista"
             }
         }
     },
