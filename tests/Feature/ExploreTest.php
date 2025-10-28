@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\User;
 use App\Models\Content;
 use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -18,10 +18,9 @@ test('explore page loads with contents and genresItems', function () {
     $this->actingAs($this->user);
 
     $response = $this->get(route('contents.explore'));
-    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 1)
-            ->has('genresItems', 1)
+    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 1)
+        ->has('genresItems', 1)
     );
 });
 
@@ -30,10 +29,9 @@ test('explore page paginates correctly', function () {
     Content::factory()->count(30)->create();
 
     $response = $this->get(route('contents.explore'));
-    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 24)
-            ->where('contents.total', 30)
+    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 24)
+        ->where('contents.total', 30)
     );
 });
 
@@ -43,10 +41,9 @@ test('explore page filters by contentType', function () {
     Content::factory()->create(['genre_id' => $this->genre->id, 'type' => 'series']);
 
     $response = $this->get(uri: route('contents.explore', ['contentType' => 'movie']));
-    $response->assertStatus(200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 1)
-            ->where('contents.data.0.type', 'movie')
+    $response->assertStatus(200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 1)
+        ->where('contents.data.0.type', 'movie')
     );
 });
 
@@ -57,10 +54,9 @@ test('explore page filters by genre', function () {
     Content::factory()->create(['genre_id' => $genre2->id, 'type' => 'series']);
 
     $response = $this->get(uri: route('contents.explore', ['genreId' => $genre2->id]));
-    $response->assertStatus(200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 1)
-            ->where('contents.data.0.genre_id', $genre2->id)
+    $response->assertStatus(200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 1)
+        ->where('contents.data.0.genre_id', $genre2->id)
     );
 });
 
@@ -71,20 +67,18 @@ test('explore page orders contents', function () {
 
     // Test ordering by name ascending
     $response = $this->get(uri: route('contents.explore', ['orderBy' => 'name_asc']));
-    $response->assertStatus(200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 2)
-            ->where('contents.data.0.id', $first->id)
-            ->where('contents.data.1.id', $second->id)
+    $response->assertStatus(200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 2)
+        ->where('contents.data.0.id', $first->id)
+        ->where('contents.data.1.id', $second->id)
     );
 
     // Test ordering by name descending
     $response = $this->get(uri: route('contents.explore', ['orderBy' => 'name_desc']));
-    $response->assertStatus(200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 2)
-            ->where('contents.data.0.id', $second->id)
-            ->where('contents.data.1.id', $first->id)
+    $response->assertStatus(200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 2)
+        ->where('contents.data.0.id', $second->id)
+        ->where('contents.data.1.id', $first->id)
     );
 });
 
@@ -94,9 +88,8 @@ test('explore page searches content by title', function () {
     Content::factory()->create(['genre_id' => $this->genre->id, 'type' => 'series']);
 
     $response = $this->get(uri: route('contents.explore', ['searchContent' => 'tItLe']));
-    $response->assertStatus(200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Explore')
-            ->has('contents.data', 1)
-            ->where('contents.data.0.title', 'title')
+    $response->assertStatus(200)->assertInertia(fn (Assert $page) => $page->component('content/Explore')
+        ->has('contents.data', 1)
+        ->where('contents.data.0.title', 'title')
     );
 });

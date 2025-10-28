@@ -13,7 +13,6 @@ test('register screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
-
 test('users can register with valid data', function () {
     $response = $this->followingRedirects()->post('/register', [
         'name' => 'John Doe',
@@ -23,13 +22,11 @@ test('users can register with valid data', function () {
     ]);
 
     $this->assertAuthenticated();
-    $response->assertInertia(fn (Assert $page) =>
-        $page->component('dashboard/Dashboard')
-            ->has('auth.user', fn ($user) =>
-                $user->where('name', 'John Doe')
-                     ->where('email', 'john@example.com')
-                     ->etc()
-            )
+    $response->assertInertia(fn (Assert $page) => $page->component('dashboard/Dashboard')
+        ->has('auth.user', fn ($user) => $user->where('name', 'John Doe')
+            ->where('email', 'john@example.com')
+            ->etc()
+        )
     );
     assertDatabaseHas('users', ['email' => 'john@example.com']);
 });
