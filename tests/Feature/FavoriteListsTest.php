@@ -1,14 +1,14 @@
 <?php
 
-use App\Models\User;
 use App\Models\Content;
 use App\Models\FavoriteList;
 use App\Models\Genre;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\AssertableInertia as Assert;
 
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
 
@@ -31,10 +31,9 @@ test('user can create a list', function () {
         'user_id' => $this->user->id,
     ]);
     $response = $this->get(route('favoriteLists.index'));
-    $response->assertStatus(200)->assertInertia(fn (Assert $page) =>
-        $page->component('favorite-lists/myLists')
-            ->has('lists', 1)
-            ->where('lists.0.name', 'name')
+    $response->assertStatus(200)->assertInertia(fn (Assert $page) => $page->component('favorite-lists/myLists')
+        ->has('lists', 1)
+        ->where('lists.0.name', 'name')
     );
 });
 
@@ -54,16 +53,14 @@ test('user can add content to the list', function () {
         'content_id' => $content->id,
     ]);
     $response = $this->get(route('contents.show', $content->id));
-    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) =>
-        $page->component('content/Detail')
-            ->has('favoriteLists', 1)
-            ->where('favoriteLists.0.user_id', $this->user->id)
+    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) => $page->component('content/Detail')
+        ->has('favoriteLists', 1)
+        ->where('favoriteLists.0.user_id', $this->user->id)
     );
     $response = $this->get(route('favoriteLists.index'));
-    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) =>
-        $page->component('favorite-lists/myLists')
-            ->has('lists', 1)
-            ->where('lists.0.contents.0.id', $content->id)
+    $response->assertStatus(status: 200)->assertInertia(fn (Assert $page) => $page->component('favorite-lists/myLists')
+        ->has('lists', 1)
+        ->where('lists.0.contents.0.id', $content->id)
     );
 });
 

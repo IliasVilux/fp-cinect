@@ -38,14 +38,13 @@ test('authenticated users can visit the dashboard', function () {
     $this->actingAs($this->user);
 
     $response = $this->get('/dashboard');
-    $response->assertInertia(fn (Assert $page) =>
-        $page->component('dashboard/Dashboard')
-            ->has('cardsbuttonContent', 3)
-            ->has('recentContents', 3)
-            ->has('topTen', 3)
-            ->has('movies', 1)
-            ->has('series', 1)
-            ->has('animes', 1)
+    $response->assertInertia(fn (Assert $page) => $page->component('dashboard/Dashboard')
+        ->has('cardsbuttonContent', 3)
+        ->has('recentContents', 3)
+        ->has('topTen', 3)
+        ->has('movies', 1)
+        ->has('series', 1)
+        ->has('animes', 1)
     );
 });
 
